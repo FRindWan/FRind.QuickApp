@@ -1,6 +1,6 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/24 星期四 18:35:13
+ * 创建时间： 2016/3/24 星期四 18:45:56
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
@@ -14,15 +14,10 @@ using System.Threading.Tasks;
 namespace QucikApp.Domain.Entites
 {
     /// <summary>
-    /// <see cref="IAggregateRoot"/>
+    /// <see cref="AggregateRoot"/>
     /// </summary>
-    public interface IAggregateRoot<TKey>:IEntity<TKey>
+    public abstract class AggregateRoot<TKey>:IAggregateRoot<TKey>
     {
-
-    }
-
-    public interface IAggregateRoot : IAggregateRoot<Guid>
-    { 
-    
+        public TKey ID { get; set; }
     }
 }
