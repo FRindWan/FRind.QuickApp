@@ -39,8 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Domain\Entites\AggregateRoot.cs" />
+    <Compile Include="Domain\Entites\Entity.cs" />
+    <Compile Include="Domain\Entites\EntityChangedNotifyEventArgs.cs" />
+    <Compile Include="Domain\Entites\IAggregateRoot.cs" />
+    <Compile Include="Domain\Entites\IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Application\" />
+    <Folder Include="Dependency\" />
+    <Folder Include="Logger\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
