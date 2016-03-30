@@ -91,6 +91,7 @@
     <Compile Include="IQuickApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\IQuery.cs" />
+    <Compile Include="QuickApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\" />
@@ -98,6 +99,7 @@
     <Folder Include="Logger\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
