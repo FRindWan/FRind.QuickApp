@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,17 +43,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dependency\Autofac\AutofacDependency.cs" />
+    <Compile Include="Dependency\Autofac\DependencyExtension.cs" />
+    <Compile Include="Dependency\Dependency.cs" />
+    <Compile Include="Dependency\DependencyFactory.cs" />
+    <Compile Include="Dependency\DependencyLifeTime.cs" />
+    <Compile Include="Dependency\IDependency.cs" />
+    <Compile Include="Dependency\IDependencyRegister.cs" />
+    <Compile Include="Dependency\IDependencyResolver.cs" />
     <Compile Include="Domain\Entites\AggregateRoot.cs" />
     <Compile Include="Domain\Entites\Entity.cs" />
     <Compile Include="Domain\Entites\EntityChangedNotifyEventArgs.cs" />
     <Compile Include="Domain\Entites\IAggregateRoot.cs" />
     <Compile Include="Domain\Entites\IEntity.cs" />
+    <Compile Include="Domain\Repository\IRepository.cs" />
+    <Compile Include="Domain\Repository\IRepositoryContext.cs" />
+    <Compile Include="Domain\Repository\IRepositoryContextCommit.cs" />
+    <Compile Include="Domain\Repository\IRepositoryFactory.cs" />
+    <Compile Include="Domain\Repository\PendingToDbObjectContainer.cs" />
+    <Compile Include="Domain\Repository\PendingToDbOperatorType.cs" />
+    <Compile Include="Domain\Repository\Repository.cs" />
+    <Compile Include="Domain\Repository\RepositoryContext.cs" />
+    <Compile Include="Domain\Repository\SortOrder.cs" />
+    <Compile Include="Domain\Specifications\AndNotSpecification.cs" />
+    <Compile Include="Domain\Specifications\AndSpecification.cs" />
+    <Compile Include="Domain\Specifications\AnySpecification.cs" />
+    <Compile Include="Domain\Specifications\CompositeSpecification.cs" />
+    <Compile Include="Domain\Specifications\ExpressionFuncExtender.cs" />
+    <Compile Include="Domain\Specifications\ExpressionSpecification.cs" />
+    <Compile Include="Domain\Specifications\ICompositeSpecification.cs" />
+    <Compile Include="Domain\Specifications\ISpecification.cs" />
+    <Compile Include="Domain\Specifications\NoneSpecification.cs" />
+    <Compile Include="Domain\Specifications\NotSpecification.cs" />
+    <Compile Include="Domain\Specifications\OrSpecification.cs" />
+    <Compile Include="Domain\Specifications\ParameterRebinder.cs" />
+    <Compile Include="Domain\Specifications\Specification.cs" />
+    <Compile Include="Domain\UnitOfWorks\CurrentUnitOfWorkProvider.cs" />
+    <Compile Include="Domain\UnitOfWorks\ICurrentUnitOfWorkProvider.cs" />
+    <Compile Include="Domain\UnitOfWorks\IUnitOfWork.cs" />
+    <Compile Include="Domain\UnitOfWorks\IUnitOfWorkManager.cs" />
+    <Compile Include="Domain\UnitOfWorks\UnitOfWork.cs" />
+    <Compile Include="Domain\UnitOfWorks\UnitOfWorkCommitEventHandler.cs" />
+    <Compile Include="Domain\UnitOfWorks\UnitOfWorkCommitEventArgs.cs" />
+    <Compile Include="Exceptions\QuickAppException.cs" />
+    <Compile Include="Exceptions\UnitOfWorkException.cs" />
+    <Compile Include="IConfigSource.cs" />
+    <Compile Include="IQuickApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\IQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\" />
-    <Folder Include="Dependency\" />
+    <Folder Include="Data\" />
     <Folder Include="Logger\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

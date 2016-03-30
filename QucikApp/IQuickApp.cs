@@ -1,31 +1,28 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/24 星期四 18:46:40
+ * 创建时间： 2016/3/30 星期三 16:51:49
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QucikApp.Dependency;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.Entites
+namespace QucikApp
 {
     /// <summary>
-    /// <see cref="Entity"/>
+    /// <see cref="IQuickApp"/>
     /// </summary>
-    public abstract class Entity<TKey>:IEntity<TKey>
+    public interface IQuickApp
     {
-        public Entity()
-        {
-            
-        }
+        IConfigSource ConfigSource { get; }
 
-        public TKey ID { get; set; }
+        IDependency DependencyContainer { get; }
 
-
-
+        void Initialize();
     }
 }

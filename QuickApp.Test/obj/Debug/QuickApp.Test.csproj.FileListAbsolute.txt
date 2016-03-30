@@ -1,0 +1,9 @@
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\obj\Debug\QuickApp.Test.csprojResolveAssemblyReference.cache
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.Test.dll
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.Test.pdb
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QucikApp.dll
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.dll
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QucikApp.pdb
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.xml
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\obj\Debug\QuickApp.Test.dll
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\obj\Debug\QuickApp.Test.pdb
