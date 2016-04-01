@@ -5,6 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QucikApp.Dependency;
 using QucikApp.Domain.Repository;
 using QucikApp.Exceptions;
 using System;
@@ -21,11 +22,13 @@ namespace QucikApp.Domain.UnitOfWorks
     public abstract class UnitOfWork:IUnitOfWork
     {
         protected IDictionary<Type,IRepositoryContextCommit> DbContexts;
+        protected IDependencyResolver dependencyResolver;
 
-        public UnitOfWork()
+        public UnitOfWork(IDependencyResolver dependencyResolver)
         {
-            this.DbContexts = new Dictionary<Type, IRepositoryContextCommit>();
+            this.dependencyResolver = dependencyResolver;
 
+            this.DbContexts = new Dictionary<Type, IRepositoryContextCommit>();
             this.Id = Guid.NewGuid();
         }
 
@@ -62,6 +65,18 @@ namespace QucikApp.Domain.UnitOfWorks
             this.OnDispose();
         }
 
+        public virtual TContext CreateContext<TContext>() where TContext : IRepositoryContextCommit
+        {
+            IRepositoryContextCommit context;
+            if (!this.DbContexts.TryGetValue(typeof(TContext), out context))
+            {
+                context = this.dependencyResolver.Resolver<TContext>();
+                this.DbContexts.Add(typeof(TContext), context);
+            }
+
+            return (TContext)context;
+        }
+
         protected abstract void OnPreCommit();
 
         protected abstract void OnComplateCommit();
@@ -78,8 +93,6 @@ namespace QucikApp.Domain.UnitOfWorks
 
         protected abstract void OnDispose();
 
-        protected abstract void CreateContext();
-        
         public bool IsCommited { get; private set; }
 
         public bool IsDisposed { get; private set; }

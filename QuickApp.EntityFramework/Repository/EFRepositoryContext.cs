@@ -1,34 +1,32 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 17:09:32
+ * 创建时间： 2016/3/31 星期四 12:28:53
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Dependency.Autofac;
+using QucikApp.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Dependency
+namespace QuickApp.EntityFramework.Repository
 {
     /// <summary>
-    /// <see cref="DependencyFactory"/>
+    /// <see cref="EFRepositoryContext"/>
     /// </summary>
-    internal class DependencyFactory
+    public class EFRepositoryContext:RepositoryContext
     {
-        private static readonly IDependency dependency;
-
-        static DependencyFactory()
+        protected override void DoDispose()
         {
-            dependency = new AutofacDependency();
+            throw new NotImplementedException();
         }
 
-        internal static IDependency GetDependency()
+        protected override void DoSaveChanges()
         {
-            return dependency;
+            throw new NotImplementedException();
         }
     }
 }

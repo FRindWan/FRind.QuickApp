@@ -16,7 +16,7 @@ namespace QucikApp.Domain.Repository
     /// <summary>
     /// <see cref="IRepositoryContextCommit"/>
     /// </summary>
-    public interface IRepositoryContextCommit
+    public interface IRepositoryContextCommit:IRepositoryContext
     {
         void SaveChanges();
     }

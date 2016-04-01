@@ -18,7 +18,7 @@ namespace QucikApp.Dependency.Autofac
     /// <summary>
     /// <see cref="AutofacDependency"/>
     /// </summary>
-    public class AutofacDependency:IDependency
+    internal class AutofacDependency:IDependency
     {
         private IContainer container;
         private ContainerBuilder builder;

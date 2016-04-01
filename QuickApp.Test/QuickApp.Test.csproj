@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Dependency\AutofacDependencyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork\UnitOfWorkTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QucikApp\QucikApp.csproj">

@@ -1,10 +1,11 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 11:08:18
+ * 创建时间： 2016/3/31 星期四 11:54:50
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QucikApp.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,10 @@ using System.Threading.Tasks;
 namespace QucikApp.Domain.UnitOfWorks
 {
     /// <summary>
-    /// <see cref="IUnitOfWorkManager"/>
+    /// <see cref="IUnitOfWorkRepositoryContextProvider"/>
     /// </summary>
-    public interface IUnitOfWorkManager
+    public interface IUnitOfWorkRepositoryContextProvider<TContext>where TContext:IRepositoryContextCommit
     {
-        IUnitOfWork Create();
-
-        IUnitOfWork Outer{get;}
+        TContext Context { get; }
     }
 }

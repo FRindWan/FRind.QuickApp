@@ -14,54 +14,67 @@ using System.Threading.Tasks;
 namespace QucikApp.Dependency
 {
     /// <summary>
-    /// <see cref="Dependency"/>
+    /// <see cref="DependencyProxy"/>
     /// </summary>
-    public abstract class Dependency:IDependency
+    public class DependencyProxy:IDependency
     {
+        private IDependency dependency;
+
+        public DependencyProxy()
+        {
+            this.dependency = DependencyFactory.GetDependency();
+        }
+
 
         public void Register(Type type, DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
         {
-            throw new NotImplementedException();
+            this.dependency.Register(type, dependencyLifeTime);
         }
 
         public void Register<Type>(DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
         {
-            throw new NotImplementedException();
+            this.dependency.Register<Type>(dependencyLifeTime);
         }
 
         public void Register(Type interfaceType, Type implType, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
         {
-            throw new NotImplementedException();
+            this.dependency.Register(interfaceType, implType, lifeTime);
         }
 
         public void Register<TInterface, TImpl>(DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
         {
-            throw new NotImplementedException();
+            this.dependency.Register<TInterface, TImpl>(dependencyLifeTime);
         }
 
         public void Register(System.Reflection.Assembly assembly, Func<Type, bool> predicate, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
         {
-            throw new NotImplementedException();
+            this.dependency.Register(assembly, predicate, lifeTime);
+        }
+
+        public void Register(System.Reflection.Assembly interfaceAssembly, System.Reflection.Assembly implAssembly, Func<Type, bool> predicate, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
+        {
+            this.dependency.Register(interfaceAssembly, implAssembly, predicate);
         }
 
         public object Resolver(Type type)
         {
-            throw new NotImplementedException();
+            return this.dependency.Resolver(type);
         }
 
         public T Resolver<T>()
         {
-            throw new NotImplementedException();
+            return this.dependency.Resolver<T>();
         }
 
         public bool IsRegisted(Type type)
         {
-            throw new NotImplementedException();
+            return this.dependency.IsRegisted(type);
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            this.dependency.Dispose();
         }
+
     }
 }

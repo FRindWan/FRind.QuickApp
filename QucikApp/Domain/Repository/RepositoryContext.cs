@@ -18,7 +18,7 @@ namespace QucikApp.Domain.Repository
     /// <summary>
     /// <see cref="RepositoryContext"/>
     /// </summary>
-    public abstract class RepositoryContext : IRepositoryContext, IRepositoryContextCommit
+    public abstract class RepositoryContext : IRepositoryContextCommit
     {
         private PendingToDbObjectContainer pendingToDbObjectContainer;
 

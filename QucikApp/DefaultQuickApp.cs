@@ -15,16 +15,15 @@ using System.Threading.Tasks;
 namespace QucikApp
 {
     /// <summary>
-    /// <see cref="QuickApp"/>
+    /// <see cref="DefaultQuickApp"/>
     /// </summary>
-    public class QuickApp:IQuickApp
+    public class DefaultQuickApp:IQuickApp
     {
         private IConfigSource configSource;
         private IDependency dependency;
 
-        public QuickApp()
+        public DefaultQuickApp()
         {
-            this.dependency = DependencyFactory.GetDependency();
         }
 
         public IConfigSource ConfigSource
@@ -39,7 +38,7 @@ namespace QucikApp
 
         public void Initialize()
         {
-            throw new NotImplementedException();
+            this.dependency = Dependency.DependencyFactory.GetDependency();
         }
     }
 }

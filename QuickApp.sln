@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickApp.Data", "QuickApp.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickApp.Test", "QuickApp.Test\QuickApp.Test.csproj", "{8F92228D-7FC0-419E-ADA1-51C8D1DF4192}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickApp.EntityFramework", "QuickApp.EntityFramework\QuickApp.EntityFramework.csproj", "{2CC5E64E-5F7E-4810-A756-68A5E0772508}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{8F92228D-7FC0-419E-ADA1-51C8D1DF4192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F92228D-7FC0-419E-ADA1-51C8D1DF4192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F92228D-7FC0-419E-ADA1-51C8D1DF4192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CC5E64E-5F7E-4810-A756-68A5E0772508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CC5E64E-5F7E-4810-A756-68A5E0772508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CC5E64E-5F7E-4810-A756-68A5E0772508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CC5E64E-5F7E-4810-A756-68A5E0772508}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,6 +6,7 @@
  *  -------------------------------------------------------------------------*/
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using QucikApp;
 using QucikApp.Dependency;
 using QucikApp.Dependency.Autofac;
 using System;
@@ -22,18 +23,20 @@ namespace QuickApp.Test.Dependency
     [TestClass]
     public class AutofacDependencyTest
     {
-        private IDependency dependency;
+        private IQuickApp quickApp;
 
         public AutofacDependencyTest()
         {
-            this.dependency = new AutofacDependency();
+            this.quickApp = new DefaultQuickApp();
+            this.quickApp.Initialize();
         }
 
         [TestMethod]
         public void TestDependencyRegisterIsResolver()
         {
-            IDependencyRegister register = this.dependency as IDependencyRegister;
-            Assert.IsNotNull(register);
+            IDependency dependency1 = this.quickApp.DependencyContainer.Resolver<IDependency>();
+            IDependency dependency2 = this.quickApp.DependencyContainer.Resolver<IDependency>();
+            Assert.AreEqual(this.quickApp.DependencyContainer,dependency2);
         }
     }
 }

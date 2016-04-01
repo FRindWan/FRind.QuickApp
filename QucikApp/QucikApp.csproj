@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Dependency\Autofac\AutofacDependency.cs" />
     <Compile Include="Dependency\Autofac\DependencyExtension.cs" />
-    <Compile Include="Dependency\Dependency.cs" />
+    <Compile Include="Dependency\DependencyProxy.cs" />
     <Compile Include="Dependency\DependencyFactory.cs" />
     <Compile Include="Dependency\DependencyLifeTime.cs" />
     <Compile Include="Dependency\IDependency.cs" />
@@ -79,19 +79,23 @@
     <Compile Include="Domain\Specifications\ParameterRebinder.cs" />
     <Compile Include="Domain\Specifications\Specification.cs" />
     <Compile Include="Domain\UnitOfWorks\CurrentUnitOfWorkProvider.cs" />
+    <Compile Include="Domain\UnitOfWorks\DefaultUnitOfWork.cs" />
+    <Compile Include="Domain\UnitOfWorks\DefaultUnitOfWorkRepositoryContextProvider.cs" />
     <Compile Include="Domain\UnitOfWorks\ICurrentUnitOfWorkProvider.cs" />
     <Compile Include="Domain\UnitOfWorks\IUnitOfWork.cs" />
     <Compile Include="Domain\UnitOfWorks\IUnitOfWorkManager.cs" />
+    <Compile Include="Domain\UnitOfWorks\IUnitOfWorkRepositoryContextProvider.cs" />
     <Compile Include="Domain\UnitOfWorks\UnitOfWork.cs" />
     <Compile Include="Domain\UnitOfWorks\UnitOfWorkCommitEventHandler.cs" />
     <Compile Include="Domain\UnitOfWorks\UnitOfWorkCommitEventArgs.cs" />
+    <Compile Include="Domain\UnitOfWorks\UnitOfWorkManager.cs" />
     <Compile Include="Exceptions\QuickAppException.cs" />
     <Compile Include="Exceptions\UnitOfWorkException.cs" />
     <Compile Include="IConfigSource.cs" />
     <Compile Include="IQuickApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\IQuery.cs" />
-    <Compile Include="QuickApp.cs" />
+    <Compile Include="DefaultQuickApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\" />
