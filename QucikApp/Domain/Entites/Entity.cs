@@ -26,6 +26,5 @@ namespace QucikApp.Domain.Entites
         public TKey ID { get; set; }
 
 
-
     }
 }

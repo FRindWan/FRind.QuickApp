@@ -5,6 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QucikApp.Data;
 using QucikApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -20,58 +21,62 @@ namespace QucikApp.Domain.Repository
     /// </summary>
     public abstract class RepositoryContext : IRepositoryContextCommit
     {
-        private PendingToDbObjectContainer pendingToDbObjectContainer;
+        protected readonly PendingToDbObjectContainer pendingToDbObjectContainer;
+        protected readonly IDataContext dataContext;
 
-        public RepositoryContext()
+        public RepositoryContext(IDataContext dataContext)
         {
+            this.dataContext = dataContext;
             this.pendingToDbObjectContainer = new PendingToDbObjectContainer();
         }
 
-        public void AppendAdd<TAggregateRoot>(TAggregateRoot aggregateRoot) where TAggregateRoot : Entites.IAggregateRoot
+        public virtual void AppendAdd<TAggregateRoot>(TAggregateRoot aggregateRoot) where TAggregateRoot : Entites.IAggregateRoot
         {
             this.pendingToDbObjectContainer.Append<TAggregateRoot>(aggregateRoot, PendingToDbOperatorType.Add);
         }
 
-        public void AppendAdd(object aggregateRootEntity)
+        public virtual void AppendAdd(object aggregateRootEntity)
         {
             this.pendingToDbObjectContainer.Append(aggregateRootEntity, PendingToDbOperatorType.Add);
         }
 
-        public void AppendUpdate<TAggregateRoot>(TAggregateRoot aggregateRoot) where TAggregateRoot : Entites.IAggregateRoot
+        public virtual void AppendUpdate<TAggregateRoot>(TAggregateRoot aggregateRoot) where TAggregateRoot : Entites.IAggregateRoot
         {
             this.pendingToDbObjectContainer.Append<TAggregateRoot>(aggregateRoot, PendingToDbOperatorType.Update);
         }
 
-        public void AppendUpdate(object aggregateRootEntity)
+        public virtual void AppendUpdate(object aggregateRootEntity)
         {
             this.pendingToDbObjectContainer.Append(aggregateRootEntity, PendingToDbOperatorType.Update);
         }
 
-        public void AppendDelete<TAggregateRoot>(TAggregateRoot aggregateRoot) where TAggregateRoot : Entites.IAggregateRoot
+        public virtual void AppendDelete<TAggregateRoot>(TAggregateRoot aggregateRoot) where TAggregateRoot : Entites.IAggregateRoot
         {
             this.pendingToDbObjectContainer.Append<TAggregateRoot>(aggregateRoot, PendingToDbOperatorType.Delete);
         }
 
-        public void AppendDelete(object aggregateRoot)
+        public virtual void AppendDelete(object aggregateRoot)
         {
             this.pendingToDbObjectContainer.Append(aggregateRoot, PendingToDbOperatorType.Delete);
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             this.pendingToDbObjectContainer.Clear();
-            this.pendingToDbObjectContainer = null;
 
             this.DoDispose();
         }
 
-        public void SaveChanges()
+        public virtual void SaveChanges()
         {
-            this.DoSaveChanges();
+            foreach (Object obj in this.pendingToDbObjectContainer.GetPendingToDbList(PendingToDbOperatorType.Add))
+            {
+                this.dataContext.Add(obj);
+            }
+
+            this.pendingToDbObjectContainer.Clear();
         }
 
         protected abstract void DoDispose();
-
-        protected abstract void DoSaveChanges();
     }
 }

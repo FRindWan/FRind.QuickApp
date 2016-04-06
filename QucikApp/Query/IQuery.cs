@@ -13,5 +13,5 @@ using System.Threading.Tasks;
 
 namespace QucikApp.Query
 {
-    
+   
 }

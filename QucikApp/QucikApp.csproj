@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Dependency\Autofac\AutofacDependency.cs" />
     <Compile Include="Dependency\Autofac\DependencyExtension.cs" />
     <Compile Include="Dependency\DependencyProxy.cs" />
@@ -99,11 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\" />
-    <Folder Include="Data\" />
     <Folder Include="Logger\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

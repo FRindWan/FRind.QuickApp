@@ -21,12 +21,12 @@ namespace QuickApp.EntityFramework.Repository
     {
         protected override void DoDispose()
         {
-            throw new NotImplementedException();
+            
         }
 
         protected override void DoSaveChanges()
         {
-            throw new NotImplementedException();
+            this.pendingToDbObjectContainer.get
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/31 星期四 12:30:18
+ * 创建时间： 2016/4/5 星期二 17:50:29
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
@@ -11,12 +11,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp.EntityFramework.Repository
+namespace QucikApp.Data
 {
     /// <summary>
-    /// <see cref="EFDbContext"/>
+    /// <see cref="IDataContext"/>
     /// </summary>
-    class EFDbContext
+    public interface IDataContext
     {
+        void Add<T>(T t);
+
+        void Add(Object obj);
+
+        void Update<T>(T t);
+
+        void Update(Object obj);
+
+        void Delete<T>(T t);
+
+        void Delete(Object obj);
     }
 }
