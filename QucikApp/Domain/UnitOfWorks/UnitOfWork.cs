@@ -8,11 +8,13 @@
 using QucikApp.Dependency;
 using QucikApp.Domain.Repository;
 using QucikApp.Exceptions;
+using QucikApp.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace QucikApp.Domain.UnitOfWorks
 {
@@ -23,10 +25,12 @@ namespace QucikApp.Domain.UnitOfWorks
     {
         protected IDictionary<Type,IRepositoryContextCommit> DbContexts;
         protected IDependencyResolver dependencyResolver;
+        protected ILogger<UnitOfWork> logger;
 
-        public UnitOfWork(IDependencyResolver dependencyResolver)
+        public UnitOfWork(IDependencyResolver dependencyResolver, ILogger<UnitOfWork> logger)
         {
             this.dependencyResolver = dependencyResolver;
+            this.logger = logger;
 
             this.DbContexts = new Dictionary<Type, IRepositoryContextCommit>();
             this.Id = Guid.NewGuid();
@@ -83,10 +87,25 @@ namespace QucikApp.Domain.UnitOfWorks
 
         protected virtual void OnCommit()
         {
+            TransactionScope transaction = new TransactionScope();
+            bool commitStatus = true;
             foreach (IRepositoryContextCommit context in this.DbContexts.Values)
             {
-                context.SaveChanges();
+                if (!context.SaveChanges())
+                {
+                    commitStatus = false;
+                    break;
+                }
             }
+
+            if (!commitStatus)
+            {
+                transaction.Dispose();
+                this.logger.Error("在提交的时候出现错误，本次提交失败！");
+                throw new UnitOfWorkException("提交到数据库过程中，出现提交失败，有关细节请查阅日志文件！");
+            }
+
+            transaction.Complete();
         }
 
         protected abstract void OnRollback();

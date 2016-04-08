@@ -18,7 +18,8 @@ namespace QucikApp.Exceptions
     /// </summary>
     public class QuickAppException:System.Exception
     {
-        
-
+        public QuickAppException(String errorMessage):base(errorMessage)
+        { 
+        }
     }
 }

@@ -18,5 +18,9 @@ namespace QucikApp.Exceptions
     /// </summary>
     public class UnitOfWorkException : QuickAppException
     {
+        public UnitOfWorkException(String errorMessage)
+            : base(errorMessage)
+        { 
+        }
     }
 }

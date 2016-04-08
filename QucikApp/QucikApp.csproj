@@ -34,8 +34,13 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,7 +69,6 @@
     <Compile Include="Domain\Repository\PendingToDbObjectContainer.cs" />
     <Compile Include="Domain\Repository\PendingToDbOperatorType.cs" />
     <Compile Include="Domain\Repository\Repository.cs" />
-    <Compile Include="Domain\Repository\RepositoryContext.cs" />
     <Compile Include="Domain\Repository\SortOrder.cs" />
     <Compile Include="Domain\Specifications\AndNotSpecification.cs" />
     <Compile Include="Domain\Specifications\AndSpecification.cs" />
@@ -90,17 +94,19 @@
     <Compile Include="Domain\UnitOfWorks\UnitOfWorkCommitEventHandler.cs" />
     <Compile Include="Domain\UnitOfWorks\UnitOfWorkCommitEventArgs.cs" />
     <Compile Include="Domain\UnitOfWorks\UnitOfWorkManager.cs" />
+    <Compile Include="Exceptions\ExceptionExetension.cs" />
     <Compile Include="Exceptions\QuickAppException.cs" />
     <Compile Include="Exceptions\UnitOfWorkException.cs" />
     <Compile Include="IConfigSource.cs" />
     <Compile Include="IQuickApp.cs" />
+    <Compile Include="Logger\DefaultLogger.cs" />
+    <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="DefaultQuickApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\" />
-    <Folder Include="Logger\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

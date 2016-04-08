@@ -8,6 +8,7 @@
 using QucikApp.Domain.Entites;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace QucikApp.Domain.Repository
     /// <summary>
     /// <see cref="Repository"/>
     /// </summary>
-    public class Repository<TAggregateRoot, TKey> : IRepository<TAggregateRoot, TKey>where TAggregateRoot:IAggregateRoot
+    public abstract class Repository<TAggregateRoot, TKey> : IRepository<TAggregateRoot, TKey>where TAggregateRoot:IAggregateRoot
     {
         public Repository(IRepositoryContext context)
         {
@@ -28,17 +29,17 @@ namespace QucikApp.Domain.Repository
 
         public TAggregateRoot GetById(TKey id)
         {
-            throw new NotImplementedException();
+            return this.DoGetById(id);
         }
 
         public TAggregateRoot Get(Specifications.ISpecification<TAggregateRoot> predicate)
         {
-            throw new NotImplementedException();
+            return this.DoGet(predicate);
         }
 
         public IList<TAggregateRoot> Get(Specifications.ISpecification<TAggregateRoot> predicate, SortOrder sort = SortOrder.Asc)
         {
-            throw new NotImplementedException();
+            return this.DoGet(predicate, sort);
         }
 
         public bool Add(TAggregateRoot aggregateRoot)
@@ -61,5 +62,11 @@ namespace QucikApp.Domain.Repository
 
             return true;
         }
+
+        protected abstract TAggregateRoot DoGetById(TKey id);
+
+        protected abstract TAggregateRoot DoGet(Specifications.ISpecification<TAggregateRoot> predicate);
+
+        protected abstract IList<TAggregateRoot> DoGet(Specifications.ISpecification<TAggregateRoot> predicate, SortOrder sort = SortOrder.Asc);
     }
 }

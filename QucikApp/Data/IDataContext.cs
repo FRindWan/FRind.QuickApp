@@ -18,6 +18,8 @@ namespace QucikApp.Data
     /// </summary>
     public interface IDataContext
     {
+        String DataConnectString { get; }
+
         void Add<T>(T t);
 
         void Add(Object obj);
