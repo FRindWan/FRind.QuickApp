@@ -17,7 +17,7 @@ namespace QucikApp.Domain.UnitOfWorks
     /// <summary>
     /// <see cref="IUnitOfWorkRepositoryContextProvider"/>
     /// </summary>
-    public interface IUnitOfWorkRepositoryContextProvider<TContext>where TContext:IRepositoryContextCommit
+    public interface IUnitOfWorkContextProvider<TContext>where TContext:class
     {
         TContext Context { get; }
     }

@@ -24,7 +24,7 @@ namespace QucikApp.Domain.Repository
 
         TAggregateRoot Get(ISpecification<TAggregateRoot> predicate);
 
-        IList<TAggregateRoot> Get(ISpecification<TAggregateRoot> predicate, SortOrder sort = SortOrder.Asc);
+        IEnumerable<TAggregateRoot> Get(ISpecification<TAggregateRoot> predicate, Func<TAggregateRoot, TKey> keySelectors, SortOrder sort = SortOrder.Asc);
 
         bool Add(TAggregateRoot aggregateRoot);
 

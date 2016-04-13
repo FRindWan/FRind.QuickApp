@@ -20,12 +20,9 @@ namespace QucikApp.Domain.Repository
     /// </summary>
     public abstract class Repository<TAggregateRoot, TKey> : IRepository<TAggregateRoot, TKey>where TAggregateRoot:IAggregateRoot
     {
-        public Repository(IRepositoryContext context)
+        public Repository()
         {
-            this.Context = context;
         }
-
-        public IRepositoryContext Context { get; private set; }
 
         public TAggregateRoot GetById(TKey id)
         {
@@ -37,7 +34,7 @@ namespace QucikApp.Domain.Repository
             return this.DoGet(predicate);
         }
 
-        public IList<TAggregateRoot> Get(Specifications.ISpecification<TAggregateRoot> predicate, SortOrder sort = SortOrder.Asc)
+        public IEnumerable<TAggregateRoot> Get(Specifications.ISpecification<TAggregateRoot> predicate, Func<TAggregateRoot, TKey> keySelectors, SortOrder sort = SortOrder.Asc)
         {
             return this.DoGet(predicate, sort);
         }
@@ -67,6 +64,12 @@ namespace QucikApp.Domain.Repository
 
         protected abstract TAggregateRoot DoGet(Specifications.ISpecification<TAggregateRoot> predicate);
 
-        protected abstract IList<TAggregateRoot> DoGet(Specifications.ISpecification<TAggregateRoot> predicate, SortOrder sort = SortOrder.Asc);
+        protected abstract IEnumerable<TAggregateRoot> DoGet(Specifications.ISpecification<TAggregateRoot> predicate, Func<TAggregateRoot, TKey> keySelectors, SortOrder sort = SortOrder.Asc);
+
+        protected abstract bool DoAdd(TAggregateRoot aggregateRoot);
+
+        protected abstract bool DoUpdate(TAggregateRoot aggregateRoot);
+
+        protected abstract bool DoDelete(TAggregateRoot aggregateRoot);
     }
 }

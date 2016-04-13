@@ -1,6 +1,6 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 11:46:56
+ * 创建时间： 2016/4/11 星期一 10:47:48
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
@@ -14,10 +14,10 @@ using System.Threading.Tasks;
 namespace QucikApp.Domain.Repository
 {
     /// <summary>
-    /// <see cref="IRepositoryContextCommit"/>
+    /// <see cref="IDbContextCommit"/>
     /// </summary>
-    public interface IRepositoryContextCommit:IRepositoryContext
+    public interface IDbContextCommit
     {
-        bool SaveChanges();
+        int SaveChanges();
     }
 }

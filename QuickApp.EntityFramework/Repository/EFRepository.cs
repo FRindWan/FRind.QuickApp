@@ -8,8 +8,10 @@
 using QucikApp.Data;
 using QucikApp.Domain.Entites;
 using QucikApp.Domain.Repository;
+using QucikApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,28 +21,74 @@ namespace QuickApp.EntityFramework.Repository
     /// <summary>
     /// <see cref="EFRepository"/>
     /// </summary>
-    public class EFRepository<TAggregateRoot, TKey> : QucikApp.Domain.Repository.Repository<TAggregateRoot, TKey>
-        where TAggregateRoot:IAggregateRoot
+    public class EFRepository<TAggregateRoot, TKey,TContext> : QucikApp.Domain.Repository.Repository<TAggregateRoot, TKey>
+        where TAggregateRoot : class,IAggregateRoot
+        where TContext:DbContext
     {
-        public EFRepository(IRepositoryContext repositoryContext)
-            : base(repositoryContext)
-        { 
-        
+        private IUnitOfWorkContextProvider<TContext> contextProvider;
+        private TContext context;
+
+        public EFRepository(IUnitOfWorkContextProvider<TContext> contextProvider)
+        {
+            this.contextProvider = contextProvider;
+            this.context = contextProvider.Context;
         }
 
         protected override TAggregateRoot DoGetById(TKey id)
         {
-            base.Context.
+            return this.context.Set<TAggregateRoot>().Find(id);
         }
 
         protected override TAggregateRoot DoGet(QucikApp.Domain.Specifications.ISpecification<TAggregateRoot> predicate)
         {
-            throw new NotImplementedException();
+            IEnumerable<TAggregateRoot> aggregateRoots= this.DoGet(predicate,null, SortOrder.Asc);
+            if (aggregateRoots == null || aggregateRoots.Count() <= 0)
+            {
+                return null;
+            }
+
+            return aggregateRoots.First();
         }
 
-        protected override IList<TAggregateRoot> DoGet(QucikApp.Domain.Specifications.ISpecification<TAggregateRoot> predicate, QucikApp.Domain.Repository.SortOrder sort = SortOrder.Asc)
+        protected override IEnumerable<TAggregateRoot> DoGet(QucikApp.Domain.Specifications.ISpecification<TAggregateRoot> predicate, Func<TAggregateRoot, TKey> keySelectors, SortOrder sort = SortOrder.Asc)
         {
-            throw new NotImplementedException();
+            var query=this.context.Set<TAggregateRoot>().Where(predicate.GetExpression());
+            if (keySelectors == null)
+            {
+                return query;
+            }
+
+            if (sort == SortOrder.Asc)
+            {
+                return query.OrderBy(keySelectors).AsEnumerable();
+            }
+            else if(sort== SortOrder.Desc)
+            {
+                return query.OrderByDescending(keySelectors).AsEnumerable();
+            }
+
+            return query;
+        }
+
+        protected override bool DoAdd(TAggregateRoot aggregateRoot)
+        {
+            this.context.Set<TAggregateRoot>().Add(aggregateRoot);
+
+            return true;
+        }
+
+        protected override bool DoUpdate(TAggregateRoot aggregateRoot)
+        {
+            this.context.Entry<TAggregateRoot>(aggregateRoot).State = EntityState.Modified;
+
+            return true;
+        }
+
+        protected override bool DoDelete(TAggregateRoot aggregateRoot)
+        {
+            this.context.Entry<TAggregateRoot>(aggregateRoot).State = EntityState.Deleted;
+
+            return true;
         }
     }
 }

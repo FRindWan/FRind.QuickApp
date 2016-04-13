@@ -6,29 +6,31 @@
  *  -------------------------------------------------------------------------*/
 
 using QucikApp.Domain.Repository;
+using QucikApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.UnitOfWorks
+namespace QuickApp.EntityFramework.UnitOfWorks
 {
     /// <summary>
-    /// <see cref="DefaultUnitOfWorkRepositoryContextProvider"/>
+    /// <see cref="EFUnitOfWorkProvider"/>
     /// </summary>
-    public class DefaultUnitOfWorkRepositoryContextProvider<TContext>:IUnitOfWorkRepositoryContextProvider<TContext> where TContext:IRepositoryContextCommit
+    public class EFUnitOfWorkProvider<TContext>:IUnitOfWorkContextProvider<TContext> where TContext:DbContext
     {
         private ICurrentUnitOfWorkProvider unitOfWorkProvider;
 
-        public DefaultUnitOfWorkRepositoryContextProvider(ICurrentUnitOfWorkProvider unitOfWorkProvider)
+        public EFUnitOfWorkProvider(ICurrentUnitOfWorkProvider unitOfWorkProvider)
         {
             this.unitOfWorkProvider = unitOfWorkProvider;
         }
         
         public TContext Context
         {
-            get { return ((DefaultUnitOfWork)this.unitOfWorkProvider.Current).CreateContext<TContext>(); }
+            get { return ((EFUnitOfWork)this.unitOfWorkProvider.Current).CreateContext<TContext>(); }
         }
     }
 }

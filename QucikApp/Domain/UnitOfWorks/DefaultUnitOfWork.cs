@@ -20,7 +20,6 @@ namespace QucikApp.Domain.UnitOfWorks
     public class DefaultUnitOfWork : UnitOfWork
     {
         public DefaultUnitOfWork(IDependencyResolver dependencyResolver)
-            : base(dependencyResolver)
         { 
         
         }
@@ -41,6 +40,11 @@ namespace QucikApp.Domain.UnitOfWorks
         }
 
         protected override void OnDispose()
+        {
+            
+        }
+
+        protected override void OnCommit()
         {
             
         }
