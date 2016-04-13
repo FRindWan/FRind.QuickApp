@@ -30,9 +30,8 @@ namespace QuickApp.Test.UnitOfWork
         {
             this.app = new DefaultQuickApp();
             this.app.Initialize();
-            this.app.DependencyContainer.Register<IUnitOfWork, DefaultUnitOfWork>();
-            this.app.DependencyContainer.Register<IUnitOfWorkManager, UnitOfWorkManager>();
-            this.app.DependencyContainer.Register<ICurrentUnitOfWorkProvider, CurrentUnitOfWorkProvider>();
+            this.app.DependencyContainer.Register<IRepositoryContextManager, RepositoryContextManager>();
+            this.app.DependencyContainer.Register<ICurrentRepositoryContextProvider, CurrentRepositoryContextProvider>();
             this.app.DependencyContainer.Register<IDependency, DependencyProxy>();
         }
 

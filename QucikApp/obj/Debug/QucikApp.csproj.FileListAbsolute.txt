@@ -1,6 +1,8 @@
 E:\Project\c#\FRind\FRind.QuickApp\QucikApp\bin\Debug\QucikApp.dll
 E:\Project\c#\FRind\FRind.QuickApp\QucikApp\bin\Debug\QucikApp.pdb
+E:\Project\c#\FRind\FRind.QuickApp\QucikApp\bin\Debug\Autofac.dll
+E:\Project\c#\FRind\FRind.QuickApp\QucikApp\bin\Debug\log4net.dll
+E:\Project\c#\FRind\FRind.QuickApp\QucikApp\bin\Debug\Autofac.xml
+E:\Project\c#\FRind\FRind.QuickApp\QucikApp\bin\Debug\log4net.xml
 E:\Project\c#\FRind\FRind.QuickApp\QucikApp\obj\Debug\QucikApp.dll
 E:\Project\c#\FRind\FRind.QuickApp\QucikApp\obj\Debug\QucikApp.pdb
-E:\Project\c#\FRind\FRind.QuickApp\QucikApp\bin\Debug\Autofac.dll
-E:\Project\c#\FRind\FRind.QuickApp\QucikApp\bin\Debug\Autofac.xml

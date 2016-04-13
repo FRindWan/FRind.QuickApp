@@ -24,12 +24,17 @@ namespace QucikApp.Domain.Repository
 
         TAggregateRoot Get(ISpecification<TAggregateRoot> predicate);
 
-        IEnumerable<TAggregateRoot> Get(ISpecification<TAggregateRoot> predicate, Func<TAggregateRoot, TKey> keySelectors, SortOrder sort = SortOrder.Asc);
+        IEnumerable<TAggregateRoot> Get(ISpecification<TAggregateRoot> predicate, Func<TAggregateRoot, dynamic> keySelectors, SortOrder sort = SortOrder.Asc);
 
         bool Add(TAggregateRoot aggregateRoot);
 
         bool Update(TAggregateRoot aggregateRoot);
 
         bool Delete(TAggregateRoot aggregateRoot);
+    }
+
+    public interface IRepository<TAggregateRoot> : IRepository<TAggregateRoot, Guid> where TAggregateRoot : IAggregateRoot
+    { 
+    
     }
 }

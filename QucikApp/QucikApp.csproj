@@ -48,7 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\IDataContext.cs" />
+    <Compile Include="Application\ApplicationService.cs" />
+    <Compile Include="Application\IApplicationService.cs" />
     <Compile Include="Dependency\Autofac\AutofacDependency.cs" />
     <Compile Include="Dependency\Autofac\DependencyExtension.cs" />
     <Compile Include="Dependency\DependencyProxy.cs" />
@@ -64,11 +65,8 @@
     <Compile Include="Domain\Entites\IEntity.cs" />
     <Compile Include="Domain\Repository\IRepository.cs" />
     <Compile Include="Domain\Repository\IRepositoryContext.cs" />
-    <Compile Include="Domain\Repository\IRepositoryContextCommit.cs" />
-    <Compile Include="Domain\Repository\IRepositoryFactory.cs" />
-    <Compile Include="Domain\Repository\PendingToDbObjectContainer.cs" />
-    <Compile Include="Domain\Repository\PendingToDbOperatorType.cs" />
     <Compile Include="Domain\Repository\Repository.cs" />
+    <Compile Include="Domain\Repository\RepositoryContext.cs" />
     <Compile Include="Domain\Repository\SortOrder.cs" />
     <Compile Include="Domain\Specifications\AndNotSpecification.cs" />
     <Compile Include="Domain\Specifications\AndSpecification.cs" />
@@ -83,17 +81,13 @@
     <Compile Include="Domain\Specifications\OrSpecification.cs" />
     <Compile Include="Domain\Specifications\ParameterRebinder.cs" />
     <Compile Include="Domain\Specifications\Specification.cs" />
-    <Compile Include="Domain\UnitOfWorks\CurrentUnitOfWorkProvider.cs" />
-    <Compile Include="Domain\UnitOfWorks\DefaultUnitOfWork.cs" />
-    <Compile Include="Domain\UnitOfWorks\DefaultUnitOfWorkRepositoryContextProvider.cs" />
-    <Compile Include="Domain\UnitOfWorks\ICurrentUnitOfWorkProvider.cs" />
+    <Compile Include="Domain\UnitOfWorks\CurrentRepositoryContextProvider.cs" />
+    <Compile Include="Domain\UnitOfWorks\ICurrentRepositoryContextProvider.cs" />
     <Compile Include="Domain\UnitOfWorks\IUnitOfWork.cs" />
-    <Compile Include="Domain\UnitOfWorks\IUnitOfWorkManager.cs" />
-    <Compile Include="Domain\UnitOfWorks\IUnitOfWorkRepositoryContextProvider.cs" />
-    <Compile Include="Domain\UnitOfWorks\UnitOfWork.cs" />
+    <Compile Include="Domain\UnitOfWorks\IRepositoryContextManager.cs" />
     <Compile Include="Domain\UnitOfWorks\UnitOfWorkCommitEventHandler.cs" />
     <Compile Include="Domain\UnitOfWorks\UnitOfWorkCommitEventArgs.cs" />
-    <Compile Include="Domain\UnitOfWorks\UnitOfWorkManager.cs" />
+    <Compile Include="Domain\UnitOfWorks\RepositoryContextManager.cs" />
     <Compile Include="Exceptions\ExceptionExetension.cs" />
     <Compile Include="Exceptions\QuickAppException.cs" />
     <Compile Include="Exceptions\UnitOfWorkException.cs" />
@@ -101,12 +95,13 @@
     <Compile Include="IQuickApp.cs" />
     <Compile Include="Logger\DefaultLogger.cs" />
     <Compile Include="Logger\ILogger.cs" />
+    <Compile Include="Logger\LoggerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="DefaultQuickApp.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Application\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

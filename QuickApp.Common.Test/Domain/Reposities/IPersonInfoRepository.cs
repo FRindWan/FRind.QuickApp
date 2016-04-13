@@ -1,24 +1,24 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/31 星期四 11:54:50
+ * 创建时间： 2016/4/13 星期三 16:30:13
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
 using QucikApp.Domain.Repository;
+using QuickApp.Common.Test.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.UnitOfWorks
+namespace QuickApp.Common.Test.Domain.Reposities
 {
     /// <summary>
-    /// <see cref="IUnitOfWorkRepositoryContextProvider"/>
+    /// <see cref="IPersonInfoRepository"/>
     /// </summary>
-    public interface IUnitOfWorkContextProvider<TContext>where TContext:class
+    public interface IPersonInfoRepository:IRepository<PersonInfo>
     {
-        TContext Context { get; }
     }
 }

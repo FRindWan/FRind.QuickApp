@@ -1,6 +1,6 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 11:51:02
+ * 创建时间： 2016/4/13 星期三 15:11:43
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
@@ -11,12 +11,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.Repository
+namespace QucikApp.Logger
 {
     /// <summary>
-    /// <see cref="IRepositoryFactory"/>
+    /// <see cref="LoggerFactory"/>
     /// </summary>
-    public interface IRepositoryFactory
+    public class LoggerFactory
     {
+        public static ILogger<T> GetLogger<T>() where T:class
+        {
+            return new DefaultLogger<T>();
+        }
+
+        public static ILogger<LoggerFactory> GetLogger()
+        {
+            return new DefaultLogger<LoggerFactory>();
+        }
     }
 }

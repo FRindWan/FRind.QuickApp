@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F92228D-7FC0-419E-ADA1-51C8D1DF4192}</ProjectGuid>
+    <ProjectGuid>{5C77E426-C045-49CB-A60D-A3FEDF864E35}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QuickApp.Test</RootNamespace>
-    <AssemblyName>QuickApp.Test</AssemblyName>
+    <RootNamespace>QuickApp.Other.Test</RootNamespace>
+    <AssemblyName>QuickApp.Other.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,16 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -59,30 +53,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Dependency\AutofacDependencyTest.cs" />
-    <Compile Include="TestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reposities\PersonInfoRepositoryTest.cs" />
-    <Compile Include="UnitOfWork\EFUnitOfWorkTest.cs" />
-    <Compile Include="UnitOfWork\UnitOfWorkTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QucikApp\QucikApp.csproj">
-      <Project>{a618e4af-e705-4d30-9622-394b24881167}</Project>
-      <Name>QucikApp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QuickApp.Common.Test\QuickApp.Common.Test.csproj">
-      <Project>{32374a2a-3f75-4eee-b1f7-11355cda0ab3}</Project>
-      <Name>QuickApp.Common.Test</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QuickApp.EntityFramework\QuickApp.EntityFramework.csproj">
-      <Project>{2cc5e64e-5f7e-4810-a756-68a5e0772508}</Project>
-      <Name>QuickApp.EntityFramework</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <Compile Include="Reposities\TransactionScopeTest.cs" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

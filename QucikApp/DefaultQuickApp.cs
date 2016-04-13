@@ -6,6 +6,7 @@
  *  -------------------------------------------------------------------------*/
 
 using QucikApp.Dependency;
+using QucikApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,8 @@ namespace QucikApp
         public void Initialize()
         {
             this.dependency = Dependency.DependencyFactory.GetDependency();
+            this.dependency.Register<IRepositoryContextManager, RepositoryContextManager>();
+            this.dependency.Register<ICurrentRepositoryContextProvider, CurrentRepositoryContextProvider>();
         }
     }
 }

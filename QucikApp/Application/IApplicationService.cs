@@ -1,23 +1,24 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/4/11 星期一 10:47:48
+ * 创建时间： 2016/4/13 星期三 18:24:04
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QucikApp.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.Repository
+namespace QucikApp.Application
 {
     /// <summary>
-    /// <see cref="IDbContextCommit"/>
+    /// <see cref="IApplicationService"/>
     /// </summary>
-    public interface IDbContextCommit
+    public interface IApplicationService
     {
-        int SaveChanges();
+        
     }
 }

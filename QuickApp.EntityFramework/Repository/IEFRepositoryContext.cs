@@ -1,25 +1,25 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 10:47:50
+ * 创建时间： 2016/4/13 星期三 16:11:14
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QucikApp.Domain.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.Repository
+namespace QuickApp.EntityFramework.Repository
 {
     /// <summary>
-    /// <see cref="PendingToDbOperatorType"/>
+    /// <see cref="IEFRepositoryContext"/>
     /// </summary>
-    public enum PendingToDbOperatorType
+    public interface IEFRepositoryContext:IRepositoryContext
     {
-        Add,
-        Update,
-        Delete
+        DbContext Context { get; }
     }
 }

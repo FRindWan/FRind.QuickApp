@@ -42,7 +42,7 @@ namespace QucikApp.Dependency.Autofac
 
         public void Register(Type interfaceType, Type implType, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
         {
-            this.builder.RegisterType(implType).As(interfaceType).AsImplementedInterfaces().SetLifeTime(lifeTime);
+            this.builder.RegisterType(implType).As(interfaceType).SetLifeTime(lifeTime);
         }
 
         public void Register<TInterface, TImpl>(DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
@@ -50,7 +50,7 @@ namespace QucikApp.Dependency.Autofac
             this.builder.RegisterType<TImpl>().As<TInterface>().AsImplementedInterfaces().SetLifeTime(dependencyLifeTime);
         }
 
-        public void Register(System.Reflection.Assembly assembly, Func<Type, bool> predicate, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
+        public void Register(System.Reflection.Assembly assembly, Func<Type, bool> predicate=null, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
         {
             if (predicate != null)
             {
@@ -62,7 +62,7 @@ namespace QucikApp.Dependency.Autofac
             }
         }
 
-        public void Register(System.Reflection.Assembly interfaceAssembly, System.Reflection.Assembly implAssembly, Func<Type, bool> predicate, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
+        public void Register(System.Reflection.Assembly interfaceAssembly, System.Reflection.Assembly implAssembly, Func<Type, bool> predicate=null, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
         {
             if (predicate != null)
             {

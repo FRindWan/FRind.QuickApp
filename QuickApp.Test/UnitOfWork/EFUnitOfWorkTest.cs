@@ -11,7 +11,6 @@ using QucikApp.Dependency;
 using QucikApp.Domain.Repository;
 using QucikApp.Domain.UnitOfWorks;
 using QuickApp.EntityFramework.Repository;
-using QuickApp.EntityFramework.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +31,9 @@ namespace QuickApp.Test.UnitOfWork
         {
             this.app = new DefaultQuickApp();
             this.app.Initialize();
-            this.app.DependencyContainer.Register<IUnitOfWork, EFUnitOfWork>();
-            this.app.DependencyContainer.Register<IUnitOfWorkManager, UnitOfWorkManager>();
-            this.app.DependencyContainer.Register<ICurrentUnitOfWorkProvider, CurrentUnitOfWorkProvider>();
-            this.app.DependencyContainer.Register(typeof(IRepository<,>),typeof(EFRepository<,,>)));
+            this.app.DependencyContainer.Register<IRepositoryContextManager, RepositoryContextManager>();
+            this.app.DependencyContainer.Register<ICurrentRepositoryContextProvider, CurrentRepositoryContextProvider>();
+            this.app.DependencyContainer.Register(typeof(IRepository<,>),typeof(EFRepository<,>));
             this.app.DependencyContainer.Register<IDependency, DependencyProxy>();
         }
 
