@@ -28,6 +28,8 @@ namespace QucikApp
 
         public DefaultQuickApp()
         {
+            this.dependency = DependencyFactory.GetDependency();
+            this.configSource = Config.ConfigSource.Instance;
         }
 
         public IConfigSource ConfigSource
@@ -42,12 +44,8 @@ namespace QucikApp
 
         public void Initialize()
         {
-            RegisterInterceptorService.Instance.AddAutofacRegisterInterceptor(new ApplicationInterceptorRegister());
-
-            this.dependency = Dependency.DependencyFactory.GetDependency();
-            this.dependency.Register<IRepositoryContextManager, RepositoryContextManager>();
-            this.dependency.Register<ICurrentRepositoryContextProvider, CurrentRepositoryContextProvider>();
-            this.dependency.Register<ApplicationInterceptor>();
+            DependencyInitializeService.AddDependencyInitialize(new QuickAppDependencyInitialize());
+            DependencyInitializeService.Initialize();
         }
     }
 }

@@ -31,7 +31,6 @@ namespace QuickApp.Common.Test.Application.impl
         public void AddPersonInfo(string name, int age)
         {
             PersonInfo personInfo = new PersonInfo();
-            personInfo.ID = Guid.NewGuid();
             personInfo.UserName = name;
             personInfo.Age = age;
 

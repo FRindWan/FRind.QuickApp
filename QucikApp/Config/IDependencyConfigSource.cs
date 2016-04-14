@@ -1,29 +1,23 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/4/13 星期三 18:26:43
+ * 创建时间： 2016/4/14 星期四 16:52:45
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Domain.Repository;
-using QucikApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Application
+namespace QucikApp.Config
 {
     /// <summary>
-    /// <see cref="ApplicationService"/>
+    /// <see cref="IDependencyConfigSource"/>
     /// </summary>
-    public class ApplicationService:IApplicationService
+    public interface IDependencyConfigSource
     {
-        public ApplicationService()
-        {
-            
-        }
-
+        bool EnableInterceptor { get; set; }
     }
 }

@@ -5,6 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QucikApp.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,6 @@ namespace QucikApp
     /// </summary>
     public interface IConfigSource
     {
+        IDependencyConfigSource DependencyConfigSource { get; }
     }
 }

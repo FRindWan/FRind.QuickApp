@@ -20,17 +20,23 @@ namespace QucikApp.Domain.Repository
     /// </summary>
     public class ApplicationInterceptor : IInterceptor
     {
-        private ICurrentRepositoryContextProvider repositoryContextProvider;
+        private IRepositoryContext repositoryContext;
 
         public ApplicationInterceptor(ICurrentRepositoryContextProvider repositoryContextProvider)
         {
-            this.repositoryContextProvider = repositoryContextProvider;
+            this.repositoryContext = repositoryContextProvider.Current;
+            this.repositoryContext.OnCommitError += OnCommitError;
         }
 
         public void Intercept(IInvocation invocation)
         {
             invocation.Proceed();
-            this.repositoryContextProvider.Current.Commit();
+            this.repositoryContext.Commit();
+        }
+
+        private void OnCommitError(UnitOfWorkCommitErrorEventArgs args)
+        {
+            throw args.UnitOfWorkException;
         }
     }
 }

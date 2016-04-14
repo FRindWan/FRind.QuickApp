@@ -62,7 +62,11 @@
   <ItemGroup>
     <Compile Include="Application\ApplicationService.cs" />
     <Compile Include="Application\IApplicationService.cs" />
+    <Compile Include="Config\ConfigSource.cs" />
+    <Compile Include="Config\IDependencyConfigSource.cs" />
+    <Compile Include="Config\impl\DependencyConfigSource.cs" />
     <Compile Include="Dependency\Autofac\AutofacDependency.cs" />
+    <Compile Include="Dependency\DependencyInitialize.cs" />
     <Compile Include="Dependency\Interceptors\RegisterInterceptor.cs" />
     <Compile Include="Dependency\Interceptors\RegisterInterceptorService.cs" />
     <Compile Include="Dependency\Autofac\DependencyExtension.cs" />
@@ -72,6 +76,7 @@
     <Compile Include="Dependency\IDependencyRegister.cs" />
     <Compile Include="Dependency\IDependencyResolver.cs" />
     <Compile Include="Application\ApplicationInterceptor.cs" />
+    <Compile Include="QuickAppDependencyInitialize.cs" />
     <Compile Include="Domain\Entites\AggregateRoot.cs" />
     <Compile Include="Domain\Entites\Entity.cs" />
     <Compile Include="Domain\Entites\EntityChangedNotifyEventArgs.cs" />
@@ -115,10 +120,7 @@
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="DefaultQuickApp.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Config\" />
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

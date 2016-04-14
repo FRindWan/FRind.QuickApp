@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Application\PersonInfoApplicationTest.cs" />
     <Compile Include="Dependency\AutofacDependencyTest.cs" />
+    <Compile Include="QuickAppTestDependencyInitialize.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reposities\PersonInfoRepositoryTest.cs" />

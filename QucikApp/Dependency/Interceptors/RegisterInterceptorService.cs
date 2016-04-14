@@ -6,6 +6,7 @@
  *  -------------------------------------------------------------------------*/
 
 using Autofac.Builder;
+using QucikApp.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +24,16 @@ namespace QucikApp.Dependency.Interceptors
 
         static RegisterInterceptorService()
         {
-            Instance = new RegisterInterceptorService();
+            Instance = new RegisterInterceptorService(ConfigSource.Instance);
         }
 
         private IList<RegisterInterceptor> autofacRegisterInterceptors;
+        private IConfigSource configSource;
 
-        private RegisterInterceptorService()
+        private RegisterInterceptorService(IConfigSource configSource)
         {
             this.autofacRegisterInterceptors = new List<RegisterInterceptor>();
+            this.configSource = configSource;
         }
 
         public void AddAutofacRegisterInterceptor(RegisterInterceptor autofacRegisterInterceptor)
@@ -45,9 +48,12 @@ namespace QucikApp.Dependency.Interceptors
 
         public void Register<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle>(IRegistrationBuilder<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle> registerBuilder,Type interfaceType,Type implType)
         {
-            foreach (RegisterInterceptor autofacRegisterInterceptor in autofacRegisterInterceptors)
+            if (this.configSource.DependencyConfigSource.EnableInterceptor)
             {
-                autofacRegisterInterceptor.Register(registerBuilder, interfaceType, implType);
+                foreach (RegisterInterceptor autofacRegisterInterceptor in autofacRegisterInterceptors)
+                {
+                    autofacRegisterInterceptor.Register(registerBuilder, interfaceType, implType);
+                }
             }
         }
     }
