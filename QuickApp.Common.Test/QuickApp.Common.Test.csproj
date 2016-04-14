@@ -59,6 +59,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Application\impl\PersonInfoApplication.cs" />
+    <Compile Include="Application\IPersonInfoApplication.cs" />
     <Compile Include="Domain\Model\PersonInfo.cs" />
     <Compile Include="Domain\Reposities\EFDbContext.cs" />
     <Compile Include="Domain\Reposities\EFRepositoryBase.cs" />

@@ -34,7 +34,6 @@ namespace QuickApp.Test.UnitOfWork
             this.app.DependencyContainer.Register<IRepositoryContextManager, RepositoryContextManager>();
             this.app.DependencyContainer.Register<ICurrentRepositoryContextProvider, CurrentRepositoryContextProvider>();
             this.app.DependencyContainer.Register(typeof(IRepository<,>),typeof(EFRepository<,>));
-            this.app.DependencyContainer.Register<IDependency, DependencyProxy>();
         }
 
         [TestMethod]

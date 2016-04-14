@@ -22,11 +22,12 @@ namespace QucikApp.Application
     {
         private IRepositoryContext repositoryContext;
 
-        public ApplicationService(ICurrentRepositoryContextProvider repositoryContextProvider)
+        public ApplicationService()
         {
-            this.repositoryContext = repositoryContextProvider.Current;
+            this.repositoryContext = Dependency.DependencyFactory.GetDependency().Resolver<ICurrentRepositoryContextProvider>().Current;
         }
 
         protected IRepositoryContext RepositoryContext { get { return this.repositoryContext; } }
+
     }
 }

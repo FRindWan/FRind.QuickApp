@@ -6,6 +6,9 @@
  *  -------------------------------------------------------------------------*/
 
 using QucikApp.Dependency;
+using QucikApp.Dependency.Autofac;
+using QucikApp.Dependency.Interceptors;
+using QucikApp.Domain.Repository;
 using QucikApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -39,9 +42,12 @@ namespace QucikApp
 
         public void Initialize()
         {
+            RegisterInterceptorService.Instance.AddAutofacRegisterInterceptor(new ApplicationInterceptorRegister());
+
             this.dependency = Dependency.DependencyFactory.GetDependency();
             this.dependency.Register<IRepositoryContextManager, RepositoryContextManager>();
             this.dependency.Register<ICurrentRepositoryContextProvider, CurrentRepositoryContextProvider>();
+            this.dependency.Register<ApplicationInterceptor>();
         }
     }
 }

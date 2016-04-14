@@ -8,7 +8,10 @@
 using QucikApp;
 using QucikApp.Domain.Repository;
 using QucikApp.Domain.UnitOfWorks;
+using QuickApp.Common.Test.Application;
+using QuickApp.Common.Test.Application.impl;
 using QuickApp.Common.Test.Domain.Reposities;
+using QuickApp.Common.Test.Domain.Reposities.impl;
 using QuickApp.EntityFramework.Repository;
 using System;
 using System.Collections.Generic;
@@ -33,7 +36,8 @@ namespace QuickApp.Test
             this.app.Initialize();
             this.app.DependencyContainer.Register<DbContext,EFDbContext>();
             this.app.DependencyContainer.Register<IRepositoryContext, EFRepositoryContext>();
-            this.app.DependencyContainer.Register(Assembly.Load("QuickApp.Common.Test"));
+            this.app.DependencyContainer.Register<IPersonInfoRepository, PersonInfoRepository>();
+            this.app.DependencyContainer.Register<IPersonInfoApplication, PersonInfoApplication>();
         }
     }
 }

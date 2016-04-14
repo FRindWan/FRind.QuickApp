@@ -5,12 +5,14 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using Autofac.Builder;
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac.Extras.DynamicProxy2;
+using Autofac.Builder;
 
 namespace QucikApp.Dependency.Autofac
 {
@@ -19,12 +21,14 @@ namespace QucikApp.Dependency.Autofac
     /// </summary>
     public static class DependencyExtension
     {
-        public static void SetLifeTime<TLimit, TReflectionActivatorData, TStyle>(this IRegistrationBuilder<TLimit, TReflectionActivatorData, TStyle> registrationBuilder, DependencyLifeTime lifeTime)
+        public static IRegistrationBuilder<TLimit, TReflectionActivatorData, TStyle> SetLifeTime<TLimit, TReflectionActivatorData, TStyle>(this IRegistrationBuilder<TLimit, TReflectionActivatorData, TStyle> registrationBuilder, DependencyLifeTime lifeTime)
         {
             if (lifeTime == DependencyLifeTime.Singleton)
             {
                 registrationBuilder.SingleInstance();
             }
+
+            return registrationBuilder;
         }
     }
 }

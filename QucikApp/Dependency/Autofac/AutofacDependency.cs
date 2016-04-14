@@ -12,6 +12,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac.Extras.DynamicProxy2;
+using Castle.DynamicProxy;
+using QucikApp.Dependency.Interceptors;
 
 namespace QucikApp.Dependency.Autofac
 {
@@ -23,31 +26,35 @@ namespace QucikApp.Dependency.Autofac
         private IContainer container;
         private ContainerBuilder builder;
         private bool isBuild;
+        private RegisterInterceptorService autofacRegisterInterceptorService;
 
         public AutofacDependency()
         {
             this.builder = new ContainerBuilder();
             this.isBuild = false;
+            this.autofacRegisterInterceptorService = RegisterInterceptorService.Instance;
         }
 
         public void Register(Type type, DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
         {
-            this.builder.RegisterType(type).SetLifeTime(dependencyLifeTime);
+            this.builder.RegisterType(type).AsSelf().SetLifeTime(dependencyLifeTime);
         }
 
         public void Register<Type>(DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
         {
-            this.builder.RegisterType<Type>().SetLifeTime(dependencyLifeTime);
+            this.builder.RegisterType<Type>().AsSelf().SetLifeTime(dependencyLifeTime);
         }
 
         public void Register(Type interfaceType, Type implType, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
         {
-            this.builder.RegisterType(implType).As(interfaceType).SetLifeTime(lifeTime);
+            var registerBuilder=this.builder.RegisterType(implType).As(interfaceType).SetLifeTime(lifeTime);
+            this.autofacRegisterInterceptorService.Register(registerBuilder, interfaceType, implType);
         }
 
         public void Register<TInterface, TImpl>(DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
         {
-            this.builder.RegisterType<TImpl>().As<TInterface>().AsImplementedInterfaces().SetLifeTime(dependencyLifeTime);
+            var registerBuilder = this.builder.RegisterType<TImpl>().As<TInterface>().AsImplementedInterfaces().SetLifeTime(dependencyLifeTime);
+            this.autofacRegisterInterceptorService.Register(registerBuilder, typeof(TInterface), typeof(TImpl));
         }
 
         public void Register(System.Reflection.Assembly assembly, Func<Type, bool> predicate=null, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
@@ -60,6 +67,7 @@ namespace QucikApp.Dependency.Autofac
             {
                 this.builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().SetLifeTime(lifeTime);
             }
+
         }
 
         public void Register(System.Reflection.Assembly interfaceAssembly, System.Reflection.Assembly implAssembly, Func<Type, bool> predicate=null, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)

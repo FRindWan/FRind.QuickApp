@@ -4,7 +4,6 @@ E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.Test.pdb
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QucikApp.dll
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.dll
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QucikApp.pdb
-E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.xml
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\obj\Debug\QuickApp.Test.dll
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\obj\Debug\QuickApp.Test.pdb
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.Test.dll.config
@@ -18,3 +17,8 @@ E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.EntityFramew
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\EntityFramework.xml
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\EntityFramework.SqlServer.xml
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\log4net.xml
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Castle.Core.dll
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Castle.Core.xml
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.xml
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.Extras.DynamicProxy2.dll
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.Extras.DynamicProxy2.xml

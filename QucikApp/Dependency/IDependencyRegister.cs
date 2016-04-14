@@ -31,5 +31,6 @@ namespace QucikApp.Dependency
         void Register(Assembly assembly, Func<Type, bool> predicate=null, DependencyLifeTime lifeTime = DependencyLifeTime.Transient);
 
         void Register(Assembly interfaceAssembly, Assembly implAssembly, Func<Type, bool> predicate=null, DependencyLifeTime lifeTime = DependencyLifeTime.Transient);
+
     }
 }

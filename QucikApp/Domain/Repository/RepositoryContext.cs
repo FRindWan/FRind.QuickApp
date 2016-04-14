@@ -101,6 +101,8 @@ namespace QucikApp.Domain.Repository
         public void Dispose()
         {
             this.ClearRegistation();
+            this.DoDispose(true);
+            this.isDisposed = true;
         }
 
         protected abstract void DoDispose(bool dispose);
