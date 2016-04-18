@@ -5,7 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Domain.Entites;
+using QuickApp.Domain.Entites;
 using System;
 using System.Collections.Generic;
 using System.Linq;

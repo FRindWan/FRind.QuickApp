@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.Entites
+namespace QuickApp.Domain.Entites
 {
     /// <summary>
     /// <see cref="EntityChangedNotifyEvent"/>

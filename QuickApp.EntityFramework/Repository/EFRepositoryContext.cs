@@ -5,8 +5,8 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Domain.Repository;
-using QucikApp.Exceptions;
+using QuickApp.Domain.Repository;
+using QuickApp.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

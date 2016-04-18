@@ -5,18 +5,17 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Dependency;
-using QucikApp.Dependency.Autofac;
-using QucikApp.Dependency.Interceptors;
-using QucikApp.Domain.Repository;
-using QucikApp.Domain.UnitOfWorks;
+using QuickApp.Dependency;
+using QuickApp.Dependency.Autofac;
+using QuickApp.Dependency.Interceptors;
+using QuickApp.Domain.Repository;
+using QuickApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace QucikApp
+namespace QuickApp
 {
     /// <summary>
     /// <see cref="DefaultQuickApp"/>

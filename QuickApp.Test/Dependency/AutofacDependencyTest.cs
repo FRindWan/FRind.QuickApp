@@ -6,9 +6,9 @@
  *  -------------------------------------------------------------------------*/
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using QucikApp;
-using QucikApp.Dependency;
-using QucikApp.Dependency.Autofac;
+using QuickApp;
+using QuickApp.Dependency;
+using QuickApp.Dependency.Autofac;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -5,7 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Domain.Repository;
+using QuickApp.Domain.Repository;
 using QuickApp.Common.Test.Domain.Model;
 using System;
 using System.Collections.Generic;

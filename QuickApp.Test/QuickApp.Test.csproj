@@ -60,6 +60,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Application\PersonInfoApplicationTest.cs" />
+    <Compile Include="Common\ReflectionTest.cs" />
     <Compile Include="Dependency\AutofacDependencyTest.cs" />
     <Compile Include="QuickAppTestDependencyInitialize.cs" />
     <Compile Include="TestBase.cs" />
@@ -69,9 +70,9 @@
     <Compile Include="UnitOfWork\UnitOfWorkTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QucikApp\QucikApp.csproj">
+    <ProjectReference Include="..\QucikApp\QuickApp.csproj">
       <Project>{a618e4af-e705-4d30-9622-394b24881167}</Project>
-      <Name>QucikApp</Name>
+      <Name>QuickApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\QuickApp.Common.Test\QuickApp.Common.Test.csproj">
       <Project>{32374a2a-3f75-4eee-b1f7-11355cda0ab3}</Project>

@@ -5,16 +5,16 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Dependency.Interceptors;
-using QucikApp.Domain.Repository;
-using QucikApp.Domain.UnitOfWorks;
+using QuickApp.Dependency.Interceptors;
+using QuickApp.Domain.Repository;
+using QuickApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Dependency
+namespace QuickApp.Dependency
 {
     /// <summary>
     /// <see cref="DependencyInitialize"/>

@@ -5,15 +5,15 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Domain.Entites;
-using QucikApp.Domain.Specifications;
+using QuickApp.Domain.Entites;
+using QuickApp.Domain.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.Repository
+namespace QuickApp.Domain.Repository
 {
     /// <summary>
     /// <see cref="IRepository"/>

@@ -5,7 +5,8 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Domain.Entites;
+using QuickApp.Domain.Entites;
+using QuickApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,18 +14,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.Repository
+namespace QuickApp.Domain.Repository
 {
     /// <summary>
     /// <see cref="Repository"/>
     /// </summary>
     public abstract class Repository<TAggregateRoot, TKey> : IRepository<TAggregateRoot, TKey>where TAggregateRoot:IAggregateRoot
     {
-        private IRepositoryContext context;
+        private ICurrentRepositoryContextProvider currentRepositoryContextProvider;
 
-        public Repository(IRepositoryContext context)
+        public Repository(ICurrentRepositoryContextProvider currentRepositoryContextProvider)
         {
-            this.context = context;
+            this.currentRepositoryContextProvider = currentRepositoryContextProvider;
         }
 
         public TAggregateRoot GetById(TKey id)
@@ -44,21 +45,21 @@ namespace QucikApp.Domain.Repository
 
         public bool Add(TAggregateRoot aggregateRoot)
         {
-            this.context.RegisterAdded<TAggregateRoot>(aggregateRoot);
+            this.currentRepositoryContextProvider.Current.RegisterAdded<TAggregateRoot>(aggregateRoot);
 
             return true;
         }
 
         public bool Update(TAggregateRoot aggregateRoot)
         {
-            this.context.RegisterUpdated<TAggregateRoot>(aggregateRoot);
+            this.currentRepositoryContextProvider.Current.RegisterUpdated<TAggregateRoot>(aggregateRoot);
 
             return true;
         }
 
         public bool Delete(TAggregateRoot aggregateRoot)
         {
-            this.context.RegisterDeleted<TAggregateRoot>(aggregateRoot);
+            this.currentRepositoryContextProvider.Current.RegisterDeleted<TAggregateRoot>(aggregateRoot);
 
             return true;
         }
@@ -73,8 +74,8 @@ namespace QucikApp.Domain.Repository
 
     public abstract class Repository<TAggregateRoot> : Repository<TAggregateRoot, Guid> where TAggregateRoot : IAggregateRoot
     {
-        public Repository(IRepositoryContext repositoryContext)
-            : base(repositoryContext)
+        public Repository(ICurrentRepositoryContextProvider currentRepositoryContextProvider)
+            : base(currentRepositoryContextProvider)
         { }
     }
 }

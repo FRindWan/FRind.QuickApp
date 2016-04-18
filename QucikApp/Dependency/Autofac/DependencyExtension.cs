@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Autofac.Extras.DynamicProxy2;
 using Autofac.Builder;
 
-namespace QucikApp.Dependency.Autofac
+namespace QuickApp.Dependency.Autofac
 {
     /// <summary>
     /// <see cref="DependencyExtension"/>

@@ -5,16 +5,16 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Dependency.Autofac;
+using QuickApp.Dependency.Autofac;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac.Extras.DynamicProxy2;
-using QucikApp.Dependency.Interceptors;
+using QuickApp.Dependency.Interceptors;
 
-namespace QucikApp.Domain.Repository
+namespace QuickApp.Domain.Repository
 {
     /// <summary>
     /// <see cref="ApplicationInterceptorRegister"/>

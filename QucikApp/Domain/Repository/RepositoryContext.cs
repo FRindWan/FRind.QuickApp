@@ -11,10 +11,10 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using QucikApp.Exceptions;
-using QucikApp.Logger;
+using QuickApp.Exceptions;
+using QuickApp.Logger;
 
-namespace QucikApp.Domain.Repository
+namespace QuickApp.Domain.Repository
 {
     /// <summary>
     /// <see cref="RepositoryContext"/>

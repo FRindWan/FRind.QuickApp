@@ -5,8 +5,8 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Dependency;
-using QucikApp.Domain.Repository;
+using QuickApp.Dependency;
+using QuickApp.Domain.Repository;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.UnitOfWorks
+namespace QuickApp.Domain.UnitOfWorks
 {
     /// <summary>
     /// <see cref="CurrentRepositoryContextProvider"/>
@@ -23,13 +23,11 @@ namespace QucikApp.Domain.UnitOfWorks
     public class CurrentRepositoryContextProvider:ICurrentRepositoryContextProvider
     {
         private String ContextKey = "QuickApp.RepositoryContext.Current";
-        private IDependencyResolver dependencyResolver;
 
         private static readonly ConcurrentDictionary<string, IRepositoryContext> repositoryContextDictionary = new ConcurrentDictionary<string, IRepositoryContext>();
 
         public CurrentRepositoryContextProvider()
         {
-            this.dependencyResolver = DependencyFactory.GetDependency();
         }
 
         public IRepositoryContext GetCurrentRepositoryContext()
@@ -73,21 +71,8 @@ namespace QucikApp.Domain.UnitOfWorks
 
         public IRepositoryContext Current
         {
-            get 
-            {
-                IRepositoryContext repositoryContext = this.GetCurrentRepositoryContext();
-                if (repositoryContext == null)
-                {
-                    repositoryContext=this.dependencyResolver.Resolver<IRepositoryContext>();
-                    this.SetCurrentRepositoryContext(repositoryContext);
-                }
-
-                return repositoryContext;
-            }
-            set 
-            { 
-                this.SetCurrentRepositoryContext(value); 
-            }
+            get { return this.GetCurrentRepositoryContext(); }
+            set { this.SetCurrentRepositoryContext(value); }
         }
     }
 }

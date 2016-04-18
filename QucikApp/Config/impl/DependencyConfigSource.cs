@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Config.impl
+namespace QuickApp.Config.impl
 {
     /// <summary>
     /// <see cref="DependencyConfigSource"/>

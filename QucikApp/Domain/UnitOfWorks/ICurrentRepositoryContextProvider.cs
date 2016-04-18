@@ -5,14 +5,14 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Domain.Repository;
+using QuickApp.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.UnitOfWorks
+namespace QuickApp.Domain.UnitOfWorks
 {
     /// <summary>
     /// <see cref="ICurrentRepositoryContextProvider"/>

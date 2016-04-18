@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Dependency
+namespace QuickApp.Dependency
 {
     /// <summary>
     /// <see cref="IDependencyResolver"/>

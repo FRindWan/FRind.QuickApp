@@ -6,8 +6,8 @@
  *  -------------------------------------------------------------------------*/
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using QucikApp.Domain.Repository;
-using QucikApp.Domain.UnitOfWorks;
+using QuickApp.Domain.Repository;
+using QuickApp.Domain.UnitOfWorks;
 using QuickApp.Common.Test.Domain.Model;
 using QuickApp.Common.Test.Domain.Reposities;
 using System;

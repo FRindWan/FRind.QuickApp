@@ -1,24 +1,25 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/4/13 星期三 18:24:04
+ * 创建时间： 2016/4/18 星期一 15:21:50
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Application
+namespace QuickApp.Eventing
 {
     /// <summary>
-    /// <see cref="IApplicationService"/>
+    /// <see cref="IEventBus"/>
     /// </summary>
-    public interface IApplicationService
+    public interface IEventBus
     {
-        
+        void Published<TEvent>(TEvent @event)where TEvent:IEvent;
+
+        void RegisterHandler<TEvent>(IEventHandler<TEvent> handler)where TEvent:IEvent;
     }
 }

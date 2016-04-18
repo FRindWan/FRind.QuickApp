@@ -5,14 +5,14 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Config;
+using QuickApp.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp
+namespace QuickApp
 {
     /// <summary>
     /// <see cref="IConfigSource"/>

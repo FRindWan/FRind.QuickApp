@@ -14,9 +14,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac.Extras.DynamicProxy2;
 using Castle.DynamicProxy;
-using QucikApp.Dependency.Interceptors;
+using QuickApp.Dependency.Interceptors;
+using QuickApp.Common.Reflection;
 
-namespace QucikApp.Dependency.Autofac
+namespace QuickApp.Dependency.Autofac
 {
     /// <summary>
     /// <see cref="AutofacDependency"/>
@@ -59,26 +60,30 @@ namespace QucikApp.Dependency.Autofac
 
         public void Register(System.Reflection.Assembly assembly, Func<Type, bool> predicate=null, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
         {
-            if (predicate != null)
+            IDictionary<Type, Type> typeDictionary = ReflectionExtension.GetAllInterfaceAndClassForAssembly(assembly, predicate);
+            if (typeDictionary == null || typeDictionary.Count <= 0)
             {
-                this.builder.RegisterAssemblyTypes(assembly).Where(predicate).AsImplementedInterfaces().SetLifeTime(lifeTime);
+                return;
             }
-            else
+
+            foreach (KeyValuePair<Type, Type> item in typeDictionary)
             {
-                this.builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().SetLifeTime(lifeTime);
+                this.Register(item.Key, item.Value, lifeTime);
             }
 
         }
 
         public void Register(System.Reflection.Assembly interfaceAssembly, System.Reflection.Assembly implAssembly, Func<Type, bool> predicate=null, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
         {
-            if (predicate != null)
+            IDictionary<Type, Type> typeDictionary = ReflectionExtension.GetAllInterfaceAndClassForAssembly(interfaceAssembly, predicate, implAssembly);
+            if (typeDictionary == null || typeDictionary.Count <= 0)
             {
-                this.builder.RegisterAssemblyTypes(interfaceAssembly, implAssembly).Where(predicate).AsImplementedInterfaces().SetLifeTime(lifeTime);
+                return;
             }
-            else
+
+            foreach (KeyValuePair<Type, Type> item in typeDictionary)
             {
-                this.builder.RegisterAssemblyTypes(interfaceAssembly, implAssembly).AsImplementedInterfaces().SetLifeTime(lifeTime);
+                this.Register(item.Key, item.Value, lifeTime);
             }
         }
 

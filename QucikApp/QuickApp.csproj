@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A618E4AF-E705-4D30-9622-394B24881167}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuickApp</RootNamespace>
+    <AssemblyName>QuickApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.3.1\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Extras.DynamicProxy2, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Extras.DynamicProxy2.3.0.7\lib\net40\Autofac.Extras.DynamicProxy2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.1.0.0.505\lib\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\ApplicationService.cs" />
+    <Compile Include="Common\Reflection\ReflectionExtension.cs" />
+    <Compile Include="Config\ConfigSource.cs" />
+    <Compile Include="Config\IDependencyConfigSource.cs" />
+    <Compile Include="Config\impl\DependencyConfigSource.cs" />
+    <Compile Include="Dependency\Autofac\AutofacDependency.cs" />
+    <Compile Include="Dependency\DependencyInitialize.cs" />
+    <Compile Include="Dependency\Interceptors\RegisterInterceptor.cs" />
+    <Compile Include="Dependency\Interceptors\RegisterInterceptorService.cs" />
+    <Compile Include="Dependency\Autofac\DependencyExtension.cs" />
+    <Compile Include="Dependency\DependencyFactory.cs" />
+    <Compile Include="Dependency\DependencyLifeTime.cs" />
+    <Compile Include="Dependency\IDependency.cs" />
+    <Compile Include="Dependency\IDependencyRegister.cs" />
+    <Compile Include="Dependency\IDependencyResolver.cs" />
+    <Compile Include="Application\ApplicationInterceptor.cs" />
+    <Compile Include="Eventing\IEvent.cs" />
+    <Compile Include="Eventing\IEventBus.cs" />
+    <Compile Include="Eventing\IEventHandler.cs" />
+    <Compile Include="Eventing\impl\EventBus.cs" />
+    <Compile Include="QuickAppDependencyInitialize.cs" />
+    <Compile Include="Domain\Entites\AggregateRoot.cs" />
+    <Compile Include="Domain\Entites\Entity.cs" />
+    <Compile Include="Domain\Entites\EntityChangedNotifyEventArgs.cs" />
+    <Compile Include="Domain\Entites\IAggregateRoot.cs" />
+    <Compile Include="Domain\Entites\IEntity.cs" />
+    <Compile Include="Domain\Repository\IRepository.cs" />
+    <Compile Include="Domain\Repository\IRepositoryContext.cs" />
+    <Compile Include="Domain\Repository\Repository.cs" />
+    <Compile Include="Domain\Repository\RepositoryContext.cs" />
+    <Compile Include="Application\ApplicationInterceptorRegister.cs" />
+    <Compile Include="Domain\Repository\SortOrder.cs" />
+    <Compile Include="Domain\Specifications\AndNotSpecification.cs" />
+    <Compile Include="Domain\Specifications\AndSpecification.cs" />
+    <Compile Include="Domain\Specifications\AnySpecification.cs" />
+    <Compile Include="Domain\Specifications\CompositeSpecification.cs" />
+    <Compile Include="Domain\Specifications\ExpressionFuncExtender.cs" />
+    <Compile Include="Domain\Specifications\ExpressionSpecification.cs" />
+    <Compile Include="Domain\Specifications\ICompositeSpecification.cs" />
+    <Compile Include="Domain\Specifications\ISpecification.cs" />
+    <Compile Include="Domain\Specifications\NoneSpecification.cs" />
+    <Compile Include="Domain\Specifications\NotSpecification.cs" />
+    <Compile Include="Domain\Specifications\OrSpecification.cs" />
+    <Compile Include="Domain\Specifications\ParameterRebinder.cs" />
+    <Compile Include="Domain\Specifications\Specification.cs" />
+    <Compile Include="Domain\UnitOfWorks\CurrentRepositoryContextProvider.cs" />
+    <Compile Include="Domain\UnitOfWorks\ICurrentRepositoryContextProvider.cs" />
+    <Compile Include="Domain\UnitOfWorks\IUnitOfWork.cs" />
+    <Compile Include="Domain\UnitOfWorks\IRepositoryContextManager.cs" />
+    <Compile Include="Domain\UnitOfWorks\UnitOfWorkCommitEventHandler.cs" />
+    <Compile Include="Domain\UnitOfWorks\UnitOfWorkCommitEventArgs.cs" />
+    <Compile Include="Domain\UnitOfWorks\RepositoryContextManager.cs" />
+    <Compile Include="Exceptions\ExceptionExetension.cs" />
+    <Compile Include="Exceptions\QuickAppException.cs" />
+    <Compile Include="Exceptions\UnitOfWorkException.cs" />
+    <Compile Include="IConfigSource.cs" />
+    <Compile Include="IQuickApp.cs" />
+    <Compile Include="Logger\DefaultLogger.cs" />
+    <Compile Include="Logger\ILogger.cs" />
+    <Compile Include="Logger\LoggerFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\IQuery.cs" />
+    <Compile Include="DefaultQuickApp.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

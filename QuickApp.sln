@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickApp.Other.Test", "Quic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickApp.Common.Test", "QuickApp.Common.Test\QuickApp.Common.Test.csproj", "{32374A2A-3F75-4EEE-B1F7-11355CDA0AB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QucikApp", "QucikApp\QucikApp.csproj", "{A618E4AF-E705-4D30-9622-394B24881167}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickApp", "QucikApp\QuickApp.csproj", "{A618E4AF-E705-4D30-9622-394B24881167}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace QucikApp.Domain.Specifications
+namespace QuickApp.Domain.Specifications
 {
     internal sealed class ExpressionSpecification<T>:Specification<T>
     {

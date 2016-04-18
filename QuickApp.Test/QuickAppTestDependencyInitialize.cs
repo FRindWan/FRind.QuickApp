@@ -5,8 +5,8 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Dependency;
-using QucikApp.Domain.Repository;
+using QuickApp.Dependency;
+using QuickApp.Domain.Repository;
 using QuickApp.Common.Test.Application;
 using QuickApp.Common.Test.Application.impl;
 using QuickApp.Common.Test.Domain.Reposities;
@@ -26,7 +26,7 @@ namespace QuickApp.Test
     /// </summary>
     public class QuickAppTestDependencyInitialize:DependencyInitialize
     {
-        public override void InitializeInterceptor(QucikApp.Dependency.Interceptors.RegisterInterceptorService registerInterceptorService)
+        public override void InitializeInterceptor(QuickApp.Dependency.Interceptors.RegisterInterceptorService registerInterceptorService)
         {
             
         }

@@ -6,32 +6,38 @@
  *  -------------------------------------------------------------------------*/
 
 using Castle.DynamicProxy;
-using QucikApp.Domain.UnitOfWorks;
+using QuickApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.Repository
+namespace QuickApp.Domain.Repository
 {
     /// <summary>
     /// <see cref="ApplicationInterceptor"/>
     /// </summary>
     public class ApplicationInterceptor : IInterceptor
     {
-        private IRepositoryContext repositoryContext;
+        private ICurrentRepositoryContextProvider repositoryContextProvider;
+        private IRepositoryContextManager repositoryContextManager;
 
-        public ApplicationInterceptor(ICurrentRepositoryContextProvider repositoryContextProvider)
+        public ApplicationInterceptor(ICurrentRepositoryContextProvider repositoryContextProvider, IRepositoryContextManager repositoryContextManager)
         {
-            this.repositoryContext = repositoryContextProvider.Current;
-            this.repositoryContext.OnCommitError += OnCommitError;
+            this.repositoryContextManager = repositoryContextManager;
+            this.repositoryContextProvider = repositoryContextProvider;
         }
 
         public void Intercept(IInvocation invocation)
         {
+            if (this.repositoryContextProvider.Current == null)
+            {
+                this.repositoryContextManager.Create();
+            }
+
             invocation.Proceed();
-            this.repositoryContext.Commit();
+            this.repositoryContextProvider.Current.Commit();
         }
 
         private void OnCommitError(UnitOfWorkCommitErrorEventArgs args)

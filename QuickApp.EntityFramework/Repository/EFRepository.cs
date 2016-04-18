@@ -5,9 +5,9 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Domain.Entites;
-using QucikApp.Domain.Repository;
-using QucikApp.Domain.UnitOfWorks;
+using QuickApp.Domain.Entites;
+using QuickApp.Domain.Repository;
+using QuickApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -20,25 +20,25 @@ namespace QuickApp.EntityFramework.Repository
     /// <summary>
     /// <see cref="EFRepository"/>
     /// </summary>
-    public class EFRepository<TAggregateRoot, TKey> : QucikApp.Domain.Repository.Repository<TAggregateRoot, TKey>
+    public class EFRepository<TAggregateRoot, TKey> : QuickApp.Domain.Repository.Repository<TAggregateRoot, TKey>
         where TAggregateRoot :class, IAggregateRoot
     {
-        private IEFRepositoryContext repositoryContext;
+        private ICurrentRepositoryContextProvider currentRepositoryContextProvider;
 
         public EFRepository(ICurrentRepositoryContextProvider currentRepositoryContextProvider)
-            : base(currentRepositoryContextProvider.Current)
+            : base(currentRepositoryContextProvider)
         {
-            this.repositoryContext = (IEFRepositoryContext)currentRepositoryContextProvider.Current;
+            this.currentRepositoryContextProvider = currentRepositoryContextProvider;
         }
 
-        protected IEFRepositoryContext RepositoryContext { get { return this.repositoryContext; } }
+        private IEFRepositoryContext RepositoryContext { get { return (IEFRepositoryContext)this.currentRepositoryContextProvider.Current; } }
 
         protected override TAggregateRoot DoGetById(TKey id)
         {
-            return this.repositoryContext.Context.Set<TAggregateRoot>().Find(id);
+            return this.RepositoryContext.Context.Set<TAggregateRoot>().Find(id);
         }
 
-        protected override TAggregateRoot DoGet(QucikApp.Domain.Specifications.ISpecification<TAggregateRoot> predicate)
+        protected override TAggregateRoot DoGet(QuickApp.Domain.Specifications.ISpecification<TAggregateRoot> predicate)
         {
             IEnumerable<TAggregateRoot> aggregateRoots= this.DoGet(predicate,null, SortOrder.Asc);
             if (aggregateRoots == null || aggregateRoots.Count() <= 0)
@@ -49,9 +49,9 @@ namespace QuickApp.EntityFramework.Repository
             return aggregateRoots.First();
         }
 
-        protected override IEnumerable<TAggregateRoot> DoGet(QucikApp.Domain.Specifications.ISpecification<TAggregateRoot> predicate, Func<TAggregateRoot, dynamic> keySelectors, SortOrder sort = SortOrder.Asc)
+        protected override IEnumerable<TAggregateRoot> DoGet(QuickApp.Domain.Specifications.ISpecification<TAggregateRoot> predicate, Func<TAggregateRoot, dynamic> keySelectors, SortOrder sort = SortOrder.Asc)
         {
-            var query=this.repositoryContext.Context.Set<TAggregateRoot>().Where(predicate.GetExpression());
+            var query = this.RepositoryContext.Context.Set<TAggregateRoot>().Where(predicate.GetExpression());
             if (keySelectors == null)
             {
                 return query;

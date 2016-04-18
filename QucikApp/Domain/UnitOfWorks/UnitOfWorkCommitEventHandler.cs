@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.UnitOfWorks
+namespace QuickApp.Domain.UnitOfWorks
 {
     /// <summary>
     /// <see cref="UnitOfWorkCommitComplateEventHandler"/>

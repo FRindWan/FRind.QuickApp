@@ -1,9 +1,7 @@
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\obj\Debug\QuickApp.Test.csprojResolveAssemblyReference.cache
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.Test.dll
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.Test.pdb
-E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QucikApp.dll
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.dll
-E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QucikApp.pdb
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\obj\Debug\QuickApp.Test.dll
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\obj\Debug\QuickApp.Test.pdb
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.Test.dll.config
@@ -22,3 +20,5 @@ E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Castle.Core.xml
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.xml
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.Extras.DynamicProxy2.dll
 E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.Extras.DynamicProxy2.xml
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.dll
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.pdb

@@ -5,15 +5,15 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Dependency;
-using QucikApp.Domain.Repository;
+using QuickApp.Dependency;
+using QuickApp.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Domain.UnitOfWorks
+namespace QuickApp.Domain.UnitOfWorks
 {
     /// <summary>
     /// <see cref="RepositoryContextManager"/>
@@ -31,7 +31,9 @@ namespace QucikApp.Domain.UnitOfWorks
 
         public IRepositoryContext Create()
         {
-            return this.currentRepositoryContextProvider.Current ;
+            IRepositoryContext repositoryContext = this.dependencyResolver.Resolver<IRepositoryContext>();
+            this.currentRepositoryContextProvider.Current = repositoryContext;
+            return repositoryContext;
         }
     }
 }

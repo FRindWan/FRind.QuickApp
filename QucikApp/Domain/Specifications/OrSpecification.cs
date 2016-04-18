@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace QucikApp.Domain.Specifications
+namespace QuickApp.Domain.Specifications
 {
     public class OrSpecification<T>:CompositeSpecification<T>
     {

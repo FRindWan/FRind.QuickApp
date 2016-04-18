@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Dependency.Interceptors
+namespace QuickApp.Dependency.Interceptors
 {
     /// <summary>
     /// <see cref="RegisterInterceptor"/>

@@ -5,7 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Domain.UnitOfWorks;
+using QuickApp.Domain.UnitOfWorks;
 using QuickApp.Common.Test.Domain.Model;
 using QuickApp.EntityFramework.Repository;
 using System;
@@ -23,6 +23,7 @@ namespace QuickApp.Common.Test.Domain.Reposities.impl
     {
         public PersonInfoRepository(ICurrentRepositoryContextProvider currentRepositoryContextProvider)
             : base(currentRepositoryContextProvider)
-        { }
+        { 
+        }
     }
 }

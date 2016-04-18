@@ -5,7 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QucikApp.Application;
+using QuickApp.Application;
 using QuickApp.Common.Test.Domain.Model;
 using QuickApp.Common.Test.Domain.Reposities;
 using System;

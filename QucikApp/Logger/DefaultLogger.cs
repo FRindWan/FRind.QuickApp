@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QucikApp.Logger
+namespace QuickApp.Logger
 {
     /// <summary>
     /// <see cref="DefaultLogger"/>
