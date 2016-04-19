@@ -1,26 +1,26 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 16:57:12
+ * 创建时间： 2016/4/19 星期二 14:51:28
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Config;
+using QuickApp.Common.Test.Domain.Model;
+using QuickApp.Eventing;
+using QuickApp.Eventing.impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp
+namespace QuickApp.Common.Test.Domain.Events
 {
     /// <summary>
-    /// <see cref="IConfigSource"/>
+    /// <see cref="PersonInfoNameChangedEvent"/>
     /// </summary>
-    public interface IConfigSource
+    public class PersonInfoNameChangedEvent:Event
     {
-        IDependencyConfigSource DependencyConfigSource { get; }
-
-        IEventConfigSource EventConfigSource { get; }
+        public PersonInfo PersonInfo { get; set; }
     }
 }

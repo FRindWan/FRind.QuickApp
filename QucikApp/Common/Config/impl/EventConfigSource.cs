@@ -1,26 +1,29 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 16:57:12
+ * 创建时间： 2016/4/19 星期二 14:46:24
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp
+namespace QuickApp.Config.impl
 {
     /// <summary>
-    /// <see cref="IConfigSource"/>
+    /// <see cref="EventConfigSource"/>
     /// </summary>
-    public interface IConfigSource
+    public class EventConfigSource:IEventConfigSource
     {
-        IDependencyConfigSource DependencyConfigSource { get; }
+        public System.Reflection.Assembly[] Assemblys { get; set; }
 
-        IEventConfigSource EventConfigSource { get; }
+        public void SetAssembly(params Assembly[] assemblys)
+        {
+            this.Assemblys = assemblys;
+        }
     }
 }

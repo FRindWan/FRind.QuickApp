@@ -6,8 +6,10 @@
  *  -------------------------------------------------------------------------*/
 
 using QuickApp.Application;
+using QuickApp.Common.Test.Domain.Events;
 using QuickApp.Common.Test.Domain.Model;
 using QuickApp.Common.Test.Domain.Reposities;
+using QuickApp.Eventing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,7 @@ namespace QuickApp.Common.Test.Application.impl
     /// <summary>
     /// <see cref="PersonInfoApplication"/>
     /// </summary>
-    public class PersonInfoApplication:ApplicationService,IPersonInfoApplication
+    public class PersonInfoApplication : ApplicationService, IPersonInfoApplication, IEventHandler<PersonInfoNameChangedEvent>
     {
         private readonly IPersonInfoRepository personInfoRepository;
 
@@ -35,6 +37,14 @@ namespace QuickApp.Common.Test.Application.impl
             personInfo.Age = age;
 
             this.personInfoRepository.Add(personInfo);
+        }
+
+        public void Handle(PersonInfoNameChangedEvent @event)
+        {
+            //PersonInfo personInfo = this.personInfoRepository.GetById(@event.PersonInfo.ID);
+            //personInfo.UserName = @event.PersonInfo.UserName;
+
+            this.personInfoRepository.Update(@event.PersonInfo);
         }
     }
 }

@@ -7,6 +7,7 @@
 
 using QuickApp.Domain.Repository;
 using QuickApp.Domain.UnitOfWorks;
+using QuickApp.Eventing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,11 @@ namespace QuickApp.Application
     /// </summary>
     public class ApplicationService
     {
+        protected readonly IEventBus eventBus;
+
         public ApplicationService()
         {
-            
+            this.eventBus = Dependency.DependencyFactory.GetDependency().Resolver<IEventBus>();
         }
 
     }

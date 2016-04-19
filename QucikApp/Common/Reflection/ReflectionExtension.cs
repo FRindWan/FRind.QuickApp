@@ -120,6 +120,28 @@ namespace QuickApp.Common.Reflection
             return interfaceTypes;
         }
 
+        public static IList<Type> FindTypesImplementInterface(Type interfaceType,params Assembly[] assemblys)
+        {
+            IList<Type> types = ReflectionExtension.GetTypes(assemblys);
+            if (types == null||interfaceType==null)
+            {
+                return null;
+            }
+
+            IList<Type> findTypes = new List<Type>();
+            foreach (Type type in types)
+            {
+                if (type.IsAbstract || type.IsInterface || type.GetInterface(interfaceType.Name)==null)
+                {
+                    continue;
+                }
+
+                findTypes.Add(type);
+            }
+
+            return findTypes;
+        }
+
         private static IList<Type> GetTypes(Assembly assembly, Assembly[] relationAssemblys)
         {
             IList<Type> types = null;

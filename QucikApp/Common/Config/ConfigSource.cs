@@ -27,12 +27,17 @@ namespace QuickApp.Config
         }
 
         private IDependencyConfigSource dependencyConfigSource;
+        private IEventConfigSource eventConfigSource;
 
         public ConfigSource()
         {
             this.dependencyConfigSource = new DependencyConfigSource();
+            this.eventConfigSource = new EventConfigSource();
         }
 
         public IDependencyConfigSource DependencyConfigSource { get { return this.dependencyConfigSource; } }
+
+
+        public IEventConfigSource EventConfigSource { get { return this.eventConfigSource; } }
     }
 }

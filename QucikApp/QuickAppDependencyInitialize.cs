@@ -11,6 +11,8 @@ using QuickApp.Dependency;
 using QuickApp.Dependency.Interceptors;
 using QuickApp.Domain.Repository;
 using QuickApp.Domain.UnitOfWorks;
+using QuickApp.Eventing;
+using QuickApp.Eventing.impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,7 @@ namespace QuickApp
     {
         public override void InitializeInterceptor(RegisterInterceptorService registerInterceptorService)
         {
-            registerInterceptorService.AddAutofacRegisterInterceptor(new ApplicationInterceptorRegister());
+            registerInterceptorService.AddAutofacRegisterInterceptor(new RepositoryInterceptorRegister());
         }
 
         public override void InitializeDependency(IDependency dependency)
@@ -37,9 +39,12 @@ namespace QuickApp
             dependency.Register<IRepositoryContextManager, RepositoryContextManager>();
             dependency.Register<ICurrentRepositoryContextProvider, CurrentRepositoryContextProvider>();
 
+            dependency.Register<IEventBus, EventBus>(DependencyLifeTime.Singleton);
+            dependency.Register<IEventAggregator, EventAggregator>(DependencyLifeTime.Singleton);
+
             if (ConfigSource.Instance.DependencyConfigSource.EnableInterceptor)
             {
-                dependency.Register<ApplicationInterceptor>();
+                dependency.Register<RepositoryInterceptor>();
             }
         }
     }

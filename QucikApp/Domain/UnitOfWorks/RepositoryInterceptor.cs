@@ -16,14 +16,14 @@ using System.Threading.Tasks;
 namespace QuickApp.Domain.Repository
 {
     /// <summary>
-    /// <see cref="ApplicationInterceptor"/>
+    /// <see cref="RepositoryInterceptor"/>
     /// </summary>
-    public class ApplicationInterceptor : IInterceptor
+    public class RepositoryInterceptor : IInterceptor
     {
         private ICurrentRepositoryContextProvider repositoryContextProvider;
         private IRepositoryContextManager repositoryContextManager;
 
-        public ApplicationInterceptor(ICurrentRepositoryContextProvider repositoryContextProvider, IRepositoryContextManager repositoryContextManager)
+        public RepositoryInterceptor(ICurrentRepositoryContextProvider repositoryContextProvider, IRepositoryContextManager repositoryContextManager)
         {
             this.repositoryContextManager = repositoryContextManager;
             this.repositoryContextProvider = repositoryContextProvider;
@@ -37,12 +37,17 @@ namespace QuickApp.Domain.Repository
             }
 
             invocation.Proceed();
-            this.repositoryContextProvider.Current.Commit();
+
+            if (!this.repositoryContextProvider.Current.IsCommited)
+            {
+                this.repositoryContextProvider.Current.Commit();
+            }
         }
 
         private void OnCommitError(UnitOfWorkCommitErrorEventArgs args)
         {
             throw args.UnitOfWorkException;
         }
+
     }
 }

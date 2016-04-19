@@ -1,26 +1,23 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 16:57:12
+ * 创建时间： 2016/4/19 星期二 10:52:48
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Config;
+using QuickApp.Eventing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp
+namespace QuickApp.Domain.Events
 {
     /// <summary>
-    /// <see cref="IConfigSource"/>
+    /// <see cref="IDomainEvent"/>
     /// </summary>
-    public interface IConfigSource
+    public interface IDomainEvent:IEvent
     {
-        IDependencyConfigSource DependencyConfigSource { get; }
-
-        IEventConfigSource EventConfigSource { get; }
     }
 }

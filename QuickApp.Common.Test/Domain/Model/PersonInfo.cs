@@ -5,7 +5,9 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Common.Test.Domain.Events;
 using QuickApp.Domain.Entites;
+using QuickApp.Eventing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,7 @@ namespace QuickApp.Common.Test.Domain.Model
     /// <summary>
     /// <see cref="PersonInfo"/>
     /// </summary>
-    public class PersonInfo:IAggregateRoot
+    public class PersonInfo : IAggregateRoot
     {
         public Guid ID { get; set; }
 

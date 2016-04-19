@@ -1,26 +1,22 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 16:57:12
+ * 创建时间： 2016/4/19 星期二 10:39:39
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp
+namespace QuickApp.Eventing
 {
     /// <summary>
-    /// <see cref="IConfigSource"/>
+    /// <see cref="AsyncEventHandlerAttribute"/>
     /// </summary>
-    public interface IConfigSource
+    public class AsyncEventHandlerAttribute:Attribute
     {
-        IDependencyConfigSource DependencyConfigSource { get; }
-
-        IEventConfigSource EventConfigSource { get; }
     }
 }

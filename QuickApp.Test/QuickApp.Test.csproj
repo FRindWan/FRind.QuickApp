@@ -62,6 +62,7 @@
     <Compile Include="Application\PersonInfoApplicationTest.cs" />
     <Compile Include="Common\ReflectionTest.cs" />
     <Compile Include="Dependency\AutofacDependencyTest.cs" />
+    <Compile Include="Events\PersonInfoNameChangedEventTest.cs" />
     <Compile Include="QuickAppTestDependencyInitialize.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

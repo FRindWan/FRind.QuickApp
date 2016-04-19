@@ -63,9 +63,11 @@
   <ItemGroup>
     <Compile Include="Application\ApplicationService.cs" />
     <Compile Include="Common\Reflection\ReflectionExtension.cs" />
-    <Compile Include="Config\ConfigSource.cs" />
-    <Compile Include="Config\IDependencyConfigSource.cs" />
-    <Compile Include="Config\impl\DependencyConfigSource.cs" />
+    <Compile Include="Common\Config\ConfigSource.cs" />
+    <Compile Include="Common\Config\IDependencyConfigSource.cs" />
+    <Compile Include="Common\Config\IEventConfigSource.cs" />
+    <Compile Include="Common\Config\impl\DependencyConfigSource.cs" />
+    <Compile Include="Common\Config\impl\EventConfigSource.cs" />
     <Compile Include="Dependency\Autofac\AutofacDependency.cs" />
     <Compile Include="Dependency\DependencyInitialize.cs" />
     <Compile Include="Dependency\Interceptors\RegisterInterceptor.cs" />
@@ -76,9 +78,15 @@
     <Compile Include="Dependency\IDependency.cs" />
     <Compile Include="Dependency\IDependencyRegister.cs" />
     <Compile Include="Dependency\IDependencyResolver.cs" />
-    <Compile Include="Application\ApplicationInterceptor.cs" />
-    <Compile Include="Eventing\IEvent.cs" />
+    <Compile Include="Domain\UnitOfWorks\RepositoryInterceptor.cs" />
+    <Compile Include="Domain\Events\IDomainEvent.cs" />
+    <Compile Include="Eventing\AsyncEventHandlerAttribute.cs" />
     <Compile Include="Eventing\IEventBus.cs" />
+    <Compile Include="Eventing\impl\Event.cs" />
+    <Compile Include="Eventing\impl\EventAggregator.cs" />
+    <Compile Include="Eventing\EventInitialize.cs" />
+    <Compile Include="Eventing\IEvent.cs" />
+    <Compile Include="Eventing\IEventAggregator.cs" />
     <Compile Include="Eventing\IEventHandler.cs" />
     <Compile Include="Eventing\impl\EventBus.cs" />
     <Compile Include="QuickAppDependencyInitialize.cs" />
@@ -91,7 +99,7 @@
     <Compile Include="Domain\Repository\IRepositoryContext.cs" />
     <Compile Include="Domain\Repository\Repository.cs" />
     <Compile Include="Domain\Repository\RepositoryContext.cs" />
-    <Compile Include="Application\ApplicationInterceptorRegister.cs" />
+    <Compile Include="Domain\UnitOfWorks\RepositoryInterceptorRegister.cs" />
     <Compile Include="Domain\Repository\SortOrder.cs" />
     <Compile Include="Domain\Specifications\AndNotSpecification.cs" />
     <Compile Include="Domain\Specifications\AndSpecification.cs" />

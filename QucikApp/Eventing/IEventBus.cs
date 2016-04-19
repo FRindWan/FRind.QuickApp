@@ -5,6 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,10 @@ namespace QuickApp.Eventing
     /// <summary>
     /// <see cref="IEventBus"/>
     /// </summary>
-    public interface IEventBus
+    public interface IEventBus:IUnitOfWork
     {
         void Published<TEvent>(TEvent @event)where TEvent:IEvent;
 
-        void RegisterHandler<TEvent>(IEventHandler<TEvent> handler)where TEvent:IEvent;
+        void Clear();
     }
 }

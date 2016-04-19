@@ -17,15 +17,15 @@ using QuickApp.Dependency.Interceptors;
 namespace QuickApp.Domain.Repository
 {
     /// <summary>
-    /// <see cref="ApplicationInterceptorRegister"/>
+    /// <see cref="RepositoryInterceptorRegister"/>
     /// </summary>
-    public class ApplicationInterceptorRegister : RegisterInterceptor
+    public class RepositoryInterceptorRegister : RegisterInterceptor
     {
         public override void Register<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle>(Autofac.Builder.IRegistrationBuilder<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle> registerBuilder, Type interfaceType, Type implType)
         {
-            if (implType.Name.Contains("Application") )
+            if (implType.Name.Contains("Application") || (implType.Name.Contains("Repository") && !implType.Name.Contains("RepositoryContext")))
             {
-                registerBuilder.EnableInterfaceInterceptors().InterceptedBy(typeof(ApplicationInterceptor));
+                registerBuilder.EnableInterfaceInterceptors().InterceptedBy(typeof(RepositoryInterceptor));
             }
         }
     }

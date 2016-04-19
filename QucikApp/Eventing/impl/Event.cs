@@ -1,26 +1,32 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 16:57:12
+ * 创建时间： 2016/4/19 星期二 14:52:26
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp
+namespace QuickApp.Eventing.impl
 {
     /// <summary>
-    /// <see cref="IConfigSource"/>
+    /// <see cref="Event"/>
     /// </summary>
-    public interface IConfigSource
+    public class Event:IEvent
     {
-        IDependencyConfigSource DependencyConfigSource { get; }
+        public Event()
+        {
+            this.ID = Guid.NewGuid();
+            this.CreateTime = DateTime.Now;
+        }
 
-        IEventConfigSource EventConfigSource { get; }
+        public Guid ID { get; set; }
+
+        public DateTime CreateTime { get; set; }
+
     }
 }

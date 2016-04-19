@@ -16,7 +16,7 @@ namespace QuickApp.Eventing
     /// <summary>
     /// <see cref="IEventHandler"/>
     /// </summary>
-    public class IEventHandler<TEvent>where TEvent:IEvent
+    public interface IEventHandler<in TEvent>where TEvent:IEvent
     {
         void Handle(TEvent @event);
     }
