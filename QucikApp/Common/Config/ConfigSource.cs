@@ -5,6 +5,8 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Common.Config;
+using QuickApp.Common.Config.impl;
 using QuickApp.Config.impl;
 using System;
 using System.Collections.Generic;
@@ -26,18 +28,23 @@ namespace QuickApp.Config
             Instance=new ConfigSource();
         }
 
-        private IDependencyConfigSource dependencyConfigSource;
-        private IEventConfigSource eventConfigSource;
+        private readonly IDependencyConfigSource dependencyConfigSource;
+        private readonly IEventConfigSource eventConfigSource;
+        private readonly ICommandConfigSource commandConfigSource;
 
-        public ConfigSource()
+        private ConfigSource()
         {
             this.dependencyConfigSource = new DependencyConfigSource();
             this.eventConfigSource = new EventConfigSource();
+            this.commandConfigSource = new CommandConfigSource();
         }
 
         public IDependencyConfigSource DependencyConfigSource { get { return this.dependencyConfigSource; } }
 
 
         public IEventConfigSource EventConfigSource { get { return this.eventConfigSource; } }
+
+
+        public Common.Config.ICommandConfigSource CommandConfigSource { get { return this.commandConfigSource; } }
     }
 }

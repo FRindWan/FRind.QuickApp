@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="AutofacInterceptorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReflectionTest.cs" />
     <Compile Include="Reposities\TransactionScopeTest.cs" />
     <Compile Include="RepositoryContextInterceptor.cs" />
   </ItemGroup>

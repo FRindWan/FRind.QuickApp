@@ -1,29 +1,25 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 16:57:12
+ * 创建时间： 2016/4/20 星期三 15:43:44
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Common.Config;
-using QuickApp.Config;
+using QuickApp.Dependency;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp
+namespace QuickApp.Commands
 {
     /// <summary>
-    /// <see cref="IConfigSource"/>
+    /// <see cref="QuickAppCommandExecuter"/>
     /// </summary>
-    public interface IConfigSource
+    public class QuickAppCommandExecuter:CommandExecuter
     {
-        IDependencyConfigSource DependencyConfigSource { get; }
+        public static readonly QuickAppCommandExecuter Instance=new QuickAppCommandExecuter();
 
-        IEventConfigSource EventConfigSource { get; }
-
-        ICommandConfigSource CommandConfigSource { get; }
     }
 }

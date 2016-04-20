@@ -6,6 +6,8 @@
  *  -------------------------------------------------------------------------*/
 
 using QuickApp.Application;
+using QuickApp.Commands;
+using QuickApp.Common.Test.Command;
 using QuickApp.Common.Test.Domain.Events;
 using QuickApp.Common.Test.Domain.Model;
 using QuickApp.Common.Test.Domain.Reposities;
@@ -37,6 +39,16 @@ namespace QuickApp.Common.Test.Application.impl
             personInfo.Age = age;
 
             this.personInfoRepository.Add(personInfo);
+            
+        }
+
+        [CommandExecute(typeof(AddPersonCommand))]
+        public int AddPersonInfoCommand(AddPersonCommand command)
+        {
+            System.Threading.Thread.Sleep(2000);
+            Console.WriteLine(1);
+            return 1;
+            //this.personInfoRepository.Add(((AddPersonCommand)command).PersonInfo);
         }
 
         public void Handle(PersonInfoNameChangedEvent @event)

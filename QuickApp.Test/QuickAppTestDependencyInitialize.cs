@@ -18,6 +18,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuickApp.Common.Test.Command;
 
 namespace QuickApp.Test
 {
@@ -37,6 +38,8 @@ namespace QuickApp.Test
             dependency.Register<IRepositoryContext, EFRepositoryContext>();
             dependency.Register<IPersonInfoRepository, PersonInfoRepository>();
             dependency.Register<IPersonInfoApplication, PersonInfoApplication>();
+
+            dependency.Register<PersonInfoApplication>();
         }
     }
 }

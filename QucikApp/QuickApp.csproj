@@ -62,6 +62,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\ApplicationService.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\CommandExecuteAttribute.cs" />
+    <Compile Include="Commands\CommandExecuter.cs" />
+    <Compile Include="Commands\CommandInitializeService.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\ICommandResult.cs" />
+    <Compile Include="Common\Config\ICommandConfigSource.cs" />
+    <Compile Include="Common\Config\impl\CommandConfigSource.cs" />
+    <Compile Include="Common\Reflection\MethodInfoHelper.cs" />
     <Compile Include="Common\Reflection\ReflectionExtension.cs" />
     <Compile Include="Common\Config\ConfigSource.cs" />
     <Compile Include="Common\Config\IDependencyConfigSource.cs" />
@@ -89,6 +98,8 @@
     <Compile Include="Eventing\IEventAggregator.cs" />
     <Compile Include="Eventing\IEventHandler.cs" />
     <Compile Include="Eventing\impl\EventBus.cs" />
+    <Compile Include="Exceptions\CommandException.cs" />
+    <Compile Include="Commands\QuickAppCommandExecuter.cs" />
     <Compile Include="QuickAppDependencyInitialize.cs" />
     <Compile Include="Domain\Entites\AggregateRoot.cs" />
     <Compile Include="Domain\Entites\Entity.cs" />

@@ -1,29 +1,31 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 16:57:12
+ * 创建时间： 2016/4/20 星期三 14:26:49
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Common.Config;
-using QuickApp.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp
+namespace QuickApp.Commands
 {
     /// <summary>
-    /// <see cref="IConfigSource"/>
+    /// <see cref="Command"/>
     /// </summary>
-    public interface IConfigSource
+    public abstract class Command:ICommand
     {
-        IDependencyConfigSource DependencyConfigSource { get; }
+        public Command()
+        {
+            this.CommandId = Guid.NewGuid();
+            this.CommandDate = DateTime.Now;
+        }
 
-        IEventConfigSource EventConfigSource { get; }
+        public Guid CommandId { get; private set; }
 
-        ICommandConfigSource CommandConfigSource { get; }
+        public DateTime CommandDate { get; private set; }
     }
 }

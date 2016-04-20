@@ -37,7 +37,7 @@ namespace QuickApp.Test
 
             this.app = new DefaultQuickApp();
             this.app.ConfigSource.EventConfigSource.SetAssembly(Assembly.Load("QuickApp.Common.Test"));
-
+            this.app.ConfigSource.CommandConfigSource.SetAssembly(Assembly.Load("QuickApp.Common.Test"));
 
             this.app.Initialize();
         }

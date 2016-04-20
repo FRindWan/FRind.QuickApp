@@ -1,29 +1,29 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 16:57:12
+ * 创建时间： 2016/4/20 星期三 14:49:21
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Common.Config;
-using QuickApp.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp
+namespace QuickApp.Commands
 {
     /// <summary>
-    /// <see cref="IConfigSource"/>
+    /// <see cref="CommandExecuteAttribute"/>
     /// </summary>
-    public interface IConfigSource
+    [AttributeUsage(AttributeTargets.Method)]
+    public class CommandExecuteAttribute:Attribute
     {
-        IDependencyConfigSource DependencyConfigSource { get; }
+        public CommandExecuteAttribute(Type commandType)
+        {
+            this.CommandType = commandType;
+        }
 
-        IEventConfigSource EventConfigSource { get; }
-
-        ICommandConfigSource CommandConfigSource { get; }
+        public Type CommandType { get; private set; }
     }
 }

@@ -5,6 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Commands;
 using QuickApp.Dependency;
 using QuickApp.Dependency.Autofac;
 using QuickApp.Dependency.Interceptors;
@@ -44,6 +45,8 @@ namespace QuickApp
 
         public void Initialize()
         {
+            CommandInitializeService.Initialize();
+
             DependencyInitializeService.AddDependencyInitialize(new QuickAppDependencyInitialize());
             DependencyInitializeService.Initialize();
 

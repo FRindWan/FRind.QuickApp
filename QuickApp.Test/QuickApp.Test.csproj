@@ -60,6 +60,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Application\PersonInfoApplicationTest.cs" />
+    <Compile Include="Command\PersonInfoCommandTest.cs" />
     <Compile Include="Common\ReflectionTest.cs" />
     <Compile Include="Dependency\AutofacDependencyTest.cs" />
     <Compile Include="Events\PersonInfoNameChangedEventTest.cs" />

@@ -1,29 +1,27 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 16:57:12
+ * 创建时间： 2016/4/20 星期三 17:02:45
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Common.Config;
-using QuickApp.Config;
+using QuickApp.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp
+namespace QuickApp.Common.Test.Command
 {
     /// <summary>
-    /// <see cref="IConfigSource"/>
+    /// <see cref="PersonInfoCommandHandler"/>
     /// </summary>
-    public interface IConfigSource
+    public class PersonInfoCommandHandler
     {
-        IDependencyConfigSource DependencyConfigSource { get; }
-
-        IEventConfigSource EventConfigSource { get; }
-
-        ICommandConfigSource CommandConfigSource { get; }
+        public void AddPersonInfo(AddPersonCommand addPersonCommand)
+        {
+            Console.WriteLine(addPersonCommand.PersonInfo.UserName);
+        }
     }
 }

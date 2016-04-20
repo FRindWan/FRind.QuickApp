@@ -1,29 +1,26 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/30 星期三 16:57:12
+ * 创建时间： 2016/4/20 星期三 15:26:05
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Common.Config;
-using QuickApp.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp
+namespace QuickApp.Common.Config
 {
     /// <summary>
-    /// <see cref="IConfigSource"/>
+    /// <see cref="ICommandConfigSource"/>
     /// </summary>
-    public interface IConfigSource
+    public interface ICommandConfigSource
     {
-        IDependencyConfigSource DependencyConfigSource { get; }
+        Assembly[] Assemblys { get; set; }
 
-        IEventConfigSource EventConfigSource { get; }
-
-        ICommandConfigSource CommandConfigSource { get; }
+        void SetAssembly(params Assembly[] assemblys);
     }
 }
