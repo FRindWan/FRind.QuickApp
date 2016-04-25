@@ -1,35 +1,24 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/24 星期四 18:46:40
+ * 创建时间： 2016/4/21 星期四 10:41:33
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Domain.Entites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp.Domain.Entites
+namespace QuickApp.NoteExample.Domain.Model
 {
     /// <summary>
-    /// <see cref="Entity"/>
+    /// <see cref="NoteInfo"/>
     /// </summary>
-    public abstract class Entity<TKey>:IEntity<TKey>
+    public class NoteInfo:Entity
     {
-        public Entity()
-        {
-            
-        }
-
-        public TKey ID { get; set; }
-
-
-    }
-
-    public abstract class Entity : Entity<Guid>
-    { 
-    
+        public String Title { get; set; }
     }
 }

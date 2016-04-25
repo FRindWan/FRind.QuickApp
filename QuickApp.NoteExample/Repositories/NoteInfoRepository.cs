@@ -1,6 +1,6 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/24 星期四 18:46:40
+ * 创建时间： 2016/4/21 星期四 11:02:20
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
@@ -11,25 +11,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp.Domain.Entites
+namespace QuickApp.NoteExample.Repositories
 {
     /// <summary>
-    /// <see cref="Entity"/>
+    /// <see cref="NoteInfoRepository"/>
     /// </summary>
-    public abstract class Entity<TKey>:IEntity<TKey>
+    public class NoteInfoRepository
     {
-        public Entity()
-        {
-            
-        }
-
-        public TKey ID { get; set; }
-
-
-    }
-
-    public abstract class Entity : Entity<Guid>
-    { 
-    
     }
 }

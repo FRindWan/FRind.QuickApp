@@ -13,17 +13,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp.Domain.Repository
+namespace QuickApp.Application
 {
     /// <summary>
-    /// <see cref="RepositoryInterceptor"/>
+    /// <see cref="ApplicationInterceptor"/>
     /// </summary>
-    public class RepositoryInterceptor : IInterceptor
+    public class ApplicationInterceptor : IInterceptor
     {
         private ICurrentRepositoryContextProvider repositoryContextProvider;
         private IRepositoryContextManager repositoryContextManager;
 
-        public RepositoryInterceptor(ICurrentRepositoryContextProvider repositoryContextProvider, IRepositoryContextManager repositoryContextManager)
+        public ApplicationInterceptor(ICurrentRepositoryContextProvider repositoryContextProvider, IRepositoryContextManager repositoryContextManager)
         {
             this.repositoryContextManager = repositoryContextManager;
             this.repositoryContextProvider = repositoryContextProvider;

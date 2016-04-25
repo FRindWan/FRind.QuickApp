@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QuickApp.Exceptions;
 using QuickApp.Logger;
+using QuickApp.Domain.Entites;
 
 namespace QuickApp.Domain.Repository
 {
@@ -21,9 +22,9 @@ namespace QuickApp.Domain.Repository
     /// </summary>
     public abstract class RepositoryContext:IRepositoryContext
     {
-        private readonly ConcurrentDictionary<Object, byte> registerAddedCollection = new ConcurrentDictionary<object, byte>();
-        private readonly ConcurrentDictionary<Object, byte> registerUpdatedCollection = new ConcurrentDictionary<object, byte>();
-        private readonly ConcurrentDictionary<Object, byte> registerDeleteCollection = new ConcurrentDictionary<object, byte>();
+        private readonly ConcurrentDictionary<IAggregateRoot, IUnitOfWorkRepository> registerAddedCollection = new ConcurrentDictionary<IAggregateRoot, IUnitOfWorkRepository>();
+        private readonly ConcurrentDictionary<IAggregateRoot, IUnitOfWorkRepository> registerUpdatedCollection = new ConcurrentDictionary<IAggregateRoot, IUnitOfWorkRepository>();
+        private readonly ConcurrentDictionary<IAggregateRoot, IUnitOfWorkRepository> registerDeleteCollection = new ConcurrentDictionary<IAggregateRoot, IUnitOfWorkRepository>();
         private volatile bool isCommited;
         private readonly Guid id;
         protected bool isDisposed;
@@ -35,30 +36,34 @@ namespace QuickApp.Domain.Repository
             this.isDisposed = false;
         }
 
-        protected ConcurrentDictionary<Object, byte> RegisterAddedCollection { get { return this.registerAddedCollection; } }
+        protected ConcurrentDictionary<IAggregateRoot, IUnitOfWorkRepository> RegisterAddedCollection { get { return this.registerAddedCollection; } }
 
-        protected ConcurrentDictionary<Object, byte> RegisterUpdatedCollection { get { return this.registerUpdatedCollection; } }
+        protected ConcurrentDictionary<IAggregateRoot, IUnitOfWorkRepository> RegisterUpdatedCollection { get { return this.registerUpdatedCollection; } }
 
-        protected ConcurrentDictionary<Object, byte> RegisterDeleteCollection { get { return this.registerDeleteCollection; } }
-
-        public void RegisterAdded<TAggregateRoot>(TAggregateRoot aggregateRoot) where TAggregateRoot : Entites.IAggregateRoot
-        {
-            this.RegisterAddedCollection.AddOrUpdate(aggregateRoot, byte.MinValue, (o, b) => byte.MinValue);
-        }
-
-        public void RegisterUpdated<TAggregateRoot>(TAggregateRoot aggregateRoot) where TAggregateRoot : Entites.IAggregateRoot
-        {
-            this.RegisterUpdatedCollection.AddOrUpdate(aggregateRoot, byte.MinValue, (o, b) => byte.MinValue);
-        }
-
-        public void RegisterDeleted<TAggregateRoot>(TAggregateRoot aggregateRoot) where TAggregateRoot : Entites.IAggregateRoot
-        {
-            this.RegisterDeleteCollection.AddOrUpdate(aggregateRoot, byte.MinValue, (o, b) => byte.MinValue);
-        }
+        protected ConcurrentDictionary<IAggregateRoot, IUnitOfWorkRepository> RegisterDeleteCollection { get { return this.registerDeleteCollection; } }
+        
 
         public event UnitOfWorks.UnitOfWorkCommitComplateEventHandler OnCommitComplate;
 
         public event UnitOfWorks.UnitOfWorkCommitErrorEventHandler OnCommitError;
+
+        #region RepositoryContext Implements Method
+        public void RegisterAdded(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot)
+        {
+            this.registerAddedCollection.AddOrUpdate(aggregateRoot, repository, (k, v) => v);
+        }
+
+        public void RegisterUpdated(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot) 
+        {
+            this.registerUpdatedCollection.AddOrUpdate(aggregateRoot, repository, (k, v) => v);
+        }
+
+        public void RegisterDeleted(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot)
+        {
+            this.registerDeleteCollection.AddOrUpdate(aggregateRoot, repository, (k, v) => v);
+        }
+
+        #endregion
 
         public Guid Id
         {
@@ -115,5 +120,7 @@ namespace QuickApp.Domain.Repository
             this.RegisterUpdatedCollection.Clear();
             this.RegisterDeleteCollection.Clear();
         }
+
+        
     }
 }

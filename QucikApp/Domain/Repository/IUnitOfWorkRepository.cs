@@ -1,35 +1,28 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/24 星期四 18:46:40
+ * 创建时间： 2016/4/25 星期一 18:59:33
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Domain.Entites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp.Domain.Entites
+namespace QuickApp.Domain.Repository
 {
     /// <summary>
-    /// <see cref="Entity"/>
+    /// <see cref="IUnitOfWorkRepository"/>
     /// </summary>
-    public abstract class Entity<TKey>:IEntity<TKey>
+    public interface IUnitOfWorkRepository
     {
-        public Entity()
-        {
-            
-        }
+        void PersistentAdded(IAggregateRoot aggregateRoot);
 
-        public TKey ID { get; set; }
+        void PersistentUpdate(IAggregateRoot aggregateRoot);
 
-
-    }
-
-    public abstract class Entity : Entity<Guid>
-    { 
-    
+        void PersistentDelete(IAggregateRoot aggregateRoot);
     }
 }

@@ -8,7 +8,7 @@
 using QuickApp.Commands;
 using QuickApp.Dependency;
 using QuickApp.Dependency.Autofac;
-using QuickApp.Dependency.Interceptors;
+using QuickApp.Dependency.Autofac;
 using QuickApp.Domain.Repository;
 using QuickApp.Domain.UnitOfWorks;
 using QuickApp.Eventing;

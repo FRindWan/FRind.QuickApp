@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac.Extras.DynamicProxy2;
 using Castle.DynamicProxy;
-using QuickApp.Dependency.Interceptors;
+using QuickApp.Dependency.Autofac;
 using QuickApp.Common.Reflection;
 
 namespace QuickApp.Dependency.Autofac
@@ -38,24 +38,26 @@ namespace QuickApp.Dependency.Autofac
 
         public void Register(Type type, DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
         {
-            this.builder.RegisterType(type).AsSelf().SetLifeTime(dependencyLifeTime);
+            var registerBuilder = this.builder.RegisterType(type).AsSelf().SetLifeTime(dependencyLifeTime);
+            this.autofacRegisterInterceptorService.Register(registerBuilder, type);
         }
 
         public void Register<Type>(DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
         {
-            this.builder.RegisterType<Type>().AsSelf().SetLifeTime(dependencyLifeTime);
+            var registerBuilder=this.builder.RegisterType<Type>().AsSelf().SetLifeTime(dependencyLifeTime);
+            this.autofacRegisterInterceptorService.Register(registerBuilder, typeof(Type));
         }
 
         public void Register(Type interfaceType, Type implType, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
         {
             var registerBuilder=this.builder.RegisterType(implType).As(interfaceType).SetLifeTime(lifeTime);
-            this.autofacRegisterInterceptorService.Register(registerBuilder, interfaceType, implType);
+            this.autofacRegisterInterceptorService.Register(registerBuilder, implType, interfaceType);
         }
 
         public void Register<TInterface, TImpl>(DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
         {
             var registerBuilder = this.builder.RegisterType<TImpl>().As<TInterface>().AsImplementedInterfaces().SetLifeTime(dependencyLifeTime);
-            this.autofacRegisterInterceptorService.Register(registerBuilder, typeof(TInterface), typeof(TImpl));
+            this.autofacRegisterInterceptorService.Register(registerBuilder, typeof(TImpl), typeof(TInterface));
         }
 
         public void Register(System.Reflection.Assembly assembly, Func<Type, bool> predicate=null, DependencyLifeTime lifeTime = DependencyLifeTime.Transient)
@@ -69,6 +71,11 @@ namespace QuickApp.Dependency.Autofac
             foreach (KeyValuePair<Type, Type> item in typeDictionary)
             {
                 this.Register(item.Key, item.Value, lifeTime);
+            }
+
+            if (predicate != null)
+            { 
+                IList<Type> types= ReflectionExtension.GetTypes
             }
 
         }

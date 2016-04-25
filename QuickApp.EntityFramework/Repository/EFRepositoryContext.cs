@@ -5,6 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Domain.Entites;
 using QuickApp.Domain.Repository;
 using QuickApp.Exceptions;
 using System;
@@ -47,15 +48,15 @@ namespace QuickApp.EntityFramework.Repository
         {
             try
             {
-                foreach (Object aggregateRoot in this.RegisterAddedCollection.Keys)
+                foreach (IAggregateRoot aggregateRoot in this.RegisterAddedCollection.Keys)
                 {
                     this.context.Set(aggregateRoot.GetType()).Add(aggregateRoot);
                 }
-                foreach (Object aggregateRoot in this.RegisterUpdatedCollection.Keys)
+                foreach (IAggregateRoot aggregateRoot in this.RegisterUpdatedCollection.Keys)
                 {
                     this.context.Entry(aggregateRoot).State = EntityState.Modified;
                 }
-                foreach (Object aggregateRoot in this.RegisterDeleteCollection.Keys)
+                foreach (IAggregateRoot aggregateRoot in this.RegisterDeleteCollection.Keys)
                 {
                     this.context.Entry(aggregateRoot).State = EntityState.Deleted;
                 }

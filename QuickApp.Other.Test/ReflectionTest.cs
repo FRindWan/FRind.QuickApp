@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.IO;
 
 namespace QuickApp.Other.Test
 {
@@ -41,6 +42,12 @@ namespace QuickApp.Other.Test
             methodSW.Stop();
             Console.WriteLine(String.Format("Method used time : {0}", methodSW.Elapsed.TotalMilliseconds));
 
+        }
+
+        [TestMethod]
+        public void TestOther()
+        {
+            Console.WriteLine(this.GetHashCode());
         }
     }
 

@@ -8,7 +8,7 @@
 using QuickApp.Config;
 using QuickApp.Config.impl;
 using QuickApp.Dependency;
-using QuickApp.Dependency.Interceptors;
+using QuickApp.Dependency.Autofac;
 using QuickApp.Domain.Repository;
 using QuickApp.Domain.UnitOfWorks;
 using QuickApp.Eventing;
@@ -28,7 +28,7 @@ namespace QuickApp
     {
         public override void InitializeInterceptor(RegisterInterceptorService registerInterceptorService)
         {
-            registerInterceptorService.AddAutofacRegisterInterceptor(new RepositoryInterceptorRegister());
+            registerInterceptorService.AddAutofacRegisterInterceptor(new ApplicationInterceptorRegister());
         }
 
         public override void InitializeDependency(IDependency dependency)
@@ -44,7 +44,7 @@ namespace QuickApp
 
             if (ConfigSource.Instance.DependencyConfigSource.EnableInterceptor)
             {
-                dependency.Register<RepositoryInterceptor>();
+                dependency.Register<ApplicationInterceptor>();
             }
         }
     }

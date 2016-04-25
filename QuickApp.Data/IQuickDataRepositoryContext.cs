@@ -1,35 +1,25 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/24 星期四 18:46:40
+ * 创建时间： 2016/4/25 星期一 18:02:53
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Domain.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp.Domain.Entites
+namespace QuickApp.Data
 {
     /// <summary>
-    /// <see cref="Entity"/>
+    /// <see cref="IQuickDataRepositoryContext"/>
     /// </summary>
-    public abstract class Entity<TKey>:IEntity<TKey>
+    public interface IQuickDataRepositoryContext:IRepositoryContext
     {
-        public Entity()
-        {
-            
-        }
-
-        public TKey ID { get; set; }
-
-
-    }
-
-    public abstract class Entity : Entity<Guid>
-    { 
-    
+        QuickDataContext Context { get; }
     }
 }

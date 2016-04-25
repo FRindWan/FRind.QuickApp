@@ -19,7 +19,7 @@ namespace QuickApp.Domain.Repository
     /// <summary>
     /// <see cref="Repository"/>
     /// </summary>
-    public abstract class Repository<TAggregateRoot, TKey> : IRepository<TAggregateRoot, TKey>where TAggregateRoot:IAggregateRoot
+    public abstract class Repository<TAggregateRoot, TKey> : IRepository<TAggregateRoot, TKey>,IUnitOfWorkRepository where TAggregateRoot:IAggregateRoot
     {
         private ICurrentRepositoryContextProvider currentRepositoryContextProvider;
 
@@ -28,6 +28,7 @@ namespace QuickApp.Domain.Repository
             this.currentRepositoryContextProvider = currentRepositoryContextProvider;
         }
 
+        #region IRepository
         public TAggregateRoot GetById(TKey id)
         {
             return this.DoGetById(id);
@@ -45,23 +46,57 @@ namespace QuickApp.Domain.Repository
 
         public bool Add(TAggregateRoot aggregateRoot)
         {
-            this.currentRepositoryContextProvider.Current.RegisterAdded<TAggregateRoot>(aggregateRoot);
+            this.currentRepositoryContextProvider.Current.RegisterAdded<TAggregateRoot>(this, aggregateRoot);
 
             return true;
         }
 
         public bool Update(TAggregateRoot aggregateRoot)
         {
-            this.currentRepositoryContextProvider.Current.RegisterUpdated<TAggregateRoot>(aggregateRoot);
+            this.currentRepositoryContextProvider.Current.RegisterUpdated<TAggregateRoot>(this, aggregateRoot);
 
             return true;
         }
 
         public bool Delete(TAggregateRoot aggregateRoot)
         {
-            this.currentRepositoryContextProvider.Current.RegisterDeleted<TAggregateRoot>(aggregateRoot);
+            this.currentRepositoryContextProvider.Current.RegisterDeleted<TAggregateRoot>(this, aggregateRoot);
 
             return true;
+        }
+        #endregion
+
+        #region IUnitOfWorkRepository
+        public void PersistentAdded(IAggregateRoot aggregateRoot) 
+        {
+            this.PersistAdded(aggregateRoot);
+        }
+
+        public void PersistentUpdate(IAggregateRoot aggregateRoot)
+        {
+            this.PersistUpdate(aggregateRoot);
+        }
+
+        public void PersistentDelete(IAggregateRoot aggregateRoot) 
+        {
+            this.PersistDelete(aggregateRoot);
+        }
+
+        #endregion
+
+        protected virtual void PersistAdded(IAggregateRoot aggregateRoot)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual void PersistUpdate(IAggregateRoot aggregateRoot)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual void PersistDelete(IAggregateRoot aggregateRoot)
+        {
+            throw new NotImplementedException();
         }
 
         protected abstract TAggregateRoot DoGetById(TKey id);
@@ -69,6 +104,7 @@ namespace QuickApp.Domain.Repository
         protected abstract TAggregateRoot DoGet(Specifications.ISpecification<TAggregateRoot> predicate);
 
         protected abstract IEnumerable<TAggregateRoot> DoGet(Specifications.ISpecification<TAggregateRoot> predicate, Func<TAggregateRoot, dynamic> keySelectors, SortOrder sort = SortOrder.Asc);
+
 
     }
 

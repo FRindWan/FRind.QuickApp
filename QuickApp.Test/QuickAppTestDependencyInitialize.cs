@@ -27,7 +27,7 @@ namespace QuickApp.Test
     /// </summary>
     public class QuickAppTestDependencyInitialize:DependencyInitialize
     {
-        public override void InitializeInterceptor(QuickApp.Dependency.Interceptors.RegisterInterceptorService registerInterceptorService)
+        public override void InitializeInterceptor(QuickApp.Dependency.Autofac.RegisterInterceptorService registerInterceptorService)
         {
             
         }

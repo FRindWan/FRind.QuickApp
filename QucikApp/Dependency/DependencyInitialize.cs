@@ -5,7 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Dependency.Interceptors;
+using QuickApp.Dependency.Autofac;
 using QuickApp.Domain.Repository;
 using QuickApp.Domain.UnitOfWorks;
 using System;

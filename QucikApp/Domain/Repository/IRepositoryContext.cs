@@ -20,10 +20,12 @@ namespace QuickApp.Domain.Repository
     /// </summary>
     public interface IRepositoryContext:IUnitOfWork
     {
-        void RegisterAdded<TAggregateRoot>(TAggregateRoot aggregateRoot)where TAggregateRoot :IAggregateRoot;
 
-        void RegisterUpdated<TAggregateRoot>(TAggregateRoot aggregateRoot)where TAggregateRoot :IAggregateRoot;
+        void RegisterAdded(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot);
 
-        void RegisterDeleted<TAggregateRoot>(TAggregateRoot aggregateRoot)where TAggregateRoot:IAggregateRoot;
+        void RegisterUpdated(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot);
+
+        void RegisterDeleted(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot);
+
     }
 }

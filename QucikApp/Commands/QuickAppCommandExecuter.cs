@@ -19,7 +19,6 @@ namespace QuickApp.Commands
     /// </summary>
     public class QuickAppCommandExecuter:CommandExecuter
     {
-        public static readonly QuickAppCommandExecuter Instance=new QuickAppCommandExecuter();
 
     }
 }

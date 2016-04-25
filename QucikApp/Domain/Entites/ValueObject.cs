@@ -1,6 +1,6 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/3/24 星期四 18:46:40
+ * 创建时间： 2016/4/22 星期五 15:32:45
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
@@ -14,22 +14,19 @@ using System.Threading.Tasks;
 namespace QuickApp.Domain.Entites
 {
     /// <summary>
-    /// <see cref="Entity"/>
+    /// <see cref="ValueObject"/>
     /// </summary>
-    public abstract class Entity<TKey>:IEntity<TKey>
+    public abstract class ValueObject<T>where T:ValueObject<T>
     {
-        public Entity()
+        public static bool operator ==(ValueObject<T> left,ValueObject<T> right)
         {
-            
+            return Equals(left, right);
         }
 
-        public TKey ID { get; set; }
+        public static bool operator !=(ValueObject<T> left, ValueObject<T> right)
+        {
+            return Equals(left, right);
+        }
 
-
-    }
-
-    public abstract class Entity : Entity<Guid>
-    { 
-    
     }
 }

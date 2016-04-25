@@ -12,8 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac.Extras.DynamicProxy2;
 
-namespace QuickApp.Dependency.Interceptors
+namespace QuickApp.Dependency.Autofac
 {
     /// <summary>
     /// <see cref="RegisterInterceptorService"/>
@@ -46,7 +47,7 @@ namespace QuickApp.Dependency.Interceptors
             this.autofacRegisterInterceptors.Add(autofacRegisterInterceptor);
         }
 
-        public void Register<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle>(IRegistrationBuilder<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle> registerBuilder,Type interfaceType,Type implType)
+        public void Register<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle>(IRegistrationBuilder<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle> registerBuilder, Type implType, Type interfaceType=null)
         {
             if (this.configSource.DependencyConfigSource.EnableInterceptor)
             {

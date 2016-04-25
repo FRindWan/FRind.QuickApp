@@ -12,13 +12,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp.Dependency.Interceptors
+namespace QuickApp.Dependency.Autofac
 {
     /// <summary>
     /// <see cref="RegisterInterceptor"/>
     /// </summary>
     public abstract class RegisterInterceptor
     {
-        public abstract void Register<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle>(IRegistrationBuilder<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle> registerBuilder, Type interfaceType, Type implType);
+        public abstract void Register<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle>(IRegistrationBuilder<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle> registerBuilder, Type interfaceType, Type implType) where TConcreteReflectionActivatorData : ConcreteReflectionActivatorData;
     }
 }
