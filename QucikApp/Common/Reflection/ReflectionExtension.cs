@@ -142,6 +142,22 @@ namespace QuickApp.Common.Reflection
             return findTypes;
         }
 
+        public static TAttribute GetSingleAttributeOfMemberOrDeclaringTypeOrNull<TAttribute>(MemberInfo memberInfo)
+            where TAttribute : Attribute
+        {
+            if (memberInfo.IsDefined(typeof(TAttribute), true))
+            {
+                return memberInfo.GetCustomAttributes(typeof(TAttribute), true).Cast<TAttribute>().First();
+            }
+
+            if (memberInfo.DeclaringType != null && memberInfo.DeclaringType.IsDefined(typeof(TAttribute), true))
+            {
+                return memberInfo.DeclaringType.GetCustomAttributes(typeof(TAttribute), true).Cast<TAttribute>().First();
+            }
+
+            return null;
+        }
+
         private static IList<Type> GetTypes(Assembly assembly, Assembly[] relationAssemblys)
         {
             IList<Type> types = null;

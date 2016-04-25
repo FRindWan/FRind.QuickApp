@@ -38,13 +38,13 @@ namespace QuickApp.Dependency.Autofac
 
         public void Register(Type type, DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
         {
-            var registerBuilder = this.builder.RegisterType(type).AsSelf().SetLifeTime(dependencyLifeTime);
+            var registerBuilder = this.builder.RegisterType(type).AsSelf().SetLifeTime(dependencyLifeTime).EnableClassInterceptors();
             this.autofacRegisterInterceptorService.Register(registerBuilder, type);
         }
 
         public void Register<Type>(DependencyLifeTime dependencyLifeTime = DependencyLifeTime.Transient)
         {
-            var registerBuilder=this.builder.RegisterType<Type>().AsSelf().SetLifeTime(dependencyLifeTime);
+            var registerBuilder=this.builder.RegisterType<Type>().AsSelf().SetLifeTime(dependencyLifeTime).EnableClassInterceptors();
             this.autofacRegisterInterceptorService.Register(registerBuilder, typeof(Type));
         }
 
@@ -71,11 +71,6 @@ namespace QuickApp.Dependency.Autofac
             foreach (KeyValuePair<Type, Type> item in typeDictionary)
             {
                 this.Register(item.Key, item.Value, lifeTime);
-            }
-
-            if (predicate != null)
-            { 
-                IList<Type> types= ReflectionExtension.GetTypes
             }
 
         }

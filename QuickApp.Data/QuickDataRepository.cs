@@ -20,7 +20,7 @@ namespace QuickApp.Data
     /// <summary>
     /// <see cref="QuickDataRepository"/>
     /// </summary>
-    public class QuickDataRepository<TAggregateRoot, TKey> : Repository<TAggregateRoot,TKey>where TAggregateRoot:IAggregateRoot
+    public class QuickDataRepository<TAggregateRoot, TKey> : Repository<TAggregateRoot,TKey>where TAggregateRoot:class,IAggregateRoot
     {
         private ICurrentRepositoryContextProvider currentRepositoryContextProvider;
         protected readonly string dbTableName;
@@ -41,37 +41,24 @@ namespace QuickApp.Data
 
         protected override TAggregateRoot DoGetById(TKey id)
         {
-           
+            return this.RepositoryContext.Context.GetEntry(typeof(TAggregateRoot)).Find<TAggregateRoot>(id);
         }
 
         protected override TAggregateRoot DoGet(Domain.Specifications.ISpecification<TAggregateRoot> predicate)
         {
-            
+            IEnumerable<TAggregateRoot> aggregateRoots = this.DoGet(predicate, null);
+            if (aggregateRoots == null )
+            {
+                return null;
+            }
+
+            return aggregateRoots.FirstOrDefault();
         }
 
         protected override IEnumerable<TAggregateRoot> DoGet(Domain.Specifications.ISpecification<TAggregateRoot> predicate, Func<TAggregateRoot, dynamic> keySelectors, SortOrder sort = SortOrder.Asc)
         {
-            throw new NotImplementedException();
+            return this.RepositoryContext.Context.GetEntry(typeof(TAggregateRoot)).FindAll<TAggregateRoot>(predicate.GetExpression());
         }
 
-        protected virtual IEnumerable<TAggregateRoot> ConvertEntityForDataReader(IDataReader dataReader)
-        { 
-            
-        }
-
-        protected override void PersistAdded(IAggregateRoot aggregateRoot)
-        {
-            this.RepositoryContext.Context.ex
-        }
-
-        protected override void PersistUpdate(IAggregateRoot aggregateRoot)
-        {
-            base.PersistUpdate(aggregateRoot);
-        }
-
-        protected override void PersistDelete(IAggregateRoot aggregateRoot)
-        {
-            base.PersistDelete(aggregateRoot);
-        }
     }
 }

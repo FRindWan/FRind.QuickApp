@@ -5,6 +5,8 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Application;
+using QuickApp.Commands;
 using QuickApp.Config;
 using QuickApp.Config.impl;
 using QuickApp.Dependency;

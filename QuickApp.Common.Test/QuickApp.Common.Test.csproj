@@ -65,16 +65,24 @@
     <Compile Include="Command\PersonInfoCommandHandler.cs" />
     <Compile Include="Domain\Events\PersonInfoNameChangedEvent.cs" />
     <Compile Include="Domain\Model\PersonInfo.cs" />
-    <Compile Include="Domain\Reposities\EFDbContext.cs" />
-    <Compile Include="Domain\Reposities\EFRepositoryBase.cs" />
+    <Compile Include="Infrastructure\EFDbContext.cs" />
+    <Compile Include="Infrastructure\EFRepositoryBase.cs" />
     <Compile Include="Domain\Reposities\impl\PersonInfoRepository.cs" />
     <Compile Include="Domain\Reposities\IPersonInfoRepository.cs" />
+    <Compile Include="Infrastructure\SqlRepositoryBase.cs" />
+    <Compile Include="Infrastructure\SqlServerDbContext.cs" />
+    <Compile Include="Infrastructure\SqlServerDbContextTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlReposities\SqlPersonInfoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QucikApp\QuickApp.csproj">
       <Project>{a618e4af-e705-4d30-9622-394b24881167}</Project>
       <Name>QuickApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickApp.Data\QuickApp.Data.csproj">
+      <Project>{e1fbcf15-983f-425a-903b-14c51de7ebb6}</Project>
+      <Name>QuickApp.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\QuickApp.EntityFramework\QuickApp.EntityFramework.csproj">
       <Project>{2cc5e64e-5f7e-4810-a756-68a5e0772508}</Project>

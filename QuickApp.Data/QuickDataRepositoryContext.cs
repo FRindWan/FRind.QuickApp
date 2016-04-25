@@ -5,6 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Data.Infrastructure;
 using QuickApp.Domain.Entites;
 using QuickApp.Domain.Repository;
 using QuickApp.Exceptions;
@@ -23,14 +24,14 @@ namespace QuickApp.Data
     /// </summary>
     public class QuickDataRepositoryContext : RepositoryContext,IQuickDataRepositoryContext
     {
-        private readonly QuickDataContext context;
+        private SqlDbContext context;
 
-        public QuickDataRepositoryContext(QuickDataContext quickDataContext)
+        public QuickDataRepositoryContext(SqlDbContext quickDataContext)
         {
             this.context = quickDataContext;
         }
 
-        public QuickDataContext Context
+        public SqlDbContext Context
         {
             get { return this.context; }
         }
@@ -56,15 +57,15 @@ namespace QuickApp.Data
 
                 foreach (KeyValuePair<IAggregateRoot,IUnitOfWorkRepository> addedItem in this.RegisterAddedCollection)
                 {
-                    addedItem.Value.PersistentAdded(addedItem.Key);
+                    this.context.Add<IAggregateRoot>(addedItem.Key);
                 }
                 foreach (KeyValuePair<IAggregateRoot, IUnitOfWorkRepository> updateItem in this.RegisterAddedCollection)
                 {
-                    updateItem.Value.PersistentAdded(updateItem.Key);
+                    this.context.Update<IAggregateRoot>(updateItem.Key);
                 }
                 foreach (KeyValuePair<IAggregateRoot, IUnitOfWorkRepository> deleteItem in this.RegisterAddedCollection)
                 {
-                    deleteItem.Value.PersistentAdded(deleteItem.Key);
+                    this.context.Delete<IAggregateRoot>(deleteItem.Key);
                 }
                 transactionScope.Complete();
 

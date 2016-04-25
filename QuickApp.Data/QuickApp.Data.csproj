@@ -30,11 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AiExpressionTurn">
+      <HintPath>..\lib\AiExpressionTurn.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -44,9 +49,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\DataConvertionExtension.cs" />
+    <Compile Include="Extensions\DataFilterExtension.cs" />
+    <Compile Include="Extensions\SqlExtension.cs" />
+    <Compile Include="Infrastructure\DataFilter\DataFilterManager.cs" />
+    <Compile Include="Infrastructure\DataFilter\FilterInfo.cs" />
+    <Compile Include="Infrastructure\DbEntity.cs" />
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\DbFactoryType.cs" />
+    <Compile Include="Infrastructure\Entry.cs" />
+    <Compile Include="Infrastructure\EntryFactory.cs" />
+    <Compile Include="Infrastructure\IDbEntity.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IEntry.cs" />
+    <Compile Include="Infrastructure\MSSqlerver\MSEntry.cs" />
+    <Compile Include="Infrastructure\MSSqlerver\MSSqlDbFactory.cs" />
+    <Compile Include="Infrastructure\MSSqlerver\SqlHelper.cs" />
+    <Compile Include="Infrastructure\OperationState.cs" />
+    <Compile Include="Infrastructure\SqlDbContext.cs" />
     <Compile Include="IQuickDataRepositoryContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuickDataContext.cs" />
     <Compile Include="QuickDataRepository.cs" />
     <Compile Include="QuickDataRepositoryContext.cs" />
   </ItemGroup>
@@ -59,6 +81,7 @@
       <Name>QuickApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

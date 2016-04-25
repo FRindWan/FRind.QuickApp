@@ -93,7 +93,7 @@ namespace QuickApp.Domain.Repository
             }
             catch (UnitOfWorkException unitOfWorkException)
             {
-                LoggerFactory.GetLogger<RepositoryContext>().Error("提交出现错误！", unitOfWorkException);
+                Logger.Logger.GetLogger(typeof(RepositoryContext)).Error("提交出现错误！", unitOfWorkException);
                 if (this.OnCommitError != null)
                 {
                     this.OnCommitError.Invoke(new UnitOfWorks.UnitOfWorkCommitErrorEventArgs(unitOfWorkException));

@@ -13,8 +13,8 @@ using System.Threading.Tasks;
 
 namespace QuickApp.Query
 {
-    public interface IQuery<T>
-    { 
-        
+    public interface IQuery
+    {
+        String ToSql();
     }
 }

@@ -5,6 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Data.Infrastructure;
 using QuickApp.Domain.Repository;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,6 @@ namespace QuickApp.Data
     /// </summary>
     public interface IQuickDataRepositoryContext:IRepositoryContext
     {
-        QuickDataContext Context { get; }
+        SqlDbContext Context { get; }
     }
 }

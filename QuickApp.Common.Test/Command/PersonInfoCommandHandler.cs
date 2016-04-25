@@ -6,6 +6,7 @@
  *  -------------------------------------------------------------------------*/
 
 using QuickApp.Commands;
+using QuickApp.Common.Test.Domain.Reposities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,17 @@ namespace QuickApp.Common.Test.Command
     /// </summary>
     public class PersonInfoCommandHandler
     {
-        public void AddPersonInfo(AddPersonCommand addPersonCommand)
+         private readonly IPersonInfoRepository personInfoRepository;
+
+         public PersonInfoCommandHandler(IPersonInfoRepository personInfoRepository)
         {
-            Console.WriteLine(addPersonCommand.PersonInfo.UserName);
+            this.personInfoRepository = personInfoRepository;
+        }
+
+        [CommandExecute(typeof(AddPersonCommand))]
+        public void AddPersonInfoCommand(AddPersonCommand command)
+        {
+            this.personInfoRepository.Add(((AddPersonCommand)command).PersonInfo);
         }
     }
 }

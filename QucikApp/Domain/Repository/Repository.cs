@@ -46,21 +46,21 @@ namespace QuickApp.Domain.Repository
 
         public bool Add(TAggregateRoot aggregateRoot)
         {
-            this.currentRepositoryContextProvider.Current.RegisterAdded<TAggregateRoot>(this, aggregateRoot);
+            this.currentRepositoryContextProvider.Current.RegisterAdded(this, aggregateRoot);
 
             return true;
         }
 
         public bool Update(TAggregateRoot aggregateRoot)
         {
-            this.currentRepositoryContextProvider.Current.RegisterUpdated<TAggregateRoot>(this, aggregateRoot);
+            this.currentRepositoryContextProvider.Current.RegisterUpdated(this, aggregateRoot);
 
             return true;
         }
 
         public bool Delete(TAggregateRoot aggregateRoot)
         {
-            this.currentRepositoryContextProvider.Current.RegisterDeleted<TAggregateRoot>(this, aggregateRoot);
+            this.currentRepositoryContextProvider.Current.RegisterDeleted(this, aggregateRoot);
 
             return true;
         }

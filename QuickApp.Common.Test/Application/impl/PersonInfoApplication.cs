@@ -42,14 +42,7 @@ namespace QuickApp.Common.Test.Application.impl
             
         }
 
-        [CommandExecute(typeof(AddPersonCommand))]
-        public int AddPersonInfoCommand(AddPersonCommand command)
-        {
-            System.Threading.Thread.Sleep(2000);
-            Console.WriteLine(1);
-            return 1;
-            //this.personInfoRepository.Add(((AddPersonCommand)command).PersonInfo);
-        }
+       
 
         public void Handle(PersonInfoNameChangedEvent @event)
         {

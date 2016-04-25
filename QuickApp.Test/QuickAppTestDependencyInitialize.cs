@@ -19,6 +19,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QuickApp.Common.Test.Command;
+using QuickApp.Common.Test.SqlReposities;
+using QuickApp.Data.Infrastructure;
+using QuickApp.Common.Test.Domain.SqlReposities;
 
 namespace QuickApp.Test
 {
@@ -27,19 +30,22 @@ namespace QuickApp.Test
     /// </summary>
     public class QuickAppTestDependencyInitialize:DependencyInitialize
     {
-        public override void InitializeInterceptor(QuickApp.Dependency.Autofac.RegisterInterceptorService registerInterceptorService)
-        {
-            
-        }
 
         public override void InitializeDependency(IDependency dependency)
         {
-            dependency.Register<DbContext, EFDbContext>();
-            dependency.Register<IRepositoryContext, EFRepositoryContext>();
-            dependency.Register<IPersonInfoRepository, PersonInfoRepository>();
+            //dependency.Register<DbContext, EFDbContext>();
+            //dependency.Register<IRepositoryContext, EFRepositoryContext>();
+            //dependency.Register<IPersonInfoRepository, PersonInfoRepository>();
+            dependency.Register<SqlDbContext, SqlServerDbContext>();
+            dependency.Register<IRepositoryContext, QuickApp.Data.QuickDataRepositoryContext>();
+            dependency.Register<IPersonInfoRepository, SqlPersonInfoRepository>();
             dependency.Register<IPersonInfoApplication, PersonInfoApplication>();
 
-            dependency.Register<PersonInfoApplication>();
+        }
+
+        public override void InitializeInterceptor(QuickApp.Dependency.Autofac.RegisterInterceptorService registerInterceptorService)
+        {
+            
         }
     }
 }

@@ -9,6 +9,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using QuickApp.Commands;
 using QuickApp.Common.Test.Command;
 using QuickApp.Common.Test.Domain.Model;
+using QuickApp.Data.Infrastructure;
+using QuickApp.Domain.Repository;
+using QuickApp.Domain.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +36,9 @@ namespace QuickApp.Test.Command
         [TestMethod]
         public void TestAddPersonInfoCommand()
         {
+            IRepositoryContextManager dbContext = this.app.DependencyContainer.Resolver<IRepositoryContextManager>();
+            dbContext.Create();
+
             commandExecuter.ExecuteAsync(new AddPersonCommand()
             {
                 PersonInfo = new PersonInfo()

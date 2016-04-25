@@ -1,27 +1,28 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/4/21 星期四 10:30:20
+ * 创建时间： 2016/3/8 星期二 12:24:53
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using Castle.DynamicProxy;
+using log4net.Config;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp.Commands
+namespace QuickApp.Logger
 {
     /// <summary>
-    /// <see cref="CommandInterceptor"/>
+    /// <see cref="LoggerInitialize"/>
     /// </summary>
-    public class CommandInterceptor:IInterceptor
+    public class LoggerInitialize
     {
-        public void Intercept(IInvocation invocation)
+        public static void Load()
         {
-            throw new NotImplementedException();
+            XmlConfigurator.Configure(new FileInfo(Path.GetDirectoryName(typeof(LoggerInitialize).Assembly.Location )+ "\\log4j.xml"));
         }
     }
 }

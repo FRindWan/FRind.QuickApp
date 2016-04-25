@@ -17,6 +17,7 @@ using System.Reflection;
 using QuickApp.Common.Config;
 using QuickApp.Common.Reflection;
 using QuickApp.Config;
+using QuickApp.Domain.UnitOfWorks;
 
 namespace QuickApp.Commands
 {
@@ -45,14 +46,7 @@ namespace QuickApp.Commands
             MethodInfo handlerMethod = this.GetHandlerMethod(command.GetType());
             Object handler = this.GetHandlerObj(handlerMethod.ReflectedType);
 
-            try
-            {
-                return handlerMethod.Invoke(handler, new Object[] { command });
-            }
-            catch (ArgumentException ex)
-            {
-                throw new CommandException(String.Format("命令处理器{0}的类型参数不对，请更改为{1}类型", handlerMethod.ToString(), command.GetType()));
-            }
+            return this.ExecuterCommand(handlerMethod, handler, command);
         }
 
         public virtual async Task<Object> ExecuteAsync(ICommand command)
@@ -110,6 +104,33 @@ namespace QuickApp.Commands
             }
 
             return dictionary;
+        }
+
+        protected Object ExecuterCommand(MethodInfo handlerMethod, Object handler, ICommand command)
+        {
+            ICurrentRepositoryContextProvider repositoryContextProvider = this.DependencyResolverContainer.Resolver<ICurrentRepositoryContextProvider>();
+            IRepositoryContextManager repositoryContextManager = this.DependencyResolverContainer.Resolver<IRepositoryContextManager>();
+            try
+            {
+
+                if (repositoryContextProvider.Current == null)
+                {
+                    repositoryContextManager.Create();
+                }
+
+                Object obj=handlerMethod.Invoke(handler, new Object[] { command });
+
+                if (!repositoryContextProvider.Current.IsCommited)
+                {
+                    repositoryContextProvider.Current.Commit();
+                }
+
+                return obj;
+            }
+            catch (ArgumentException ex)
+            {
+                throw new CommandException(String.Format("命令处理器{0}的类型参数不对，请更改为{1}类型", handlerMethod.ToString(), command.GetType()));
+            }
         }
     }
 }

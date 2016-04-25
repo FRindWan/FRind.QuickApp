@@ -10,6 +10,7 @@ using QuickApp.Domain.Entites;
 using QuickApp.Eventing;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace QuickApp.Common.Test.Domain.Model
     /// <summary>
     /// <see cref="PersonInfo"/>
     /// </summary>
+    [Table("TPersonInfo")]
     public class PersonInfo : IAggregateRoot
     {
         public Guid ID { get; set; }

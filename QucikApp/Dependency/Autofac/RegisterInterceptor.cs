@@ -19,6 +19,6 @@ namespace QuickApp.Dependency.Autofac
     /// </summary>
     public abstract class RegisterInterceptor
     {
-        public abstract void Register<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle>(IRegistrationBuilder<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle> registerBuilder, Type interfaceType, Type implType) where TConcreteReflectionActivatorData : ConcreteReflectionActivatorData;
+        public abstract void Register<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle>(IRegistrationBuilder<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle> registerBuilder, Type interfaceType, Type implType);
     }
 }

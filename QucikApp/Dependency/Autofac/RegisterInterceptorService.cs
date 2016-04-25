@@ -47,7 +47,7 @@ namespace QuickApp.Dependency.Autofac
             this.autofacRegisterInterceptors.Add(autofacRegisterInterceptor);
         }
 
-        public void Register<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle>(IRegistrationBuilder<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle> registerBuilder, Type implType, Type interfaceType=null)
+        public void Register<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle>(IRegistrationBuilder<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle> registerBuilder, Type implType, Type interfaceType = null) 
         {
             if (this.configSource.DependencyConfigSource.EnableInterceptor)
             {

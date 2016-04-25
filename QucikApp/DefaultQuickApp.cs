@@ -45,10 +45,11 @@ namespace QuickApp
 
         public void Initialize()
         {
-            CommandInitializeService.Initialize();
 
             DependencyInitializeService.AddDependencyInitialize(new QuickAppDependencyInitialize());
             DependencyInitializeService.Initialize();
+
+            CommandInitializeService.Initialize();
 
             //EventInitialize.Initialize(this.configSource.EventConfigSource.Assemblys);
         }
