@@ -6,7 +6,9 @@
  *  -------------------------------------------------------------------------*/
 
 using QuickApp.Commands;
+using QuickApp.Common.Test.Domain.Model;
 using QuickApp.Common.Test.Domain.Reposities;
+using QuickApp.Domain.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +33,23 @@ namespace QuickApp.Common.Test.Command
         public void AddPersonInfoCommand(AddPersonCommand command)
         {
             this.personInfoRepository.Add(((AddPersonCommand)command).PersonInfo);
+        }
+
+        [CommandExecute(typeof(AddPersonListCommand))]
+        public void AddPersonInfoCommand(AddPersonListCommand command)
+        {
+            IList<PersonInfo> personInfoList = command.PersonInfoList;
+            foreach (PersonInfo personInfo in personInfoList)
+            {
+                this.personInfoRepository.Add(personInfo);
+            }
+            
+        }
+
+        [CommandExecute(typeof(GetPersonCommand))]
+        public PersonInfo GetPersonInfoCommand(GetPersonCommand command)
+        {
+            return this.personInfoRepository.Get(Specification<PersonInfo>.Eval(p => p.UserName == command.Name));
         }
     }
 }

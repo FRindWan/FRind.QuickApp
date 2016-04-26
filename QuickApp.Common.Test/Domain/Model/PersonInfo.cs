@@ -20,7 +20,7 @@ namespace QuickApp.Common.Test.Domain.Model
     /// <summary>
     /// <see cref="PersonInfo"/>
     /// </summary>
-    [Table("TPersonInfo")]
+    [Table("PersonInfoes")]
     public class PersonInfo : IAggregateRoot
     {
         public Guid ID { get; set; }

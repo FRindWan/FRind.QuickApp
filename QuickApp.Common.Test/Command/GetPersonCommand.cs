@@ -1,28 +1,28 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/4/26 星期二 12:20:11
+ * 创建时间： 2016/4/26 星期二 10:38:38
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp.Query
+namespace QuickApp.Common.Test.Command
 {
     /// <summary>
-    /// <see cref="IQuery"/>
+    /// <see cref="GetPersonCommand"/>
     /// </summary>
-    public interface IQuery
+    public class GetPersonCommand:Commands.Command
     {
-        T Find<T>(QueryBuilder queryBuilder);
+        public GetPersonCommand(string name)
+        {
+            this.Name = name;
+        }
 
-        IEnumerable<T> FindAll<T>(QueryBuilder queryBuilder);
-
-        IPaged<T> FindPaged<T>(QueryBuilder queryBuilder);
+        public string Name { get; set; }
     }
 }

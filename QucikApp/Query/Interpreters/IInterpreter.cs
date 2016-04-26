@@ -1,6 +1,6 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/4/26 星期二 12:20:11
+ * 创建时间： 2016/4/26 星期二 18:25:31
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
@@ -12,17 +12,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp.Query
+namespace QuickApp.Query.Interpreters
 {
     /// <summary>
-    /// <see cref="IQuery"/>
+    /// <see cref="IInterpreter"/>
     /// </summary>
-    public interface IQuery
+    public interface IInterpreter
     {
-        T Find<T>(QueryBuilder queryBuilder);
-
-        IEnumerable<T> FindAll<T>(QueryBuilder queryBuilder);
-
-        IPaged<T> FindPaged<T>(QueryBuilder queryBuilder);
+        string InterpreterQueryBuilder(QueryBuilder queryBuilder, DbType dbType);
     }
 }

@@ -41,6 +41,21 @@ namespace QuickApp.Data
             
         }
 
+        public override void RegisterAdded(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot)
+        {
+            this.context.Add(aggregateRoot);
+        }
+
+        public override void RegisterUpdated(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot)
+        {
+            this.context.Update(aggregateRoot);
+        }
+
+        public override void RegisterDeleted(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot)
+        {
+            this.context.Delete(aggregateRoot);
+        }
+
         protected override void DoDispose(bool dispose)
         {
             if (dispose)
@@ -53,21 +68,7 @@ namespace QuickApp.Data
         {
             try
             {
-                TransactionScope transactionScope = new TransactionScope();
-
-                foreach (KeyValuePair<IAggregateRoot,IUnitOfWorkRepository> addedItem in this.RegisterAddedCollection)
-                {
-                    this.context.Add<IAggregateRoot>(addedItem.Key);
-                }
-                foreach (KeyValuePair<IAggregateRoot, IUnitOfWorkRepository> updateItem in this.RegisterAddedCollection)
-                {
-                    this.context.Update<IAggregateRoot>(updateItem.Key);
-                }
-                foreach (KeyValuePair<IAggregateRoot, IUnitOfWorkRepository> deleteItem in this.RegisterAddedCollection)
-                {
-                    this.context.Delete<IAggregateRoot>(deleteItem.Key);
-                }
-                transactionScope.Complete();
+                this.context.SaveChanges();
 
                 return true;
             }

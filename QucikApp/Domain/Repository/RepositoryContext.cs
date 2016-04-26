@@ -48,17 +48,17 @@ namespace QuickApp.Domain.Repository
         public event UnitOfWorks.UnitOfWorkCommitErrorEventHandler OnCommitError;
 
         #region RepositoryContext Implements Method
-        public void RegisterAdded(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot)
+        public virtual void RegisterAdded(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot)
         {
             this.registerAddedCollection.AddOrUpdate(aggregateRoot, repository, (k, v) => v);
         }
 
-        public void RegisterUpdated(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot) 
+        public virtual void RegisterUpdated(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot) 
         {
             this.registerUpdatedCollection.AddOrUpdate(aggregateRoot, repository, (k, v) => v);
         }
 
-        public void RegisterDeleted(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot)
+        public virtual void RegisterDeleted(IUnitOfWorkRepository repository, IAggregateRoot aggregateRoot)
         {
             this.registerDeleteCollection.AddOrUpdate(aggregateRoot, repository, (k, v) => v);
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuickApp.Query
 {
-    public abstract class QueryBuilder
+    public class QueryBuilder
     {
         private IList<string> selectColumns;
         private IList<string> tableName;
@@ -108,7 +108,11 @@ namespace QuickApp.Query
 
             return this;
         }
+
+        public override string ToString()
+        {
+            throw new NotImplementedException("该类不允许执行ToString方法！");
+        }
         
-        public abstract IQuery Build();
     }
 }

@@ -49,3 +49,6 @@ E:\Project\C#\正式项目\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\EntityFr
 E:\Project\C#\正式项目\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Castle.Core.xml
 E:\Project\C#\正式项目\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\log4net.xml
 E:\Project\C#\正式项目\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\Autofac.Extras.DynamicProxy2.xml
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.Data.dll
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\AiExpressionTurn.dll
+E:\Project\c#\FRind\FRind.QuickApp\QuickApp.Test\bin\Debug\QuickApp.Data.pdb

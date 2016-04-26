@@ -32,6 +32,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -55,6 +75,7 @@
     <Compile Include="Infrastructure\EFDbContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickAppTestDependencyInitialize.cs" />
     <Compile Include="Repositories\NoteInfoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +87,14 @@
     <ProjectReference Include="..\QucikApp\QuickApp.csproj">
       <Project>{a618e4af-e705-4d30-9622-394b24881167}</Project>
       <Name>QuickApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickApp.Common.Test\QuickApp.Common.Test.csproj">
+      <Project>{32374a2a-3f75-4eee-b1f7-11355cda0ab3}</Project>
+      <Name>QuickApp.Common.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickApp.Data\QuickApp.Data.csproj">
+      <Project>{e1fbcf15-983f-425a-903b-14c51de7ebb6}</Project>
+      <Name>QuickApp.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

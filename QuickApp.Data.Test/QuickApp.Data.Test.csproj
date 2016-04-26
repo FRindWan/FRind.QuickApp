@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5C77E426-C045-49CB-A60D-A3FEDF864E35}</ProjectGuid>
+    <ProjectGuid>{DAFF6141-A9B1-4FE6-A384-E48EE95D652D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QuickApp.Other.Test</RootNamespace>
-    <AssemblyName>QuickApp.Other.Test</AssemblyName>
+    <RootNamespace>QuickApp.Data.Test</RootNamespace>
+    <AssemblyName>QuickApp.Data.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -53,22 +53,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.3.3.1\lib\net40\Autofac.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Autofac.Extras.DynamicProxy2, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.Extras.DynamicProxy2.3.0.7\lib\net40\Autofac.Extras.DynamicProxy2.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.XML" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -83,14 +68,22 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AutofacInterceptorTest.cs" />
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReflectionTest.cs" />
-    <Compile Include="Reposities\TransactionScopeTest.cs" />
-    <Compile Include="RepositoryContextInterceptor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\QucikApp\QuickApp.csproj">
+      <Project>{a618e4af-e705-4d30-9622-394b24881167}</Project>
+      <Name>QuickApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickApp.Common.Test\QuickApp.Common.Test.csproj">
+      <Project>{32374a2a-3f75-4eee-b1f7-11355cda0ab3}</Project>
+      <Name>QuickApp.Common.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickApp.Data\QuickApp.Data.csproj">
+      <Project>{e1fbcf15-983f-425a-903b-14c51de7ebb6}</Project>
+      <Name>QuickApp.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

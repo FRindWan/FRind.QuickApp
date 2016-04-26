@@ -36,19 +36,22 @@ namespace QuickApp.Test.Command
         [TestMethod]
         public void TestAddPersonInfoCommand()
         {
-            IRepositoryContextManager dbContext = this.app.DependencyContainer.Resolver<IRepositoryContextManager>();
-            dbContext.Create();
-
-            commandExecuter.ExecuteAsync(new AddPersonCommand()
+            try
             {
-                PersonInfo = new PersonInfo()
+                commandExecuter.ExecuteAsync(new AddPersonCommand()
                 {
-                    ID = Guid.NewGuid(),
-                    Age = 22,
-                    UserName = "FRind"
-                }
-            });
-
+                    PersonInfo = new PersonInfo()
+                    {
+                        ID = Guid.NewGuid(),
+                        Age = 22,
+                        UserName = "FRind"
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             Console.WriteLine("ddd");
 
 

@@ -15,10 +15,11 @@ namespace QuickApp.Data.Infrastructure.MSSqlerver
 {
     public class MSSqlDbFactory:DbFactory
     {
-
+        private readonly MSSqlConnectionPool connectionPool; 
 
         public MSSqlDbFactory(String nameOrConnectString):base(nameOrConnectString)
         {
+            this.connectionPool = (MSSqlConnectionPool)new MSSqlConnectionPoolFactory(5, this.sqlConnectString).GetConnectionPool();
         }
 
         public override DbFactoryType DbType
@@ -30,23 +31,22 @@ namespace QuickApp.Data.Infrastructure.MSSqlerver
         {
             try
             {
-                using (SqlConnection connection =new SqlConnection(this.sqlConnectString))
+                SqlConnection connection =this.connectionPool.GetConnection();
+                
+                using (SqlCommand command = new SqlCommand())
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
+                    command.CommandText = strsql;
+                    command.Connection = connection;
+                    if (parameters != null)
                     {
-                        command.CommandText = strsql;
-                        command.Connection = connection;
-                        if (parameters != null)
-                        {
-                            command.AddParams(parameters);
-                        }
-                        if (command.ExecuteNonQuery() > 0)
-                            return true;
-                        else
-                            return false;
+                        command.AddParams(parameters);
                     }
+                    if (command.ExecuteNonQuery() > 0)
+                        return true;
+                    else
+                        return false;
                 }
+                
             }
             catch (Exception ex)
             {
@@ -59,23 +59,22 @@ namespace QuickApp.Data.Infrastructure.MSSqlerver
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(this.sqlConnectString))
+                SqlConnection connection =this.connectionPool.GetConnection();
+
+                using (SqlCommand command = new SqlCommand())
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
+                    command.CommandText = strsql;
+                    command.Connection = connection;
+                    if (parameters != null)
                     {
-                        command.CommandText = strsql;
-                        command.Connection = connection;
-                        if (parameters != null)
-                        {
-                            command.AddParams(parameters);
-                        }
-                        SqlDataAdapter da = new SqlDataAdapter(command);
-                        DataTable dataTable=new DataTable();
-                        da.Fill(dataTable);
-                        return dataTable;
+                        command.AddParams(parameters);
                     }
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    DataTable dataTable=new DataTable();
+                    da.Fill(dataTable);
+                    return dataTable;
                 }
+                
             }
             catch (Exception ex)
             {
@@ -88,23 +87,21 @@ namespace QuickApp.Data.Infrastructure.MSSqlerver
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(this.sqlConnectString))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.CommandText = strsql;
-                        command.Connection = connection;
-                        if (parameters != null)
-                        {
-                            command.AddParams(parameters);
-                        }
-                        SqlDataAdapter da = new SqlDataAdapter(command);
-                        DataTable dataTable = new DataTable();
-                        da.Fill(dataTable);
+                SqlConnection connection =this.connectionPool.GetConnection();
 
-                        return dataTable.Rows[0][0];
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandText = strsql;
+                    command.Connection = connection;
+                    if (parameters != null)
+                    {
+                        command.AddParams(parameters);
                     }
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    da.Fill(dataTable);
+
+                    return dataTable.Rows[0][0];
                 }
             }
             catch (Exception ex)
@@ -118,20 +115,19 @@ namespace QuickApp.Data.Infrastructure.MSSqlerver
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(this.sqlConnectString))
+                SqlConnection connection =this.connectionPool.GetConnection();
+
+                using (SqlCommand command = new SqlCommand())
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
+                    command.CommandText = strsql;
+                    command.Connection = connection;
+                    if (parameters != null)
                     {
-                        command.CommandText = strsql;
-                        command.Connection = connection;
-                        if (parameters != null)
-                        {
-                            command.AddParams(parameters);
-                        }
-                        return command.ExecuteReader().DataReaderToModel<TEntity>();
+                        command.AddParams(parameters);
                     }
+                    return command.ExecuteReader().DataReaderToModel<TEntity>();
                 }
+                
             }
             catch (Exception ex)
             {
@@ -144,19 +140,17 @@ namespace QuickApp.Data.Infrastructure.MSSqlerver
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(this.sqlConnectString))
+                SqlConnection connection =this.connectionPool.GetConnection();
+
+                using (SqlCommand command = new SqlCommand())
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
+                    command.CommandText = strsql;
+                    command.Connection = connection;
+                    if (parameters != null)
                     {
-                        command.CommandText = strsql;
-                        command.Connection = connection;
-                        if (parameters != null)
-                        {
-                            command.AddParams(parameters);
-                        }
-                        return command.ExecuteReader().DataReaderToList<TEntity>();
+                        command.AddParams(parameters);
                     }
+                    return command.ExecuteReader().DataReaderToList<TEntity>();
                 }
             }
             catch (Exception ex)

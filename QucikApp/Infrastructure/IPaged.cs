@@ -1,28 +1,31 @@
 ﻿/*-------------------------------------------------------------------------
  * 作者：FRind
- * 创建时间： 2016/4/26 星期二 12:20:11
+ * 创建时间： 2016/4/26 星期二 12:23:24
  * 版本号：v1.0
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
-using QuickApp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickApp.Query
+namespace QuickApp.Infrastructure
 {
     /// <summary>
-    /// <see cref="IQuery"/>
+    /// <see cref="IPaged"/>
     /// </summary>
-    public interface IQuery
+    public interface IPaged<T>where T:class
     {
-        T Find<T>(QueryBuilder queryBuilder);
+        int? TotalPage { get; }
 
-        IEnumerable<T> FindAll<T>(QueryBuilder queryBuilder);
+        long? TotalCount { get; }
 
-        IPaged<T> FindPaged<T>(QueryBuilder queryBuilder);
+        int? PageNumber { get; }
+
+        int? PageSize { get; }
+
+        IList<T> Data { get; }
     }
 }

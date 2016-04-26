@@ -9,6 +9,7 @@ using System.Collections.Concurrent;
 using QuickApp.Data.Infrastructure.MSSqlerver;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Transactions;
+using QuickApp.Query;
 
 namespace QuickApp.Data.Infrastructure
 {
@@ -81,6 +82,11 @@ namespace QuickApp.Data.Infrastructure
         public async Task SaveChangesAsync()
         {
             this.SaveChanges();
+        }
+
+        public IEnumerable<T> Find<T>(QueryBuilder queryBuilder)where T:class
+        { 
+            this.dbFactory.
         }
 
         protected virtual void SaveEntity(IDbEntity dbEntity)

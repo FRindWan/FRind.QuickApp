@@ -46,7 +46,7 @@ namespace QuickApp.Domain.UnitOfWorks
                 return null;
             }
 
-            if (repositoryContext.IsDisposed)
+            if (repositoryContext.IsDisposed||repositoryContext.IsCommited)
             {
                 CallContext.FreeNamedDataSlot(this.ContextKey);
                 repositoryContextDictionary.TryRemove(repositoryContextKey, out repositoryContext);
