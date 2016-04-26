@@ -7,6 +7,7 @@
 
 using QuickApp.Data.Infrastructure;
 using QuickApp.Query;
+using QuickApp.Query.Interpreters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +22,17 @@ namespace QuickApp.Data
     public class QuickDataQuery:IQuery
     {
         private SqlDbContext dbContext;
-        private 
+        private IInterpreter interperter;
 
-        public QuickDataQuery(SqlDbContext dbContext)
+        public QuickDataQuery(SqlDbContext dbContext, IInterpreter interperter)
         {
             this.dbContext = dbContext;
+            this.interperter = interperter;
         }
 
-        public T Find<T>(QueryBuilder queryBuilder)
+        public T Find<T>(QueryBuilder queryBuilder)where T:class
         {
-            this.dbContext.
+            return this.dbContext.GetEntry(typeof(T)).FindForSql<T>(this.interperter.InterpreterQueryBuilder(queryBuilder));
         }
 
         public IEnumerable<T> IQuery.Find<T>(QueryBuilder queryBuilder)

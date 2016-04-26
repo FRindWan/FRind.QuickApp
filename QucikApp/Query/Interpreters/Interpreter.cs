@@ -20,22 +20,12 @@ namespace QuickApp.Query.Interpreters
     /// </summary>
     public abstract class Interpreter : IInterpreter
     {
-        private readonly DataBaseType interpreterDbType;
-
-        public Interpreter(DataBaseType interpreterDbType)
+        public Interpreter()
         {
-            this.interpreterDbType = interpreterDbType;
         }
 
-        protected DataBaseType InterpreterDbType { get { return this.interpreterDbType; } }
-
-        public string InterpreterQueryBuilder(QueryBuilder queryBuilder, DataBaseType dbType)
+        public string InterpreterQueryBuilder(QueryBuilder queryBuilder)
         {
-            if(this.interpreterDbType!=dbType)
-            {
-                return null;
-            }
-
             if (queryBuilder.TableName == null || queryBuilder.TableName.Count <= 0)
             {
                 throw new QueryInterpreterException("请至少添加一项FromTable！");

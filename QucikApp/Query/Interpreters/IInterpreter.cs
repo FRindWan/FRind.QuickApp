@@ -19,6 +19,6 @@ namespace QuickApp.Query.Interpreters
     /// </summary>
     public interface IInterpreter
     {
-        string InterpreterQueryBuilder(QueryBuilder queryBuilder, DataBaseType dbType);
+        string InterpreterQueryBuilder(QueryBuilder queryBuilder);
     }
 }

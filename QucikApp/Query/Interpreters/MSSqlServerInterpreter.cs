@@ -10,7 +10,6 @@ namespace QuickApp.Query.Interpreters
     public class MSSqlServerInterpreter:Interpreter
     {
         public MSSqlServerInterpreter()
-            : base(Infrastructure.DataBaseType.MSSQLSERVER)
         { 
         
         }
