@@ -33,7 +33,7 @@ namespace QuickApp.Data.Infrastructure
             this.logger = Logger.Logger.GetLogger(this.GetType());
         }
 
-        public abstract DbFactoryType DbType { get; }
+        public abstract DataBaseType DbType { get; }
 
         public abstract bool ExecuteSql(String strsql, params object[] parameters);
 
@@ -52,11 +52,11 @@ namespace QuickApp.Data.Infrastructure
 
         protected abstract void dispose();
 
-        public static IDbFactory Create(String nameOfConnectString,DbFactoryType dbFactoryType)
+        public static IDbFactory Create(String nameOfConnectString,DataBaseType DataBaseType)
         {
-            switch (dbFactoryType)
+            switch (DataBaseType)
             {
-                case DbFactoryType.MSSQLSERVER: return new MSSqlerver.MSSqlDbFactory(nameOfConnectString);
+                case DataBaseType.MSSQLSERVER: return new MSSqlerver.MSSqlDbFactory(nameOfConnectString);
             }
 
             return null;

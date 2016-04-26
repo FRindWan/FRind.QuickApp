@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using QuickApp.Data.Extensions;
 using System.Data;
 using QuickApp.Exceptions;
+using QuickApp.Infrastructure;
 
 namespace QuickApp.Data.Infrastructure.MSSqlerver
 {
@@ -22,9 +23,9 @@ namespace QuickApp.Data.Infrastructure.MSSqlerver
             this.connectionPool = (MSSqlConnectionPool)new MSSqlConnectionPoolFactory(5, this.sqlConnectString).GetConnectionPool();
         }
 
-        public override DbFactoryType DbType
+        public override DataBaseType DbType
         {
-            get { return DbFactoryType.MSSQLSERVER; }
+            get { return DataBaseType.MSSQLSERVER; }
         }
 
         public override bool ExecuteSql(string strsql, params object[] parameters)

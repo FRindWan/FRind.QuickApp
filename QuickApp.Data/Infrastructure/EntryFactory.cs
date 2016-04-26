@@ -13,7 +13,7 @@ namespace QuickApp.Data.Infrastructure
         {
             switch (dbFactory.DbType)
             {
-                case DbFactoryType.MSSQLSERVER: return new MSEntry(dbFactory, entityType);
+                case DataBaseType.MSSQLSERVER: return new MSEntry(dbFactory, entityType);
             }
 
             return null;

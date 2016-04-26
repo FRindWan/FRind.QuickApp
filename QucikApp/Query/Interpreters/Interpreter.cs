@@ -5,6 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Exceptions;
 using QuickApp.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -19,20 +20,30 @@ namespace QuickApp.Query.Interpreters
     /// </summary>
     public abstract class Interpreter : IInterpreter
     {
-        private readonly DbType interpreterDbType;
+        private readonly DataBaseType interpreterDbType;
 
-        public Interpreter(DbType interpreterDbType)
+        public Interpreter(DataBaseType interpreterDbType)
         {
             this.interpreterDbType = interpreterDbType;
         }
 
-        protected DbType InterpreterDbType { get { return this.interpreterDbType; } }
+        protected DataBaseType InterpreterDbType { get { return this.interpreterDbType; } }
 
-        public string InterpreterQueryBuilder(QueryBuilder queryBuilder, DbType dbType)
+        public string InterpreterQueryBuilder(QueryBuilder queryBuilder, DataBaseType dbType)
         {
             if(this.interpreterDbType!=dbType)
             {
                 return null;
+            }
+
+            if (queryBuilder.TableName == null || queryBuilder.TableName.Count <= 0)
+            {
+                throw new QueryInterpreterException("请至少添加一项FromTable！");
+            }
+
+            if (queryBuilder.TableName.Count > 1 && (queryBuilder.SelectColumns == null || queryBuilder.SelectColumns.Count <= 0))
+            {
+                throw new QueryInterpreterException("当Table达到两个及两个以上，必须显式指定查询的列！");
             }
 
             return this.DoInterpreter(queryBuilder);

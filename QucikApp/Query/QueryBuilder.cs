@@ -25,17 +25,19 @@ namespace QuickApp.Query
             this.orderByDesc = new List<string>();
         }
 
-        protected IList<string> SelectColumns { get { return this.selectColumns; } }
+        public IList<string> SelectColumns { get { return this.selectColumns; } }
 
-        protected IList<string> TableName { get { return this.tableName; } }
+        public IList<string> TableName { get { return this.tableName; } }
 
-        protected IList<string> Where { get { return this.where; } }
+        public IList<string> Where { get { return this.where; } }
 
-        protected IList<string> InnerJoin { get { return this.innerJoin; } }
+        public IList<string> InnerJoin { get { return this.innerJoin; } }
 
-        protected IList<string> OrderByAsc { get { return this.orderByAsc; } }
+        public IList<string> OrderByAsc { get { return this.orderByAsc; } }
 
-        protected IList<string> OrderByDesc { get { return this.orderByDesc; } }
+        public IList<string> OrderByDesc { get { return this.orderByDesc; } }
+
+        public int Top { get { return this.top} }
 
         public QueryBuilder FromTable(string tableName)
         {

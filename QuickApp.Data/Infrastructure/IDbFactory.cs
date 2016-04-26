@@ -10,7 +10,7 @@ namespace QuickApp.Data.Infrastructure
 {
     public interface IDbFactory:IDisposable
     {
-        DbFactoryType DbType { get; }
+        DataBaseType DbType { get; }
 
         bool ExecuteSql(String strsql, params object[] parameters);
 

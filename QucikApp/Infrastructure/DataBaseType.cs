@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 namespace QuickApp.Infrastructure
 {
     /// <summary>
-    /// <see cref="DbType"/>
+    /// <see cref="DataBaseType"/>
     /// </summary>
-    public enum DbType
+    public enum DataBaseType
     {
         MSSQLSERVER=0,
         MSSQL=1,

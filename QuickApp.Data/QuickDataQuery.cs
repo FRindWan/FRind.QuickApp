@@ -5,6 +5,7 @@
  * 本类主要用途描述：
  *  -------------------------------------------------------------------------*/
 
+using QuickApp.Data.Infrastructure;
 using QuickApp.Query;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,17 @@ namespace QuickApp.Data
     /// </summary>
     public class QuickDataQuery:IQuery
     {
+        private SqlDbContext dbContext;
+        private 
+
+        public QuickDataQuery(SqlDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public T Find<T>(QueryBuilder queryBuilder)
         {
-            
+            this.dbContext.
         }
 
         public IEnumerable<T> IQuery.Find<T>(QueryBuilder queryBuilder)

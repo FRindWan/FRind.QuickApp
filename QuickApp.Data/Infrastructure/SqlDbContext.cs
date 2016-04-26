@@ -10,6 +10,7 @@ using QuickApp.Data.Infrastructure.MSSqlerver;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Transactions;
 using QuickApp.Query;
+using QuickApp.Infrastructure;
 
 namespace QuickApp.Data.Infrastructure
 {
@@ -21,9 +22,9 @@ namespace QuickApp.Data.Infrastructure
 
         private readonly ConcurrentDictionary<Type, IEntry> entityDictionary = new ConcurrentDictionary<Type, IEntry>();
 
-        public SqlDbContext(String nameOfConnectString,DbFactoryType dbFactoryType)
+        public SqlDbContext(String nameOfConnectString,DataBaseType dataBaseType)
         {
-            this.dbFactory = DbFactory.Create(nameOfConnectString, dbFactoryType);
+            this.dbFactory = DbFactory.Create(nameOfConnectString, dataBaseType);
             this.Initialize();
         }
 
@@ -84,9 +85,9 @@ namespace QuickApp.Data.Infrastructure
             this.SaveChanges();
         }
 
-        public IEnumerable<T> Find<T>(QueryBuilder queryBuilder)where T:class
-        { 
-            this.dbFactory.
+        public object Query(String sql,params object[] parameters)
+        {
+            return this.dbFactory.ExecuteResult(sql, parameters);
         }
 
         protected virtual void SaveEntity(IDbEntity dbEntity)

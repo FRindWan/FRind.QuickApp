@@ -120,7 +120,8 @@
     <Compile Include="Eventing\impl\EventBus.cs" />
     <Compile Include="Exceptions\CommandException.cs" />
     <Compile Include="Commands\QuickAppCommandExecuter.cs" />
-    <Compile Include="Infrastructure\DbType.cs" />
+    <Compile Include="Exceptions\QueryInterpreterException.cs" />
+    <Compile Include="Infrastructure\DataBaseType.cs" />
     <Compile Include="Infrastructure\IPaged.cs" />
     <Compile Include="Infrastructure\Pageds\Paged.cs" />
     <Compile Include="Logger\CommonLogger.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Logger\LoggerInitialize.cs" />
     <Compile Include="Query\Interpreters\IInterpreter.cs" />
     <Compile Include="Query\Interpreters\Interpreter.cs" />
+    <Compile Include="Query\Interpreters\MSSqlServerInterpreter.cs" />
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="Query\QueryBuilder.cs" />
     <Compile Include="QuickAppDependencyInitialize.cs" />
