@@ -1,6 +1,9 @@
 ﻿using QuickApp.Commands;
 using QuickApp.Common.Test.Command;
 using QuickApp.Common.Test.Domain.Model;
+using QuickApp.Common.Test.Domain.SqlReposities;
+using QuickApp.Config;
+using QuickApp.Data.Infrastructure;
 using QuickApp.Data.Infrastructure.MSSqlerver;
 using QuickApp.Dependency;
 using QuickApp.NoteExample.Infrastructure;
@@ -19,13 +22,20 @@ namespace QuickApp.NoteExample
     {
         static void Main(string[] args)
         {
-            DependencyInitializeService.AddDependencyInitialize(new QuickAppTestDependencyInitialize());
+            IQuickApp app= ConfigSource.Instance
+                .AddDependInitialize(new QuickAppTestDependencyInitialize())
+                .AddCommandScanAssembly(Assembly.Load("QuickApp.Common.Test"))
+                .SetDbInfo(typeof(SqlDbContext),typeof(SqlServerDbContext),QuickApp.Infrastructure.DataBaseType.MSSQLSERVER)
+                .Initialize();
 
-            IQuickApp app = new DefaultQuickApp();
-            app.ConfigSource.EventConfigSource.SetAssembly(Assembly.Load("QuickApp.Common.Test"));
-            app.ConfigSource.CommandConfigSource.SetAssembly(Assembly.Load("QuickApp.Common.Test"));
 
-            app.Initialize();
+            //DependencyInitializeService.AddDependencyInitialize(new QuickAppTestDependencyInitialize());
+
+            //IQuickApp app = new DefaultQuickApp();
+            //app.ConfigSource.EventConfigSource.SetAssembly(Assembly.Load("QuickApp.Common.Test"));
+            //app.ConfigSource.CommandConfigSource.SetAssembly(Assembly.Load("QuickApp.Common.Test"));
+
+            //app.Initialize();
 
             CommandExecuter commandExecuter = app.DependencyContainer.Resolver<CommandExecuter>();
             commandExecuter.ExecuteAsync(new AddPersonCommand()

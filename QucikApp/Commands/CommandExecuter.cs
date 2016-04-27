@@ -24,7 +24,7 @@ namespace QuickApp.Commands
     /// <summary>
     /// <see cref="CommandExecuter"/>
     /// </summary>
-    public abstract class CommandExecuter
+    public abstract class CommandExecuter : ICommandExecuter
     {
         private ConcurrentDictionary<Type, MethodInfo> handlerDictionary;
 

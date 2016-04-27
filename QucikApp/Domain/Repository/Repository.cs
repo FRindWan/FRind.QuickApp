@@ -19,14 +19,17 @@ namespace QuickApp.Domain.Repository
     /// <summary>
     /// <see cref="Repository"/>
     /// </summary>
-    public abstract class Repository<TAggregateRoot, TKey> : IRepository<TAggregateRoot, TKey>,IUnitOfWorkRepository where TAggregateRoot:IAggregateRoot
+    public abstract class Repository<TAggregateRoot, TKey,TRepostotyContext> : IRepository<TAggregateRoot, TKey>,IUnitOfWorkRepository where TAggregateRoot:IAggregateRoot
+        where TRepostotyContext:IRepositoryContext
     {
-        private ICurrentRepositoryContextProvider currentRepositoryContextProvider;
+        private readonly ICurrentRepositoryContextProvider currentRepositoryContextProvider;
 
-        public Repository(ICurrentRepositoryContextProvider currentRepositoryContextProvider)
+        public Repository()
         {
-            this.currentRepositoryContextProvider = currentRepositoryContextProvider;
+            this.currentRepositoryContextProvider = Dependency.DependencyFactory.GetDependency().Resolver < ICurrentRepositoryContextProvider>();
         }
+
+        protected TRepostotyContext RepositoryContext { get { return (TRepostotyContext)this.currentRepositoryContextProvider.Current; } }
 
         #region IRepository
         public TAggregateRoot GetById(TKey id)
@@ -108,10 +111,10 @@ namespace QuickApp.Domain.Repository
 
     }
 
-    public abstract class Repository<TAggregateRoot> : Repository<TAggregateRoot, Guid> where TAggregateRoot : IAggregateRoot
+    public abstract class Repository<TAggregateRoot, TRepositoryContext> : Repository<TAggregateRoot, Guid, TRepositoryContext> where TAggregateRoot : IAggregateRoot
+        where TRepositoryContext:IRepositoryContext
     {
-        public Repository(ICurrentRepositoryContextProvider currentRepositoryContextProvider)
-            : base(currentRepositoryContextProvider)
+        public Repository()
         { }
     }
 }

@@ -26,15 +26,17 @@ namespace QuickApp
     /// <summary>
     /// <see cref="QuickAppDependencyInitialize"/>
     /// </summary>
-    public class QuickAppDependencyInitialize:DependencyInitialize
+    internal class QuickAppDependencyInitialize:DependencyInitialize
     {
         public override void InitializeInterceptor(RegisterInterceptorService registerInterceptorService)
         {
             registerInterceptorService.AddAutofacRegisterInterceptor(new ApplicationInterceptorRegister());
         }
 
-        public override void InitializeDependency(IDependency dependency)
+        public override void InitializeDependency(IDependencyRegister dependency)
         {
+            this.RegisterDb(dependency);
+
             dependency.Register<IConfigSource, ConfigSource>(DependencyLifeTime.Singleton);
             dependency.Register<IDependencyConfigSource, DependencyConfigSource>(DependencyLifeTime.Singleton);
 
@@ -48,6 +50,18 @@ namespace QuickApp
             {
                 dependency.Register<ApplicationInterceptor>();
             }
+        }
+
+        private void RegisterDb(IDependencyRegister dependency)
+        {
+            if (ConfigSource.Instance.RepositoryConfigSource.DbContextImplType == null || ConfigSource.Instance.RepositoryConfigSource.DbContextType == null)
+            {
+                return;
+            }
+
+            dependency.Register(ConfigSource.Instance.RepositoryConfigSource.DbContextType
+                ,ConfigSource.Instance.RepositoryConfigSource.DbContextImplType
+                , DependencyLifeTime.Singleton);
         }
     }
 }

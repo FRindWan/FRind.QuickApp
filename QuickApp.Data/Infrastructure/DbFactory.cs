@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QuickApp.Data.Extensions;
+using QuickApp.Infrastructure;
 
 namespace QuickApp.Data.Infrastructure
 {
@@ -52,9 +53,9 @@ namespace QuickApp.Data.Infrastructure
 
         protected abstract void dispose();
 
-        public static IDbFactory Create(String nameOfConnectString,DataBaseType DataBaseType)
+        public static IDbFactory Create(String nameOfConnectString,DataBaseType dataBaseType)
         {
-            switch (DataBaseType)
+            switch (dataBaseType)
             {
                 case DataBaseType.MSSQLSERVER: return new MSSqlerver.MSSqlDbFactory(nameOfConnectString);
             }

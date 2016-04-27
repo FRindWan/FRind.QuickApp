@@ -42,9 +42,11 @@ namespace QuickApp.Data.Extensions
             IDictionary<string, string> columns = GetPropertyList(entityType);
             StringBuilder sbFieldName = new StringBuilder();
             StringBuilder sbWhereCondition = new StringBuilder();
+            int counter = 0;
             foreach (KeyValuePair<string, string> column in columns)
             {
                 sbFieldName.AppendFormat(" {0}=@{1}, ", column.Key, column.Value);
+                counter++;
             }
             for (int i = 0; i < keys.Count; i++) 
             {
@@ -52,7 +54,7 @@ namespace QuickApp.Data.Extensions
                 {
                     sbWhereCondition.Append(" AND ");
                 }
-                sbWhereCondition.AppendFormat(" {0} = {1}", keys[i], "{" + i + "}");
+                sbWhereCondition.AppendFormat(" {0} = @{1}", keys[i], counter++);
             }
 
             string updateFieldName = sbFieldName.ToString().Substring(0, sbFieldName.Length - 2);

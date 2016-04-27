@@ -80,14 +80,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\ApplicationService.cs" />
+    <Compile Include="Application\DtoBase.cs" />
+    <Compile Include="Application\IDto.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandExecuteAttribute.cs" />
     <Compile Include="Commands\CommandExecuter.cs" />
     <Compile Include="Commands\CommandInitializeService.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\ICommandExecuter.cs" />
     <Compile Include="Commands\ICommandResult.cs" />
     <Compile Include="Common\Config\ICommandConfigSource.cs" />
     <Compile Include="Common\Config\impl\CommandConfigSource.cs" />
+    <Compile Include="Common\Config\impl\RepositoryConfigSource.cs" />
+    <Compile Include="Common\Config\impl\WebConfigSource.cs" />
+    <Compile Include="Common\Config\IRepositoryConfigSource.cs" />
+    <Compile Include="Common\Config\IWebConfigSource.cs" />
     <Compile Include="Common\Reflection\MethodInfoHelper.cs" />
     <Compile Include="Common\Reflection\ReflectionExtension.cs" />
     <Compile Include="Common\Config\ConfigSource.cs" />
@@ -120,6 +127,8 @@
     <Compile Include="Eventing\impl\EventBus.cs" />
     <Compile Include="Exceptions\CommandException.cs" />
     <Compile Include="Commands\QuickAppCommandExecuter.cs" />
+    <Compile Include="Exceptions\ConfigSourceException.cs" />
+    <Compile Include="Exceptions\MvcException.cs" />
     <Compile Include="Exceptions\QueryInterpreterException.cs" />
     <Compile Include="Infrastructure\DataBaseType.cs" />
     <Compile Include="Infrastructure\IPaged.cs" />
@@ -127,6 +136,7 @@
     <Compile Include="Logger\CommonLogger.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Logger\LoggerInitialize.cs" />
+    <Compile Include="Query\InterpreterDependencyInitialize.cs" />
     <Compile Include="Query\Interpreters\IInterpreter.cs" />
     <Compile Include="Query\Interpreters\Interpreter.cs" />
     <Compile Include="Query\Interpreters\MSSqlServerInterpreter.cs" />

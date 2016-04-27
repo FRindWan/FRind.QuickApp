@@ -12,6 +12,7 @@ using QuickApp.Dependency.Autofac;
 using QuickApp.Domain.Repository;
 using QuickApp.Domain.UnitOfWorks;
 using QuickApp.Eventing;
+using QuickApp.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,7 @@ namespace QuickApp
         {
 
             DependencyInitializeService.AddDependencyInitialize(new QuickAppDependencyInitialize());
+            DependencyInitializeService.AddDependencyInitialize(new InterpreterDependencyInitialize());
             DependencyInitializeService.Initialize();
 
             CommandInitializeService.Initialize();

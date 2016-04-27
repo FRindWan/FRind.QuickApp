@@ -88,8 +88,10 @@ namespace QuickApp.Data.Infrastructure.MSSqlerver
 
                 valueList.Add(column.Value);
             }
-
-            updateSql[1] = String.Format(updateSql[1], keyValues.ToArray());
+            foreach (Object keyValue in keyValues)
+            {
+                valueList.Add(keyValue);
+            }
 
             bool result = this.dbFactory.ExecuteSql(updateSql[0] + " where " + updateSql[1], valueList.ToArray());
             if (!result)
@@ -136,9 +138,7 @@ namespace QuickApp.Data.Infrastructure.MSSqlerver
 
             String strsql = DataFilterExtension.CreateSqlWhereForDataFilter(strSelectSql.ToString(), typeof(TEntity));
 
-            this.dbFactory.Find<TEntity>(strsql, keyValues);
-
-            return default(TEntity);
+            return this.dbFactory.Find<TEntity>(strsql, keyValues);
         }
 
         public override TEntity FindForSql<TEntity>(string strsql) 
@@ -170,9 +170,14 @@ namespace QuickApp.Data.Infrastructure.MSSqlerver
         private void getKeyForDb()
         {
             IList<String> keys = new List<String>();
-            foreach (DataRow dataRow in this.dbFactory.ExecuteDataTable("select COLUMN_NAME as ColumnName from INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME='" + this.EntityType.Name + "'", null).Rows)
+            foreach (DataRow dataRow in this.dbFactory.ExecuteDataTable("select COLUMN_NAME as ColumnName from INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME='" + this.tableName + "'", null).Rows)
                 keys.Add(dataRow[0].ToString().ToLower());
             this.keys = keys;
+
+            if (this.keys == null || this.keys.Count <= 0)
+            {
+                throw new NullReferenceException(string.Format("请检查表{0}的主键，必须要且至少需要一个主键！", this.tableName));
+            }
         }
 
         

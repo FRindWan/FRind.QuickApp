@@ -21,7 +21,7 @@ namespace QuickApp.Domain.Entites
 
     }
 
-    public interface IAggregateRoot : IAggregateRoot<Guid>
+    public interface IAggregateRoot : IAggregateRoot<Guid>,IEntity
     { 
     
     }

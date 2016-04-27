@@ -36,7 +36,7 @@ namespace QuickApp.Commands
 
         public static void RegisterCommandExecuter<TCommandExecuter>()where TCommandExecuter:CommandExecuter
         {
-            CommandInitializeService.RegisterContainer.Register<CommandExecuter,TCommandExecuter>(DependencyLifeTime.Singleton);
+            CommandInitializeService.RegisterContainer.Register<ICommandExecuter,TCommandExecuter>(DependencyLifeTime.Singleton);
         }
 
         private static void RegisterCommandHandler()

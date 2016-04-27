@@ -28,6 +28,7 @@ namespace QuickApp.Dependency.Autofac
         private ContainerBuilder builder;
         private bool isBuild;
         private RegisterInterceptorService autofacRegisterInterceptorService;
+        private object sync = new object();
 
         public AutofacDependency()
         {
@@ -115,8 +116,14 @@ namespace QuickApp.Dependency.Autofac
         {
             if (!this.isBuild)
             {
-                this.container = this.builder.Build();
-                this.isBuild = true;
+                lock (this.sync)
+                {
+                    if (!this.isBuild)
+                    {
+                        this.container = this.builder.Build();
+                        this.isBuild = true;
+                    }
+                }
             }
 
             return this.container;

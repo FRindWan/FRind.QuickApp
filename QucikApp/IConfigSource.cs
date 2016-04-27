@@ -7,9 +7,12 @@
 
 using QuickApp.Common.Config;
 using QuickApp.Config;
+using QuickApp.Dependency;
+using QuickApp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,5 +28,19 @@ namespace QuickApp
         IEventConfigSource EventConfigSource { get; }
 
         ICommandConfigSource CommandConfigSource { get; }
+
+        Common.Config.IRepositoryConfigSource RepositoryConfigSource { get; }
+
+        Common.Config.IWebConfigSource WebConfigSource { get; }
+
+        IDependencyResolver DependencyResolver { get; }
+
+        IConfigSource AddDependInitialize(DependencyInitialize dependencyInitialize);
+
+        IConfigSource AddCommandScanAssembly(params Assembly[] assemblys);
+
+        IConfigSource SetDbInfo(Type dbContextType,Type dbContextImplType, DataBaseType dbType);
+
+        IQuickApp Initialize();
     }
 }

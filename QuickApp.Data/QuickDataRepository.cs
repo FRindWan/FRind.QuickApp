@@ -20,24 +20,11 @@ namespace QuickApp.Data
     /// <summary>
     /// <see cref="QuickDataRepository"/>
     /// </summary>
-    public class QuickDataRepository<TAggregateRoot, TKey> : Repository<TAggregateRoot,TKey>where TAggregateRoot:class,IAggregateRoot
+    public class QuickDataRepository<TAggregateRoot, TKey> : Repository<TAggregateRoot, TKey, IQuickDataRepositoryContext> where TAggregateRoot : class,IAggregateRoot
     {
-        private ICurrentRepositoryContextProvider currentRepositoryContextProvider;
-        protected readonly string dbTableName;
-
-        public QuickDataRepository(ICurrentRepositoryContextProvider currentRepositoryContextProvider)
-            : this(currentRepositoryContextProvider,typeof(TAggregateRoot).Name)
+        public QuickDataRepository()
         {
-           
         }
-
-        public QuickDataRepository(ICurrentRepositoryContextProvider currentRepositoryContextProvider,string dbTableName)
-            : base(currentRepositoryContextProvider)
-        {
-            this.currentRepositoryContextProvider = currentRepositoryContextProvider;
-        }
-
-        protected IQuickDataRepositoryContext RepositoryContext { get { return (IQuickDataRepositoryContext)this.currentRepositoryContextProvider.Current; } }
 
         protected override TAggregateRoot DoGetById(TKey id)
         {
@@ -60,5 +47,13 @@ namespace QuickApp.Data
             return this.RepositoryContext.Context.GetEntry(typeof(TAggregateRoot)).FindAll<TAggregateRoot>(predicate.GetExpression());
         }
 
+    }
+
+    public class QuickDataRepository<TAggregateRoot> : QuickDataRepository<TAggregateRoot, Guid> where TAggregateRoot : class,IAggregateRoot
+    {
+        public QuickDataRepository()
+        {
+
+        }
     }
 }

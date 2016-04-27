@@ -25,16 +25,14 @@ namespace QuickApp.Dependency.Autofac
 
         static RegisterInterceptorService()
         {
-            Instance = new RegisterInterceptorService(ConfigSource.Instance);
+            Instance = new RegisterInterceptorService();
         }
 
         private IList<RegisterInterceptor> autofacRegisterInterceptors;
-        private IConfigSource configSource;
 
-        private RegisterInterceptorService(IConfigSource configSource)
+        private RegisterInterceptorService()
         {
             this.autofacRegisterInterceptors = new List<RegisterInterceptor>();
-            this.configSource = configSource;
         }
 
         public void AddAutofacRegisterInterceptor(RegisterInterceptor autofacRegisterInterceptor)
@@ -49,7 +47,7 @@ namespace QuickApp.Dependency.Autofac
 
         public void Register<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle>(IRegistrationBuilder<TLimit, TConcreteReflectionActivatorData, TRegistrationStyle> registerBuilder, Type implType, Type interfaceType = null) 
         {
-            if (this.configSource.DependencyConfigSource.EnableInterceptor)
+            if (ConfigSource.Instance.DependencyConfigSource.EnableInterceptor)
             {
                 foreach (RegisterInterceptor autofacRegisterInterceptor in autofacRegisterInterceptors)
                 {

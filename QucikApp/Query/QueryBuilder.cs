@@ -10,26 +10,36 @@ namespace QuickApp.Query
     {
         private IList<string> selectColumns;
         private IList<string> tableName;
-        private IList<string> where;
+        private string where;
         private IList<string> innerJoin;
         private IList<string> orderByAsc;
         private IList<string> orderByDesc;
+        private int startLimit;
+        private int endLimit;
+        private IList<string> countlist;
+        private int pageSize;
+        private int pageNumber;
 
         public QueryBuilder()
         {
             this.selectColumns = new List<string>();
             this.tableName = new List<string>();
-            this.where = new List<string>();
+            this.where =string.Empty;
             this.innerJoin = new List<string>();
             this.orderByAsc = new List<string>();
             this.orderByDesc = new List<string>();
+            this.startLimit = -1;
+            this.endLimit = -1;
+            this.countlist = new List<string>();
+            this.pageSize = -1;
+            this.pageNumber = -1;
         }
 
         public IList<string> SelectColumns { get { return this.selectColumns; } }
 
         public IList<string> TableName { get { return this.tableName; } }
 
-        public IList<string> Where { get { return this.where; } }
+        public string Where { get { return this.where; } }
 
         public IList<string> InnerJoin { get { return this.innerJoin; } }
 
@@ -37,16 +47,19 @@ namespace QuickApp.Query
 
         public IList<string> OrderByDesc { get { return this.orderByDesc; } }
 
-        public int Top { get { return this.top} }
+        public int StartLimit { get { return this.startLimit; } }
 
-        public QueryBuilder FromTable(string tableName)
+        public int EndLimit { get { return this.endLimit; } }
+
+        public IList<string> CountList { get { return this.countlist; } }
+
+        public int PageSize { get { return this.pageSize; } }
+
+        public int PageNumber { get { return this.pageNumber; } }
+
+        public QueryBuilder FromTable(params string[] tableNames)
         {
-            if (String.IsNullOrWhiteSpace(tableName))
-            {
-                return this;
-            }
-
-            this.tableName.Add(tableName);
+            this.tableName = this.AddRange(this.tableName, tableNames);
 
             return this;
         }
@@ -63,16 +76,11 @@ namespace QuickApp.Query
             return this;
         }
 
-        public QueryBuilder AddWhere(string where)
+        public QueryBuilder AddWhere(string wheres)
         {
-            if (String.IsNullOrWhiteSpace(where))
-            {
-                return this;
-            }
+            this.where = wheres;
 
-            this.where.Add(where);
-
-            return this;
+           return this;
         }
 
         public QueryBuilder AddInnerJoin(string tableName)
@@ -111,10 +119,53 @@ namespace QuickApp.Query
             return this;
         }
 
+        public QueryBuilder AddLimit(int startLimit, int endLimit = -1)
+        {
+            this.startLimit = startLimit;
+            this.endLimit = endLimit;
+
+            return this;
+        }
+
+        public QueryBuilder AddCount(string countColumns)
+        {
+            this.countlist.Add(countColumns);
+
+            return this;
+        }
+
+        public QueryBuilder AddPageInfo(int pageSize,int pageNumber)
+        {
+            this.pageSize = pageSize;
+            this.pageNumber = pageNumber;
+
+            return this;
+        }
+
         public override string ToString()
         {
             throw new NotImplementedException("该类不允许执行ToString方法！");
         }
-        
+
+        private IList<string> AddRange(IList<string> list, string[] addDatas)
+        {
+            if (addDatas == null || addDatas.Length <= 0)
+            {
+                return list;
+            }
+
+            foreach (String item in addDatas)
+            {
+                if (String.IsNullOrWhiteSpace(item))
+                {
+                    continue;
+                }
+
+                list.Add(item);
+            }
+
+            return list;
+        }
+
     }
 }

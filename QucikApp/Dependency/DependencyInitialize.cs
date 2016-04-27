@@ -49,6 +49,6 @@ namespace QuickApp.Dependency
     {
         public abstract void InitializeInterceptor(RegisterInterceptorService registerInterceptorService);
 
-        public abstract void InitializeDependency(IDependency dependency);
+        public abstract void InitializeDependency(IDependencyRegister dependency);
     }
 }

@@ -11,6 +11,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Transactions;
 using QuickApp.Query;
 using QuickApp.Infrastructure;
+using QuickApp.Config;
 
 namespace QuickApp.Data.Infrastructure
 {
@@ -22,9 +23,9 @@ namespace QuickApp.Data.Infrastructure
 
         private readonly ConcurrentDictionary<Type, IEntry> entityDictionary = new ConcurrentDictionary<Type, IEntry>();
 
-        public SqlDbContext(String nameOfConnectString,DataBaseType dataBaseType)
+        public SqlDbContext(String nameOfConnectString)
         {
-            this.dbFactory = DbFactory.Create(nameOfConnectString, dataBaseType);
+            this.dbFactory = DbFactory.Create(nameOfConnectString, ConfigSource.Instance.RepositoryConfigSource.DbType);
             this.Initialize();
         }
 

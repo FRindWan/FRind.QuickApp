@@ -19,10 +19,10 @@ namespace QuickApp.Query
     /// </summary>
     public interface IQuery
     {
-        T Find<T>(QueryBuilder queryBuilder);
+        T Find<T>(QueryBuilder queryBuilder) where T : class;
 
-        IEnumerable<T> FindAll<T>(QueryBuilder queryBuilder);
+        IEnumerable<T> FindAll<T>(QueryBuilder queryBuilder) where T : class;
 
-        IPaged<T> FindPaged<T>(QueryBuilder queryBuilder);
+        IPaged<T> FindPaged<T>(QueryBuilder queryBuilder) where T : class;
     }
 }

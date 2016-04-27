@@ -9,6 +9,8 @@ namespace QuickApp.Data.Infrastructure
 {
     public interface IEntry
     {
+        string TableName { get; }
+
         Type EntityType { get;  }
 
         IList<String> Keys { get;  }

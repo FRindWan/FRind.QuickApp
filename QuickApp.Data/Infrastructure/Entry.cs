@@ -13,6 +13,8 @@ namespace QuickApp.Data.Infrastructure
         protected string tableName;
         protected IList<String> keys;
 
+        public string TableName { get { return this.tableName; } }
+
         public Type EntityType { get; private set; }
 
         public IList<String> Keys

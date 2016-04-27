@@ -20,4 +20,7 @@ namespace QuickApp.Domain.Entites
     {
         public TKey ID { get; set; }
     }
+
+    public abstract class AggregateRoot : AggregateRoot<Guid>,IAggregateRoot
+    { }
 }

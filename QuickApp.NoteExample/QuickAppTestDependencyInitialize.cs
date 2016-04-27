@@ -30,15 +30,15 @@ namespace QuickApp.Test
     public class QuickAppTestDependencyInitialize:DependencyInitialize
     {
 
-        public override void InitializeDependency(IDependency dependency)
+        public override void InitializeDependency(IDependencyRegister dependency)
         {
             //dependency.Register<DbContext, EFDbContext>();
             //dependency.Register<IRepositoryContext, EFRepositoryContext>();
             //dependency.Register<IPersonInfoRepository, PersonInfoRepository>();
-            dependency.Register<SqlDbContext, SqlServerDbContext>();
             dependency.Register<IRepositoryContext, QuickApp.Data.QuickDataRepositoryContext>();
             dependency.Register<IPersonInfoRepository, SqlPersonInfoRepository>();
             dependency.Register<IPersonInfoApplication, PersonInfoApplication>();
+            dependency.Register<PersonInfoCommandHandler>();
 
         }
 

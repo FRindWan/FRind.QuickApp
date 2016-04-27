@@ -63,6 +63,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultSqlDbContext.cs" />
+    <Compile Include="Extensions\ConfigSourceExetension.cs" />
     <Compile Include="Extensions\DataConvertionExtension.cs" />
     <Compile Include="Extensions\DataFilterExtension.cs" />
     <Compile Include="Extensions\SqlExtension.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Infrastructure\SqlDbContext.cs" />
     <Compile Include="IQuickDataRepositoryContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickAppDataDependInitialize.cs" />
     <Compile Include="QuickDataQuery.cs" />
     <Compile Include="QuickDataRepository.cs" />
     <Compile Include="QuickDataRepositoryContext.cs" />
